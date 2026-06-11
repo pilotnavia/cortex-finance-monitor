@@ -12,6 +12,8 @@ npm run dev     # development server (finance variant)
 npm run build   # production build → dist/
 ```
 
+New here? Read [docs/CORTEX-ONBOARDING.md](docs/CORTEX-ONBOARDING.md) first. It explains the branding mechanism (build-time vs runtime), the variant system, the Pro/entitlements model, dev setup, and deploy in one place.
+
 ## Attribution
 
 Cortex Finance Monitor is based on [World Monitor](https://github.com/koala73/worldmonitor) by **Elie Habib**, an open-source real-time global intelligence dashboard. The original project README is preserved at [docs/UPSTREAM_README.md](docs/UPSTREAM_README.md).
