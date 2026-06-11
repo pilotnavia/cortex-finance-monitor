@@ -155,6 +155,33 @@ Se configuran como env vars del proyecto en Vercel (igual que
 `WORLDMONITOR_VALID_KEYS`). Recuerda: estos endpoints también están Pro-gated, así
 que necesitas tanto la clave de licencia (gate) como la clave LLM (datos).
 
+### El LLM no es la única dependencia (orden real de un request)
+
+Verificado en producción (2026-06-11) contra `/api/chat-analyst`. Un request
+pasa por esta cadena ANTES de llegar al modelo:
+
+1. **Bot gate** (`middleware.ts`): bloquea User-Agents tipo `curl/`, `wget`,
+   bots, o UA ausente/corto, con 403 `Forbidden`. Un navegador real pasa.
+2. **Pro gate** (`isCallerPremium`): exige Pro. La clave enterprise
+   (`WORLDMONITOR_VALID_KEYS`) por header `X-WorldMonitor-Key`, o la licencia en
+   Ajustes, lo satisface. Si no, 403 `Pro subscription required`.
+3. **Rate-limiter fail-closed** (`checkRateLimit({ failClosed: true })`): exige
+   **Upstash Redis** (`UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN`).
+   Sin Redis devuelve 503 `Rate-limit service temporarily unavailable` ANTES de
+   llamar al LLM. Es intencional: en un endpoint que pega a un modelo de pago,
+   una caída de Redis no debe levantar el presupuesto.
+4. Recién entonces se llama a Groq/OpenRouter.
+
+Implicación: para encender **Cortex Analyst** hace falta `GROQ_API_KEY` **y**
+Upstash Redis (tier gratis en upstash.com). Los paneles de **brief/forecast**
+(`latest-brief`, etc.) además leen de Upstash y los compone un cron aparte
+(Convex + jobs), no este request. Resumen de dependencias por capa de IA:
+
+| Panel | Necesita |
+| --- | --- |
+| Cortex Analyst (chat) | clave Pro + GROQ_API_KEY + Upstash Redis |
+| Daily/Latest Brief, Forecasts | lo anterior + Convex + cron de composición |
+
 ---
 
 ## 5. Setup de desarrollo
