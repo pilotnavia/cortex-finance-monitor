@@ -121,9 +121,39 @@ commitees.
 
 Desbloquear el gate hace que los paneles premium se **vean**, pero muchos (Stock
 Analysis, Daily Market Brief, Cortex Analyst, AI Forecasts, Market Implications)
-llaman a backends de IA/datos. En self-host necesitan tus propias API keys
-(`OPENROUTER_API_KEY`, `GROQ_API_KEY`, etc.; ver `.env.example`). Sin ellas el
-panel aparece pero no produce datos.
+llaman a backends de IA. En self-host necesitan tus propias API keys. Sin ellas
+el panel aparece pero no produce datos.
+
+### Backends de IA (cómo encenderlos)
+
+El cliente LLM compartido es `server/_shared/llm.ts`. Soporta una cadena de
+proveedores con fallback automático:
+
+```
+ollama (local) -> groq -> openrouter -> generic (LLM_API_URL/KEY)
+```
+
+Hay dos perfiles:
+- `callLlmTool` (extracción/parsing rápido): prefiere **groq**.
+- `callLlmReasoning` (síntesis/razonamiento; lo usan Cortex Analyst, briefs,
+  forecasts, market implications): prefiere **openrouter**.
+
+Clave: cada perfil pone su proveedor preferido primero y luego **cae por el
+resto de la cadena** saltando los proveedores sin clave. Por eso **una sola
+clave basta**:
+
+- **Mínimo / gratis**: define `GROQ_API_KEY` (tier gratis en
+  console.groq.com). El perfil tool usa groq directo; el perfil reasoning
+  prefiere openrouter pero, al no haber clave, cae a groq. Enciende todos los
+  paneles de IA con modelos Llama.
+- **Mejor calidad / de pago (opcional)**: añade `OPENROUTER_API_KEY` para que el
+  razonamiento use `google/gemini-2.5-flash` (pay-as-you-go barato). Puedes
+  fijar modelos con `LLM_TOOL_MODEL` / `LLM_REASONING_MODEL` y proveedores con
+  `LLM_TOOL_PROVIDER` / `LLM_REASONING_PROVIDER`.
+
+Se configuran como env vars del proyecto en Vercel (igual que
+`WORLDMONITOR_VALID_KEYS`). Recuerda: estos endpoints también están Pro-gated, así
+que necesitas tanto la clave de licencia (gate) como la clave LLM (datos).
 
 ---
 
