@@ -563,7 +563,7 @@
         "OLLAMA_API_URL": "e.g. http://127.0.0.1:11434 (Ollama) or http://127.0.0.1:1234/v1 (LM Studio) — OpenAI-compatible endpoint.",
         "OLLAMA_MODEL": "e.g. llama3.1:8b — model tag to use for summarization."
       },
-      "skipSetup": "Pomiń konfigurację — jedna licencja World Monitor odblokowuje wszystko. Dołącz do listy oczekujących, aby uzyskać wczesny dostęp.",
+      "skipSetup": "Pomiń konfigurację — jedna licencja Cortex Finance Monitor odblokowuje wszystko. Dołącz do listy oczekujących, aby uzyskać wczesny dostęp.",
       "reserveEarlyAccess": "Zarezerwuj wczesny dostęp"
     },
     "countryIntel": {
@@ -665,12 +665,12 @@
         },
         "dividerOr": "LUB",
         "register": {
-          "description": "Przygotowujemy się do uruchomienia licencji World Monitor. Zarejestruj się teraz i bądź pierwszy w kolejce — pierwsi członkowie otrzymają priorytetowy dostęp i cenę założycielską.",
+          "description": "Przygotowujemy się do uruchomienia licencji Cortex Finance Monitor. Zarejestruj się teraz i bądź pierwszy w kolejce — pierwsi członkowie otrzymają priorytetowy dostęp i cenę założycielską.",
           "submitBtn": "Dołącz do listy oczekujących",
           "title": "Zarezerwuj swoje miejsce"
         }
       },
-      "shellTitle": "Ustawienia World Monitor",
+      "shellTitle": "Ustawienia Cortex Finance Monitor",
       "shellSearchPlaceholder": "Przeszukaj ustawienia…",
       "shellCancel": "Anuluj",
       "shellSaveClose": "Zapisz i zamknij",
@@ -1844,7 +1844,7 @@
       "tripDays": "Dni podróży"
     },
     "chatAnalyst": {
-      "infoTooltip": "<strong>Analityk WM</strong> Analityk AI z kontekstem na żywo w domenach geopolitycznej, rynkowej, wojskowej i ekonomicznej. Zasilany przez Claude z danymi w czasie rzeczywistym z aktywnych kanałów WorldMonitor."
+      "infoTooltip": "<strong>Analityk WM</strong> Analityk AI z kontekstem na żywo w domenach geopolitycznej, rynkowej, wojskowej i ekonomicznej. Zasilany przez Claude z danymi w czasie rzeczywistym z aktywnych kanałów Cortex Finance Monitor."
     },
     "cotPositioning": {
       "infoTooltip": "<strong>Pozycjonowanie CFTC COT</strong> Raport zobowiązań traderów: pozycja netto podmiotów komercyjnych, dużych spekulantów i małych traderów w towarowych i finansowych kontraktach terminowych. Publikowany cotygodniowo (piątek). Źródło: CFTC."
@@ -1981,7 +1981,7 @@
       "infoTooltip": "<strong>Wskaźniki makro</strong> Kluczowe wskaźniki makroekonomiczne dla USA i strefy euro: CPI, bezrobocie, GDP i stopy banków centralnych. Wartości z deltą w stosunku do poprzedniego okresu. Źródło: FRED (Federal Reserve Economic Data)."
     },
     "monitors": {
-      "infoTooltip": "<strong>Monitory słów kluczowych</strong> Dodaj dowolny termin, aby śledzić wzmianki w wiadomościach w czasie rzeczywistym ze wszystkich źródeł WorldMonitor. Wyniki aktualizują się w czasie rzeczywistym w miarę pozyskiwania pasujących artykułów."
+      "infoTooltip": "<strong>Monitory słów kluczowych</strong> Dodaj dowolny termin, aby śledzić wzmianki w wiadomościach w czasie rzeczywistym ze wszystkich źródeł Cortex Finance Monitor. Wyniki aktualizują się w czasie rzeczywistym w miarę pozyskiwania pasujących artykułów."
     },
     "renewable": {
       "infoTooltip": "<strong>Energia odnawialna</strong> Udział odnawialnych źródeł w produkcji energii elektrycznej według regionu i roku oraz moc zainstalowana w USA dla energii słonecznej, wiatrowej i węgla (MW). Źródła: Bank Światowy (EG.ELC.RNEW.ZS) i EIA."
@@ -3011,10 +3011,10 @@
     "copyCoordinates": "Kopiuj współrzędne"
   },
   "shell": {
-    "documentTitle": "World Monitor — Tablica bieżącej analizy globalnej",
+    "documentTitle": "Cortex Finance Monitor — Tablica bieżącej analizy globalnej",
     "metaDescription": "Platforma analizy globalnej w czasie rzeczywistym. Opisana w WIRED. Używana przez 2M+ użytkowników w 190 krajach. Konflikty, rynki, wojskowość, OSINT w jednym widoku.",
     "offlineTitle": "Jesteś offline",
-    "offlineMessage": "World Monitor wymaga połączenia internetowego do otrzymywania danych wywiadowczych w czasie rzeczywistym.",
+    "offlineMessage": "Cortex Finance Monitor wymaga połączenia internetowego do otrzymywania danych wywiadowczych w czasie rzeczywistym.",
     "offlineRetry": "Ponów próbę"
   },
   "widgets": {
@@ -3051,12 +3051,12 @@
     "phaseError": "Błąd",
     "previewCheckingHeading": "Łączenie konstruktora widgetów",
     "previewReadyHeading": "Opisz widget, który chcesz",
-    "previewFetchingHeading": "Pobieranie bieżących danych WorldMonitor",
+    "previewFetchingHeading": "Pobieranie bieżących danych Cortex Finance Monitor",
     "previewComposingHeading": "Tworzenie układu widgetu",
     "previewErrorHeading": "Podgląd wymaga uwagi",
     "previewCheckingCopy": "Sprawdzamy Twój klucz widgetu i dostępność backendu przed włączeniem generowania.",
     "previewReadyCopy": "Użyj przykładu polecenia lub opisz dokładnie żywy widok, który chcesz. Podgląd zostanie tutaj zaktualizowany przed zapisaniem.",
-    "previewFetchingCopy": "Agent wywołuje zatwierdzone punkty końcowe WorldMonitor i formatuje zestaw danych dla widgetu.",
+    "previewFetchingCopy": "Agent wywołuje zatwierdzone punkty końcowe Cortex Finance Monitor i formatuje zestaw danych dla widgetu.",
     "previewComposingCopy": "Podgląd jest renderowany z najnowszymi danymi na żywo i stylowaniem tablicy.",
     "previewErrorCopy": "Napraw problem, a następnie spróbuj ponownie. Twoje istniejące widgety nie zostaną zmienione.",
     "createInteractive": "Utwórz interaktywny widget",
@@ -3085,7 +3085,7 @@
   },
   "premium": {
     "pro": "PRO",
-    "lockedDesc": "Wymaga klucza licencji World Monitor",
+    "lockedDesc": "Wymaga klucza licencji Cortex Finance Monitor",
     "signInToUnlock": "Zaloguj się, aby odblokować funkcje premium",
     "signIn": "Zaloguj się, aby odblokować",
     "upgradeDesc": "Przejdź na Pro, aby uzyskać pełny dostęp do analityki premium",

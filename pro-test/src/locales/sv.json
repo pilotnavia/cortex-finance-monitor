@@ -26,12 +26,12 @@
     "asFeaturedIn": "Omskrivna i"
   },
   "twoPath": {
-    "proTitle": "World Monitor Pro",
+    "proTitle": "Cortex Finance Monitor Pro",
     "proDesc": "Din AI-analytiker. Ett personligt intelligence-skrivbord. En plattform att bygga på. En nyckel till 30+ live-tjänster.",
-    "proF1": "WM Analyst-chatt — fråga alla 30+ tjänster konversationellt",
+    "proF1": "Cortex Analyst-chatt — fråga alla 30+ tjänster konversationellt",
     "proF2": "AI-digest — dagligen, två gånger om dagen eller veckovis — till Slack, Discord, Telegram, E-post eller webhook",
     "proF3": "Custom Widget Builder — HTML/CSS/JS med AI-assisterad modifiering",
-    "proF4": "MCP-konnektorer — koppla WorldMonitor till Claude, GPT, egna LLM:er",
+    "proF4": "MCP-konnektorer — koppla Cortex Finance Monitor till Claude, GPT, egna LLM:er",
     "proF5": "Aktieanalys, equity research och backtesting",
     "proF6": "Flygsökning och prisjämförelse",
     "proF7": "Regelmotor för larm — egna triggers, tysta timmar, AES-256-krypterade kanaler",
@@ -39,7 +39,7 @@
     "proF9": "AI Market Implications och Regional Intelligence (Snart: orbital övervakning, premiumkartlager, utökad historik)",
     "proCta": "Reservera din tidiga åtkomst",
     "choosePlan": "Välj din plan",
-    "entTitle": "World Monitor Enterprise",
+    "entTitle": "Cortex Finance Monitor Enterprise",
     "entDesc": "För team som behöver delad övervakning, API-åtkomst, deployment-alternativ, TV-appar och direkt support.",
     "entF1": "Allt i Pro, plus:",
     "entF2": "Live-edge satellitbilder och SAR",
@@ -60,7 +60,7 @@
     "noiseTitle": "Vet först",
     "noiseDesc": "AIS-anomali → Brent-spik → din Slack på mindre än en minut. Signal, inte rubriker.",
     "fasterTitle": "Fråga vad som helst",
-    "fasterDesc": "Chatta med samma 30+ tjänster som din dashboard ser. WM Analyst, alltid på.",
+    "fasterDesc": "Chatta med samma 30+ tjänster som din dashboard ser. Cortex Analyst, alltid på.",
     "controlTitle": "Bygg vad som helst",
     "controlDesc": "Custom widget builder (HTML/CSS/JS + AI) plus MCP för dina egna AI-flöden.",
     "deeperTitle": "Vakna informerad",
@@ -68,7 +68,7 @@
   },
   "pillars": {
     "askIt": "Fråga det",
-    "askItDesc": "WM Analyst-chatt. Alla 30+ tjänster frågbara på naturligt språk.",
+    "askItDesc": "Cortex Analyst-chatt. Alla 30+ tjänster frågbara på naturligt språk.",
     "subscribeIt": "Prenumerera",
     "subscribeItDesc": "AI-digest i din takt: dagligen, två gånger om dagen eller veckovis. Slack, Discord, Telegram, E-post, webhook.",
     "buildOnIt": "Bygg på det",
@@ -85,7 +85,7 @@
     "windowTitle": "worldmonitor.app — Live-dashboard",
     "openFullScreen": "Öppna helskärm",
     "tryLiveDashboard": "Prova live-dashboarden",
-    "iframeTitle": "World Monitor — Live Intelligence Dashboard",
+    "iframeTitle": "Cortex Finance Monitor — Live Intelligence Dashboard",
     "description": "3D WebGL-glob · 50+ interaktiva kartlager · Realtidsdata för marknader, makroekonomi, geopolitik, energi och infrastruktur"
   },
   "socialProof": {
@@ -113,7 +113,7 @@
     "teamsDesc": "Gå från individuellt bruk till delade flöden, API-åtkomst, TV-appar och hanterade deployments."
   },
   "dataCoverage": {
-    "title": "Vad World Monitor spårar",
+    "title": "Vad Cortex Finance Monitor spårar",
     "subtitle": "30+ tjänstedomäner intagna samtidigt. Marknader, makro, geopolitik, energi, infrastruktur — allt normaliserat och renderat på en WebGL-jordglob.",
     "markets": "Finansmarknader och aktier",
     "marketsDesc": "Global aktieanalys, råvaror, krypto, ETF-flöden, analytikermål och FRED-makrodata",
@@ -177,7 +177,7 @@
   "apiSection": {
     "apiTier": "API-NIVÅ",
     "title": "Programmatisk intelligence",
-    "subtitle": "För utvecklare, analytiker och team som bygger på World Monitor-data. Separat från Pro — använd båda eller endera.",
+    "subtitle": "För utvecklare, analytiker och team som bygger på Cortex Finance Monitor-data. Separat från Pro — använd båda eller endera.",
     "restApi": "REST API över alla 30+ tjänstedomäner",
     "authenticated": "Autentiserat per nyckel, rate-limited per nivå",
     "structured": "Strukturerad JSON med cache-headers och OpenAPI 3.1-dokumentation",
@@ -196,7 +196,7 @@
     "security": "Säkerhet på myndighetsnivå",
     "securityDesc": "Air-gapped deployment, on-premises Docker, dedikerad cloud-tenant, SOC 2 Type II-väg, SSO/MFA och fullständigt audit trail.",
     "aiAgents": "AI-agenter och MCP",
-    "aiAgentsDesc": "Autonoma intelligence-agenter med investor-personas. Koppla World Monitor som verktyg till Claude, GPT eller egna LLM:er via MCP.",
+    "aiAgentsDesc": "Autonoma intelligence-agenter med investor-personas. Koppla Cortex Finance Monitor som verktyg till Claude, GPT eller egna LLM:er via MCP.",
     "dataLayers": "Utökade datalager",
     "dataLayersDesc": "Tiotusentals infrastrukturtillgångar kartlagda globalt. Satellitbildsintegration med change detection och SAR.",
     "connectors": "100+ datakonnektorer",
@@ -276,7 +276,7 @@
   },
   "faq": {
     "title": "Vanliga frågor",
-    "q1": "Är World Monitor fortfarande gratis?",
+    "q1": "Är Cortex Finance Monitor fortfarande gratis?",
     "a1": "Ja. Kärnplattformen förblir gratis. Pro lägger till equity research, makroanalys och AI-briefingar. Enterprise lägger till team-deployments och TV-appar.",
     "q2": "Varför betala för Pro?",
     "a2": "Pro är för investerare, analytiker och yrkespersoner som vill ha aktieövervakning, geopolitisk analys, ekonomisk analys och AI-drivna dagliga briefingar — allt under en nyckel.",
@@ -285,17 +285,17 @@
     "q4": "Kan jag börja med Pro och uppgradera senare?",
     "a4": "Ja. Pro fungerar för seriösa individer. Enterprise finns där när team- och deployment-behov växer.",
     "q5": "Är detta bara för konfliktövervakning?",
-    "a5": "Nej. World Monitor är främst en global intelligence-plattform som täcker aktiemarknader, makroekonomi, geopolitisk analys, energi, infrastruktur och mer. Konfliktspårning är en av många förmågor — inte fokus.",
+    "a5": "Nej. Cortex Finance Monitor är främst en global intelligence-plattform som täcker aktiemarknader, makroekonomi, geopolitisk analys, energi, infrastruktur och mer. Konfliktspårning är en av många förmågor — inte fokus.",
     "q6": "Varför behålla kärnplattformen gratis?",
     "a6": "För att offentlig åtkomst är viktig. Betalplaner finansierar djupare flöden för seriösa användare och organisationer.",
     "q7": "Kan jag fortfarande använda mina egna API-nycklar?",
     "a7": "Ja. Bring-your-own-keys fungerar alltid. Pro betyder bara att du inte behöver registrera dig hos 20+ separata tjänster.",
     "q8": "Vad är MCP?",
-    "a8": "MCP låter AI-agenter — Claude, GPT, egna LLM:er — använda WorldMonitor som verktyg och fråga alla 30+ tjänsterna. Ingår i Pro. Enterprise lägger till privata MCP-servrar och anpassade deployments.",
+    "a8": "MCP låter AI-agenter — Claude, GPT, egna LLM:er — använda Cortex Finance Monitor som verktyg och fråga alla 30+ tjänsterna. Ingår i Pro. Enterprise lägger till privata MCP-servrar och anpassade deployments.",
     "q9": "Kan jag bygga egna paneler?",
     "a9": "Ja. Pro inkluderar Custom Widget Builder — bygg paneler från HTML, CSS och JavaScript med AI-assisterad modifiering.",
-    "q10": "Kan jag koppla Claude eller GPT till WorldMonitor?",
-    "a10": "Ja. MCP ingår i Pro — koppla WorldMonitor till Claude, GPT eller vilken MCP-kompatibel LLM som helst som live-verktyg.",
+    "q10": "Kan jag koppla Claude eller GPT till Cortex Finance Monitor?",
+    "a10": "Ja. MCP ingår i Pro — koppla Cortex Finance Monitor till Claude, GPT eller vilken MCP-kompatibel LLM som helst som live-verktyg.",
     "q11": "Hur personlig är digesten?",
     "a11": "Välj takt: dagligen, två gånger om dagen eller veckovis. Vi omvärderar varje spårad story mot dina larm-regler och watchlist, deduplicerar över 400+ källor och skickar upp till 30 rankade poster med AI-Assessment och Signals to watch skrivna för din kontext. Realtidslarm finns också för kritiska händelser.",
     "q12": "Vad är uppdateringsfrekvensen?",
@@ -305,7 +305,7 @@
   },
   "finalCta": {
     "title": "Börja med Pro. Skala till Enterprise.",
-    "subtitle": "Fortsätt använda World Monitor gratis, eller uppgradera för equity research, makroanalys och AI-briefingar. Om din organisation behöver teamåtkomst, TV-appar eller API-support — prata med oss.",
+    "subtitle": "Fortsätt använda Cortex Finance Monitor gratis, eller uppgradera för equity research, makroanalys och AI-briefingar. Om din organisation behöver teamåtkomst, TV-appar eller API-support — prata med oss.",
     "getPro": "Reservera din tidiga åtkomst",
     "talkToSales": "Prata med sälj"
   },
@@ -329,17 +329,17 @@
     "linkedin": "LinkedIn",
     "whatsapp": "WhatsApp",
     "telegram": "Telegram",
-    "shareText": "Jag gick just med i World Monitor Pro-väntelistan — aktieövervakning, geopolitisk analys och dagliga AI-briefingar på en plattform. Gå med:",
-    "joinWaitlistShare": "Gå med i World Monitor Pro-väntelistan:",
+    "shareText": "Jag gick just med i Cortex Finance Monitor Pro-väntelistan — aktieövervakning, geopolitisk analys och dagliga AI-briefingar på en plattform. Gå med:",
+    "joinWaitlistShare": "Gå med i Cortex Finance Monitor Pro-väntelistan:",
     "youreIn": "Du är med!",
     "invitedBanner": "Du har bjudits in — gå med i väntelistan"
   },
   "soonBadge": "Snart",
   "meta": {
-    "title": "World Monitor Pro — AI-analytiker, personaliserat informationscenter, MCP för Claude & GPT",
-    "description": "Geopolitikens AI-skikt. Fråga den, prenumerera på den, bygga på den. WM Analyst-chatt över 30+ live-tjänster, en AI-sammanfattning levererad dagligen, två gånger dagligen eller veckovis till Slack, Discord, Telegram, E-post eller webhook, en anpassad widgetbyggare (HTML/CSS/JS + AI) och MCP-kopplingar för Claude, GPT och anpassade LLM:er.",
-    "ogTitle": "World Monitor Pro — Geopolitikens AI-skikt",
-    "ogDescription": "Fråga den, prenumerera på den, bygga på den. WM Analyst-chatt, en AI-sammanfattning enligt ditt schema (dagligen, två gånger dagligen eller veckovis), anpassad widgetbyggare och MCP för Claude/GPT — över 30+ live-tjänster under en nyckel."
+    "title": "Cortex Finance Monitor Pro — AI-analytiker, personaliserat informationscenter, MCP för Claude & GPT",
+    "description": "Geopolitikens AI-skikt. Fråga den, prenumerera på den, bygga på den. Cortex Analyst-chatt över 30+ live-tjänster, en AI-sammanfattning levererad dagligen, två gånger dagligen eller veckovis till Slack, Discord, Telegram, E-post eller webhook, en anpassad widgetbyggare (HTML/CSS/JS + AI) och MCP-kopplingar för Claude, GPT och anpassade LLM:er.",
+    "ogTitle": "Cortex Finance Monitor Pro — Geopolitikens AI-skikt",
+    "ogDescription": "Fråga den, prenumerera på den, bygga på den. Cortex Analyst-chatt, en AI-sammanfattning enligt ditt schema (dagligen, två gånger dagligen eller veckovis), anpassad widgetbyggare och MCP för Claude/GPT — över 30+ live-tjänster under en nyckel."
   },
   "pricing": {
     "suffixForever": "för alltid",

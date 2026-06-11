@@ -26,12 +26,12 @@
     "asFeaturedIn": "Zmíněno v"
   },
   "twoPath": {
-    "proTitle": "World Monitor Pro",
+    "proTitle": "Cortex Finance Monitor Pro",
     "proDesc": "Váš AI analytik. Osobní zpravodajské pracoviště. Platforma, na které můžete stavět. Jeden klíč k 30+ živým službám.",
-    "proF1": "Chat WM Analyst — dotazujte se všech 30+ služeb konverzačně",
+    "proF1": "Chat Cortex Analyst — dotazujte se všech 30+ služeb konverzačně",
     "proF2": "AI digest — denně, dvakrát denně nebo týdně — na Slack, Discord, Telegram, E-mail nebo webhook",
     "proF3": "Custom Widget Builder — HTML/CSS/JS s úpravami pomocí AI",
-    "proF4": "MCP konektory — připojte WorldMonitor ke Claude, GPT nebo vlastním LLM",
+    "proF4": "MCP konektory — připojte Cortex Finance Monitor ke Claude, GPT nebo vlastním LLM",
     "proF5": "Equity research, analýza akcií a backtesting",
     "proF6": "Vyhledávání letů a porovnání cen",
     "proF7": "Engine pravidel alertů — vlastní spouštěče, tiché hodiny, kanály šifrované AES-256",
@@ -39,7 +39,7 @@
     "proF9": "AI Market Implications a Regional Intelligence (Brzy: orbitální dohled, prémiové vrstvy map, delší historie)",
     "proCta": "Rezervujte si raný přístup",
     "choosePlan": "Vyberte plán",
-    "entTitle": "World Monitor Enterprise",
+    "entTitle": "Cortex Finance Monitor Enterprise",
     "entDesc": "Pro týmy, které potřebují sdílený monitoring, API přístup, možnosti nasazení, TV aplikace a přímou podporu.",
     "entF1": "Vše z Pro, navíc:",
     "entF2": "Satelitní snímky live a SAR",
@@ -60,7 +60,7 @@
     "noiseTitle": "Vězte první",
     "noiseDesc": "AIS anomálie → skok Brent → váš Slack za méně než minutu. Signál, ne titulky.",
     "fasterTitle": "Zeptejte se na cokoli",
-    "fasterDesc": "Chatujte s těmi samými 30+ službami, které vidí váš dashboard. WM Analyst, vždy aktivní.",
+    "fasterDesc": "Chatujte s těmi samými 30+ službami, které vidí váš dashboard. Cortex Analyst, vždy aktivní.",
     "controlTitle": "Postavte cokoli",
     "controlDesc": "Custom widget builder (HTML/CSS/JS + AI) plus MCP pro vlastní AI workflow.",
     "deeperTitle": "Probuďte se informovaní",
@@ -68,7 +68,7 @@
   },
   "pillars": {
     "askIt": "Zeptejte se",
-    "askItDesc": "Chat WM Analyst. Všech 30+ služeb dotazovatelných přirozeným jazykem.",
+    "askItDesc": "Chat Cortex Analyst. Všech 30+ služeb dotazovatelných přirozeným jazykem.",
     "subscribeIt": "Odebírejte",
     "subscribeItDesc": "AI digest ve vašem tempu: denně, dvakrát denně nebo týdně. Slack, Discord, Telegram, E-mail, webhook.",
     "buildOnIt": "Stavte na tom",
@@ -85,7 +85,7 @@
     "windowTitle": "worldmonitor.app — Živý dashboard",
     "openFullScreen": "Otevřít na celé obrazovce",
     "tryLiveDashboard": "Vyzkoušejte živý dashboard",
-    "iframeTitle": "World Monitor — Živý zpravodajský dashboard",
+    "iframeTitle": "Cortex Finance Monitor — Živý zpravodajský dashboard",
     "description": "3D WebGL glóbus · 50+ interaktivních mapových vrstev · Data v reálném čase o trzích, makroekonomii, geopolitice, energetice a infrastruktuře"
   },
   "socialProof": {
@@ -113,7 +113,7 @@
     "teamsDesc": "Přejděte od individuálního použití ke sdíleným workflow, API přístupu, TV aplikacím a řízeným nasazením."
   },
   "dataCoverage": {
-    "title": "Co World Monitor sleduje",
+    "title": "Co Cortex Finance Monitor sleduje",
     "subtitle": "30+ doménových služeb přijímaných současně. Trhy, makro, geopolitika, energie, infrastruktura — vše normalizováno a renderováno na WebGL zeměkouli.",
     "markets": "Finanční trhy a akcie",
     "marketsDesc": "Globální analýza akcií, komodit, krypta, toky ETF, cíle analytiků a makro data FRED",
@@ -177,7 +177,7 @@
   "apiSection": {
     "apiTier": "API ÚROVEŇ",
     "title": "Programové zpravodajství",
-    "subtitle": "Pro vývojáře, analytiky a týmy stavějící na datech World Monitor. Samostatné od Pro — použijte obě nebo jen jedno.",
+    "subtitle": "Pro vývojáře, analytiky a týmy stavějící na datech Cortex Finance Monitor. Samostatné od Pro — použijte obě nebo jen jedno.",
     "restApi": "REST API přes všech 30+ doménových služeb",
     "authenticated": "Ověřeno klíčem, rate-limited dle úrovně",
     "structured": "Strukturované JSON s cache hlavičkami a OpenAPI 3.1 dokumentací",
@@ -196,7 +196,7 @@
     "security": "Zabezpečení vládní úrovně",
     "securityDesc": "Air-gapped nasazení, on-premises Docker, dedikovaný cloud tenant, cesta SOC 2 Type II, SSO/MFA a plný audit trail.",
     "aiAgents": "AI agenti a MCP",
-    "aiAgentsDesc": "Autonomní zpravodajští agenti s investor personami. Připojte World Monitor jako nástroj ke Claude, GPT nebo vlastním LLM přes MCP.",
+    "aiAgentsDesc": "Autonomní zpravodajští agenti s investor personami. Připojte Cortex Finance Monitor jako nástroj ke Claude, GPT nebo vlastním LLM přes MCP.",
     "dataLayers": "Rozšířené datové vrstvy",
     "dataLayersDesc": "Desítky tisíc aktiv infrastruktury zmapovaných globálně. Integrace satelitních snímků s detekcí změn a SAR.",
     "connectors": "100+ datových konektorů",
@@ -276,7 +276,7 @@
   },
   "faq": {
     "title": "Často kladené otázky",
-    "q1": "Je World Monitor stále zdarma?",
+    "q1": "Je Cortex Finance Monitor stále zdarma?",
     "a1": "Ano. Jádro platformy zůstává zdarma. Pro přidává equity research, makro analytiku a AI briefingy. Enterprise přidává týmová nasazení a TV aplikace.",
     "q2": "Proč platit za Pro?",
     "a2": "Pro je pro investory, analytiky a profesionály, kteří chtějí monitoring akcií, geopolitickou analýzu, ekonomickou analytiku a denní AI briefingy — vše pod jedním klíčem.",
@@ -285,17 +285,17 @@
     "q4": "Mohu začít s Pro a upgradovat později?",
     "a4": "Ano. Pro funguje pro vážné jednotlivce. Enterprise je tu, když rostou týmové a nasazovací potřeby.",
     "q5": "Je to jen pro monitoring konfliktů?",
-    "a5": "Ne. World Monitor je především globální zpravodajská platforma pokrývající akciové trhy, makroekonomii, geopolitickou analýzu, energii, infrastrukturu a další. Sledování konfliktů je jedna z mnoha schopností — ne hlavní zaměření.",
+    "a5": "Ne. Cortex Finance Monitor je především globální zpravodajská platforma pokrývající akciové trhy, makroekonomii, geopolitickou analýzu, energii, infrastrukturu a další. Sledování konfliktů je jedna z mnoha schopností — ne hlavní zaměření.",
     "q6": "Proč udržovat jádro platformy zdarma?",
     "a6": "Protože veřejný přístup je důležitý. Placené plány financují hlubší workflow pro vážné uživatele a organizace.",
     "q7": "Mohu stále používat své vlastní API klíče?",
     "a7": "Ano. Bring-your-own-keys vždy funguje. Pro jednoduše znamená, že se nemusíte registrovat u 20+ samostatných služeb.",
     "q8": "Co je MCP?",
-    "a8": "MCP umožňuje AI agentům — Claude, GPT, vlastním LLM — používat WorldMonitor jako nástroj a dotazovat se všech 30+ služeb. V ceně Pro. Enterprise přidává soukromé MCP servery a vlastní nasazení.",
+    "a8": "MCP umožňuje AI agentům — Claude, GPT, vlastním LLM — používat Cortex Finance Monitor jako nástroj a dotazovat se všech 30+ služeb. V ceně Pro. Enterprise přidává soukromé MCP servery a vlastní nasazení.",
     "q9": "Mohu stavět vlastní panely?",
     "a9": "Ano. Pro obsahuje Custom Widget Builder — stavte panely z HTML, CSS a JavaScriptu s úpravami pomocí AI.",
-    "q10": "Mohu připojit Claude nebo GPT k WorldMonitor?",
-    "a10": "Ano. MCP je v ceně Pro — připojte WorldMonitor ke Claude, GPT nebo jakémukoliv LLM kompatibilnímu s MCP jako živý nástroj.",
+    "q10": "Mohu připojit Claude nebo GPT k Cortex Finance Monitor?",
+    "a10": "Ano. MCP je v ceně Pro — připojte Cortex Finance Monitor ke Claude, GPT nebo jakémukoliv LLM kompatibilnímu s MCP jako živý nástroj.",
     "q11": "Jak personalizovaný je digest?",
     "a11": "Vyberte si tempo: denně, dvakrát denně nebo týdně. Přehodnocujeme každý sledovaný příběh vůči vašim pravidlům alertů a watchlistu, deduplikujeme napříč 400+ zdroji a posíláme až 30 seřazených položek s AI Assessment a Signals to watch psanými pro váš kontext. Upozornění v reálném čase jsou k dispozici i pro kritické události.",
     "q12": "Jaká je frekvence obnovování?",
@@ -305,7 +305,7 @@
   },
   "finalCta": {
     "title": "Začněte s Pro. Škálujte na Enterprise.",
-    "subtitle": "Používejte World Monitor zdarma, nebo upgradujte pro equity research, makro analytiku a AI briefingy. Pokud vaše organizace potřebuje týmový přístup, TV aplikace nebo API podporu, pojďme si promluvit.",
+    "subtitle": "Používejte Cortex Finance Monitor zdarma, nebo upgradujte pro equity research, makro analytiku a AI briefingy. Pokud vaše organizace potřebuje týmový přístup, TV aplikace nebo API podporu, pojďme si promluvit.",
     "getPro": "Rezervujte si raný přístup",
     "talkToSales": "Kontaktovat prodej"
   },
@@ -329,17 +329,17 @@
     "linkedin": "LinkedIn",
     "whatsapp": "WhatsApp",
     "telegram": "Telegram",
-    "shareText": "Právě jsem se připojil k čekací listině World Monitor Pro — monitoring akcií, geopolitická analýza a denní AI briefingy v jedné platformě. Připojte se:",
-    "joinWaitlistShare": "Připojte se k čekací listině World Monitor Pro:",
+    "shareText": "Právě jsem se připojil k čekací listině Cortex Finance Monitor Pro — monitoring akcií, geopolitická analýza a denní AI briefingy v jedné platformě. Připojte se:",
+    "joinWaitlistShare": "Připojte se k čekací listině Cortex Finance Monitor Pro:",
     "youreIn": "Jste uvnitř!",
     "invitedBanner": "Byli jste pozváni — připojte se k čekací listině"
   },
   "soonBadge": "Brzy",
   "meta": {
-    "title": "World Monitor Pro — AI analytik, osobní inteligentní plocha, MCP pro Claude a GPT",
-    "description": "Geopolitická vrstva AI. Ptejte se na ni, přihlaste se k ní, vytvářejte na ní. Chat WM Analyst přes 30+ živých služeb, denní, dvakrát denní nebo týdenní AI přehled doručovaný do Slack, Discord, Telegram, Email nebo webhooku, vlastní tvůrce widgetů (HTML/CSS/JS + AI) a MCP konektory pro Claude, GPT a vlastní LLM.",
-    "ogTitle": "World Monitor Pro — Geopolitická vrstva AI",
-    "ogDescription": "Ptejte se na ni, přihlaste se k ní, vytvářejte na ní. Chat WM Analyst, AI přehled podle vašeho harmonogramu (denně, dvakrát denně nebo týdně), vlastní tvůrce widgetů a MCP pro Claude/GPT — přes 30+ živých služeb pod jedním klíčem."
+    "title": "Cortex Finance Monitor Pro — AI analytik, osobní inteligentní plocha, MCP pro Claude a GPT",
+    "description": "Geopolitická vrstva AI. Ptejte se na ni, přihlaste se k ní, vytvářejte na ní. Chat Cortex Analyst přes 30+ živých služeb, denní, dvakrát denní nebo týdenní AI přehled doručovaný do Slack, Discord, Telegram, Email nebo webhooku, vlastní tvůrce widgetů (HTML/CSS/JS + AI) a MCP konektory pro Claude, GPT a vlastní LLM.",
+    "ogTitle": "Cortex Finance Monitor Pro — Geopolitická vrstva AI",
+    "ogDescription": "Ptejte se na ni, přihlaste se k ní, vytvářejte na ní. Chat Cortex Analyst, AI přehled podle vašeho harmonogramu (denně, dvakrát denně nebo týdně), vlastní tvůrce widgetů a MCP pro Claude/GPT — přes 30+ živých služeb pod jedním klíčem."
   },
   "pricing": {
     "suffixForever": "navždy",

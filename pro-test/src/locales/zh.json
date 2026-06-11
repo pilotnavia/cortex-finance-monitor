@@ -26,12 +26,12 @@
     "asFeaturedIn": "被报道于"
   },
   "twoPath": {
-    "proTitle": "World Monitor Pro",
+    "proTitle": "Cortex Finance Monitor Pro",
     "proDesc": "您的 AI 分析师。个人情报工作台。一个可以在其之上构建的平台。一把密钥通向 30+ 个实时服务。",
-    "proF1": "WM Analyst 对话 — 以对话方式查询 30+ 个服务",
+    "proF1": "Cortex Analyst 对话 — 以对话方式查询 30+ 个服务",
     "proF2": "AI 摘要 — 每日、每日两次或每周 — 至 Slack、Discord、Telegram、邮件或 webhook",
     "proF3": "自定义小组件构建器 — HTML/CSS/JS,AI 辅助修改",
-    "proF4": "MCP 连接器 — 将 WorldMonitor 接入 Claude、GPT 或自定义 LLM",
+    "proF4": "MCP 连接器 — 将 Cortex Finance Monitor 接入 Claude、GPT 或自定义 LLM",
     "proF5": "股票研究、股票分析与回测",
     "proF6": "航班搜索与价格比较",
     "proF7": "告警规则引擎 — 自定义触发器、静音时段、AES-256 加密通道",
@@ -39,7 +39,7 @@
     "proF9": "AI Market Implications 与 Regional Intelligence(即将推出:轨道监视、高级地图图层、更长历史)",
     "proCta": "预订早鸟访问",
     "choosePlan": "选择方案",
-    "entTitle": "World Monitor Enterprise",
+    "entTitle": "Cortex Finance Monitor Enterprise",
     "entDesc": "面向需要共享监测、API 访问、部署选项、TV 应用和直接支持的团队。",
     "entF1": "Pro 的全部,另加:",
     "entF2": "实时卫星图像与 SAR",
@@ -60,7 +60,7 @@
     "noiseTitle": "抢先知晓",
     "noiseDesc": "AIS 异常 → Brent 跳升 → 不到一分钟就到您的 Slack。信号,而非标题。",
     "fasterTitle": "问什么都行",
-    "fasterDesc": "与您仪表板看到的同样 30+ 个服务对话。WM Analyst,始终在线。",
+    "fasterDesc": "与您仪表板看到的同样 30+ 个服务对话。Cortex Analyst,始终在线。",
     "controlTitle": "想造什么造什么",
     "controlDesc": "自定义小组件构建器(HTML/CSS/JS + AI)外加 MCP,用于您自己的 AI 工作流。",
     "deeperTitle": "醒来时已通晓",
@@ -68,7 +68,7 @@
   },
   "pillars": {
     "askIt": "问它",
-    "askItDesc": "WM Analyst 对话。30+ 个服务皆可用自然语言查询。",
+    "askItDesc": "Cortex Analyst 对话。30+ 个服务皆可用自然语言查询。",
     "subscribeIt": "订阅它",
     "subscribeItDesc": "AI 摘要按您的频率: 每日、每日两次或每周。Slack、Discord、Telegram、邮件、webhook。",
     "buildOnIt": "在其上构建",
@@ -85,7 +85,7 @@
     "windowTitle": "worldmonitor.app — 实时仪表板",
     "openFullScreen": "全屏打开",
     "tryLiveDashboard": "试用实时仪表板",
-    "iframeTitle": "World Monitor — 实时情报仪表板",
+    "iframeTitle": "Cortex Finance Monitor — 实时情报仪表板",
     "description": "3D WebGL 地球仪 · 50+ 个交互式地图图层 · 实时市场、宏观、地缘政治、能源和基础设施数据"
   },
   "socialProof": {
@@ -113,7 +113,7 @@
     "teamsDesc": "从个人使用迈向共享工作流、API 访问、TV 应用与托管部署。"
   },
   "dataCoverage": {
-    "title": "World Monitor 追踪什么",
+    "title": "Cortex Finance Monitor 追踪什么",
     "subtitle": "30+ 个服务域同步接入。市场、宏观、地缘政治、能源、基础设施 — 全部归一化并在 WebGL 地球上呈现。",
     "markets": "金融市场与股票",
     "marketsDesc": "全球股票分析、大宗商品、加密货币、ETF 资金流、分析师目标与 FRED 宏观数据",
@@ -177,7 +177,7 @@
   "apiSection": {
     "apiTier": "API 等级",
     "title": "程序化情报",
-    "subtitle": "面向基于 World Monitor 数据构建的开发者、分析师与团队。独立于 Pro — 可同时使用或单独使用。",
+    "subtitle": "面向基于 Cortex Finance Monitor 数据构建的开发者、分析师与团队。独立于 Pro — 可同时使用或单独使用。",
     "restApi": "覆盖 30+ 个服务域的 REST API",
     "authenticated": "按密钥鉴权、按等级限速",
     "structured": "具 cache header 和 OpenAPI 3.1 文档的结构化 JSON",
@@ -196,7 +196,7 @@
     "security": "政府级安全",
     "securityDesc": "气隙部署、本地 Docker、专属云租户、SOC 2 Type II 路径、SSO/MFA 与完整审计轨迹。",
     "aiAgents": "AI 代理与 MCP",
-    "aiAgentsDesc": "具投资者人设的自主情报代理。通过 MCP 将 World Monitor 作为工具接入 Claude、GPT 或自定义 LLM。",
+    "aiAgentsDesc": "具投资者人设的自主情报代理。通过 MCP 将 Cortex Finance Monitor 作为工具接入 Claude、GPT 或自定义 LLM。",
     "dataLayers": "扩展的数据层",
     "dataLayersDesc": "全球数万项已绘制基础设施资产。卫星图像集成,含变化检测与 SAR。",
     "connectors": "100+ 数据连接器",
@@ -276,7 +276,7 @@
   },
   "faq": {
     "title": "常见问题",
-    "q1": "World Monitor 仍然免费吗?",
+    "q1": "Cortex Finance Monitor 仍然免费吗?",
     "a1": "是。核心平台保持免费。Pro 增加股票研究、宏观分析和 AI 简报。Enterprise 增加团队部署与 TV 应用。",
     "q2": "为什么要付费使用 Pro?",
     "a2": "Pro 面向希望获得股票监测、地缘政治分析、经济分析与 AI 每日简报的投资者、分析师与专业人士 — 全部在一把密钥下。",
@@ -285,17 +285,17 @@
     "q4": "我可以先用 Pro 之后再升级吗?",
     "a4": "可以。Pro 适合认真的个人用户。团队和部署需求增长时,Enterprise 在那里等您。",
     "q5": "这只用于冲突监测吗?",
-    "a5": "不是。World Monitor 主要是一个覆盖股票市场、宏观经济、地缘政治分析、能源、基础设施等的全球情报平台。冲突追踪是众多能力之一 — 不是重点。",
+    "a5": "不是。Cortex Finance Monitor 主要是一个覆盖股票市场、宏观经济、地缘政治分析、能源、基础设施等的全球情报平台。冲突追踪是众多能力之一 — 不是重点。",
     "q6": "为何保持核心平台免费?",
     "a6": "因为公共访问很重要。付费方案资助面向重度用户与组织的更深入工作流。",
     "q7": "我仍能使用自己的 API 密钥吗?",
     "a7": "可以。Bring-your-own-keys 始终有效。Pro 只是意味着您无需注册 20+ 个独立服务。",
     "q8": "什么是 MCP?",
-    "a8": "MCP 允许 AI 代理 — Claude、GPT、自定义 LLM — 把 WorldMonitor 作为工具来调用,查询全部 30+ 个服务。Pro 已包含。Enterprise 额外提供私有 MCP 服务器与定制部署。",
+    "a8": "MCP 允许 AI 代理 — Claude、GPT、自定义 LLM — 把 Cortex Finance Monitor 作为工具来调用,查询全部 30+ 个服务。Pro 已包含。Enterprise 额外提供私有 MCP 服务器与定制部署。",
     "q9": "我可以自建面板吗?",
     "a9": "可以。Pro 包含自定义小组件构建器 — 从 HTML、CSS 与 JavaScript 构建面板,并支持 AI 辅助修改。",
-    "q10": "我可以把 Claude 或 GPT 接入 WorldMonitor 吗?",
-    "a10": "可以。MCP 已包含在 Pro 中 — 将 WorldMonitor 作为实时工具接入 Claude、GPT 或任何兼容 MCP 的 LLM。",
+    "q10": "我可以把 Claude 或 GPT 接入 Cortex Finance Monitor 吗?",
+    "a10": "可以。MCP 已包含在 Pro 中 — 将 Cortex Finance Monitor 作为实时工具接入 Claude、GPT 或任何兼容 MCP 的 LLM。",
     "q11": "摘要的个性化程度如何?",
     "a11": "选择您的频率: 每日、每日两次或每周。我们根据您的告警规则与观察列表为每个被追踪事件重新打分,在 400+ 来源间去重,并发送最多 30 条按级别排序的条目,附带为您上下文撰写的 AI Assessment 与 Signals to watch。关键事件还可启用实时告警。",
     "q12": "刷新率是多少?",
@@ -305,7 +305,7 @@
   },
   "finalCta": {
     "title": "从 Pro 开始。扩展到 Enterprise。",
-    "subtitle": "继续免费使用 World Monitor,或升级以获取股票研究、宏观分析和 AI 简报。若您的组织需要团队访问、TV 应用或 API 支持,请与我们联系。",
+    "subtitle": "继续免费使用 Cortex Finance Monitor,或升级以获取股票研究、宏观分析和 AI 简报。若您的组织需要团队访问、TV 应用或 API 支持,请与我们联系。",
     "getPro": "预订早鸟访问",
     "talkToSales": "联系销售"
   },
@@ -329,17 +329,17 @@
     "linkedin": "LinkedIn",
     "whatsapp": "WhatsApp",
     "telegram": "Telegram",
-    "shareText": "我刚加入了 World Monitor Pro 等候名单 — 一个平台囊括股票监测、地缘政治分析与每日 AI 简报。一起来:",
-    "joinWaitlistShare": "加入 World Monitor Pro 等候名单:",
+    "shareText": "我刚加入了 Cortex Finance Monitor Pro 等候名单 — 一个平台囊括股票监测、地缘政治分析与每日 AI 简报。一起来:",
+    "joinWaitlistShare": "加入 Cortex Finance Monitor Pro 等候名单:",
     "youreIn": "您已入列!",
     "invitedBanner": "您已被邀请 — 加入等候名单"
   },
   "soonBadge": "即将推出",
   "meta": {
-    "title": "World Monitor Pro — AI 分析师、个人智能助手、Claude & GPT 的 MCP",
-    "description": "地缘政治 AI 层。提问、订阅、构建。WM Analyst 聊天支持 30+ 个实时服务，AI 摘要按日、两次日或周频率投送至 Slack、Discord、Telegram、Email 或 webhook，自定义小部件构建器（HTML/CSS/JS + AI），以及 Claude、GPT 和自定义 LLM 的 MCP 连接器。",
-    "ogTitle": "World Monitor Pro — 地缘政治 AI 层",
-    "ogDescription": "提问、订阅、构建。WM Analyst 聊天、按您的时间表（日、两次日或周）投送的 AI 摘要、自定义小部件构建器，以及 Claude/GPT 的 MCP — 跨 30+ 个实时服务，一个密钥管理。"
+    "title": "Cortex Finance Monitor Pro — AI 分析师、个人智能助手、Claude & GPT 的 MCP",
+    "description": "地缘政治 AI 层。提问、订阅、构建。Cortex Analyst 聊天支持 30+ 个实时服务，AI 摘要按日、两次日或周频率投送至 Slack、Discord、Telegram、Email 或 webhook，自定义小部件构建器（HTML/CSS/JS + AI），以及 Claude、GPT 和自定义 LLM 的 MCP 连接器。",
+    "ogTitle": "Cortex Finance Monitor Pro — 地缘政治 AI 层",
+    "ogDescription": "提问、订阅、构建。Cortex Analyst 聊天、按您的时间表（日、两次日或周）投送的 AI 摘要、自定义小部件构建器，以及 Claude/GPT 的 MCP — 跨 30+ 个实时服务，一个密钥管理。"
   },
   "pricing": {
     "suffixForever": "永久",

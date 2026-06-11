@@ -26,12 +26,12 @@
     "asFeaturedIn": "Được giới thiệu trên"
   },
   "twoPath": {
-    "proTitle": "World Monitor Pro",
+    "proTitle": "Cortex Finance Monitor Pro",
     "proDesc": "Nhà phân tích AI của bạn. Bàn tình báo cá nhân. Một nền tảng để xây dựng trên đó. Một khóa cho 30+ dịch vụ trực tiếp.",
-    "proF1": "Chat WM Analyst — truy vấn 30+ dịch vụ theo hội thoại",
+    "proF1": "Chat Cortex Analyst — truy vấn 30+ dịch vụ theo hội thoại",
     "proF2": "AI digest — hàng ngày, hai lần mỗi ngày hoặc hàng tuần — đến Slack, Discord, Telegram, Email hoặc webhook",
     "proF3": "Custom Widget Builder — HTML/CSS/JS với chỉnh sửa hỗ trợ AI",
-    "proF4": "Bộ kết nối MCP — cắm WorldMonitor vào Claude, GPT hoặc LLM tùy chỉnh",
+    "proF4": "Bộ kết nối MCP — cắm Cortex Finance Monitor vào Claude, GPT hoặc LLM tùy chỉnh",
     "proF5": "Equity research, phân tích cổ phiếu và backtesting",
     "proF6": "Tìm chuyến bay và so sánh giá",
     "proF7": "Động cơ quy tắc cảnh báo — trình kích hoạt tùy chỉnh, giờ yên lặng, kênh mã hóa AES-256",
@@ -39,7 +39,7 @@
     "proF9": "AI Market Implications và Regional Intelligence (Sắp ra mắt: giám sát quỹ đạo, lớp bản đồ cao cấp, lịch sử mở rộng)",
     "proCta": "Đặt trước quyền truy cập sớm",
     "choosePlan": "Chọn gói",
-    "entTitle": "World Monitor Enterprise",
+    "entTitle": "Cortex Finance Monitor Enterprise",
     "entDesc": "Dành cho các nhóm cần giám sát chia sẻ, truy cập API, các tùy chọn triển khai, ứng dụng TV và hỗ trợ trực tiếp.",
     "entF1": "Tất cả trong Pro, cộng thêm:",
     "entF2": "Hình ảnh vệ tinh trực tiếp và SAR",
@@ -60,7 +60,7 @@
     "noiseTitle": "Biết đầu tiên",
     "noiseDesc": "Bất thường AIS → Brent tăng đột biến → Slack của bạn dưới một phút. Tín hiệu, không phải tiêu đề.",
     "fasterTitle": "Hỏi bất cứ điều gì",
-    "fasterDesc": "Trò chuyện với cùng 30+ dịch vụ mà bảng điều khiển của bạn thấy. WM Analyst, luôn hoạt động.",
+    "fasterDesc": "Trò chuyện với cùng 30+ dịch vụ mà bảng điều khiển của bạn thấy. Cortex Analyst, luôn hoạt động.",
     "controlTitle": "Xây dựng bất cứ điều gì",
     "controlDesc": "Custom widget builder (HTML/CSS/JS + AI) cộng với MCP cho quy trình AI của riêng bạn.",
     "deeperTitle": "Thức dậy được thông tin đầy đủ",
@@ -68,7 +68,7 @@
   },
   "pillars": {
     "askIt": "Hỏi nó",
-    "askItDesc": "Chat WM Analyst. Cả 30+ dịch vụ có thể truy vấn bằng ngôn ngữ tự nhiên.",
+    "askItDesc": "Chat Cortex Analyst. Cả 30+ dịch vụ có thể truy vấn bằng ngôn ngữ tự nhiên.",
     "subscribeIt": "Đăng ký",
     "subscribeItDesc": "AI digest theo nhịp của bạn: hàng ngày, hai lần mỗi ngày hoặc hàng tuần. Slack, Discord, Telegram, Email, webhook.",
     "buildOnIt": "Xây dựng trên đó",
@@ -85,7 +85,7 @@
     "windowTitle": "worldmonitor.app — Bảng điều khiển trực tiếp",
     "openFullScreen": "Mở toàn màn hình",
     "tryLiveDashboard": "Dùng thử bảng điều khiển trực tiếp",
-    "iframeTitle": "World Monitor — Bảng điều khiển tình báo trực tiếp",
+    "iframeTitle": "Cortex Finance Monitor — Bảng điều khiển tình báo trực tiếp",
     "description": "Quả cầu WebGL 3D · 50+ lớp bản đồ tương tác · Dữ liệu thị trường, vĩ mô, địa chính trị, năng lượng và cơ sở hạ tầng theo thời gian thực"
   },
   "socialProof": {
@@ -113,7 +113,7 @@
     "teamsDesc": "Chuyển từ sử dụng cá nhân sang quy trình làm việc được chia sẻ, truy cập API, ứng dụng TV và triển khai được quản lý."
   },
   "dataCoverage": {
-    "title": "World Monitor theo dõi những gì",
+    "title": "Cortex Finance Monitor theo dõi những gì",
     "subtitle": "30+ miền dịch vụ được thu thập đồng thời. Thị trường, vĩ mô, địa chính trị, năng lượng, cơ sở hạ tầng — tất cả được chuẩn hóa và kết xuất trên quả cầu WebGL.",
     "markets": "Thị trường tài chính và cổ phiếu",
     "marketsDesc": "Phân tích cổ phiếu toàn cầu, hàng hóa, tiền điện tử, dòng ETF, mục tiêu nhà phân tích và dữ liệu vĩ mô FRED",
@@ -177,7 +177,7 @@
   "apiSection": {
     "apiTier": "CẤP ĐỘ API",
     "title": "Tình báo lập trình",
-    "subtitle": "Dành cho nhà phát triển, nhà phân tích và các nhóm xây dựng trên dữ liệu World Monitor. Riêng biệt với Pro — sử dụng cả hai hoặc một trong hai.",
+    "subtitle": "Dành cho nhà phát triển, nhà phân tích và các nhóm xây dựng trên dữ liệu Cortex Finance Monitor. Riêng biệt với Pro — sử dụng cả hai hoặc một trong hai.",
     "restApi": "REST API trên tất cả 30+ miền dịch vụ",
     "authenticated": "Xác thực theo khóa, rate-limited theo cấp độ",
     "structured": "JSON có cấu trúc với cache headers và tài liệu OpenAPI 3.1",
@@ -196,7 +196,7 @@
     "security": "Bảo mật cấp chính phủ",
     "securityDesc": "Triển khai air-gapped, Docker on-premises, tenant cloud chuyên dụng, đường SOC 2 Type II, SSO/MFA và audit trail đầy đủ.",
     "aiAgents": "AI agents và MCP",
-    "aiAgentsDesc": "Các agent tình báo tự trị với persona nhà đầu tư. Kết nối World Monitor như một công cụ với Claude, GPT hoặc LLM của bạn qua MCP.",
+    "aiAgentsDesc": "Các agent tình báo tự trị với persona nhà đầu tư. Kết nối Cortex Finance Monitor như một công cụ với Claude, GPT hoặc LLM của bạn qua MCP.",
     "dataLayers": "Các lớp dữ liệu mở rộng",
     "dataLayersDesc": "Hàng chục nghìn tài sản cơ sở hạ tầng được ánh xạ trên toàn cầu. Tích hợp hình ảnh vệ tinh với phát hiện thay đổi và SAR.",
     "connectors": "100+ bộ kết nối dữ liệu",
@@ -276,7 +276,7 @@
   },
   "faq": {
     "title": "Câu hỏi thường gặp",
-    "q1": "World Monitor vẫn miễn phí phải không?",
+    "q1": "Cortex Finance Monitor vẫn miễn phí phải không?",
     "a1": "Đúng. Nền tảng cốt lõi vẫn miễn phí. Pro thêm Equity research, phân tích vĩ mô và bản tóm tắt AI. Enterprise thêm triển khai nhóm và ứng dụng TV.",
     "q2": "Tại sao trả tiền cho Pro?",
     "a2": "Pro dành cho nhà đầu tư, nhà phân tích và chuyên gia muốn giám sát cổ phiếu, phân tích địa chính trị, phân tích kinh tế và bản tóm tắt hàng ngày bằng AI — tất cả dưới một khóa.",
@@ -285,17 +285,17 @@
     "q4": "Tôi có thể bắt đầu với Pro và nâng cấp sau không?",
     "a4": "Có. Pro hoạt động tốt cho các cá nhân nghiêm túc. Enterprise ở đó khi nhu cầu nhóm và triển khai tăng lên.",
     "q5": "Cái này chỉ dành cho giám sát xung đột?",
-    "a5": "Không. World Monitor chủ yếu là một nền tảng tình báo toàn cầu bao gồm thị trường cổ phiếu, kinh tế vĩ mô, phân tích địa chính trị, năng lượng, cơ sở hạ tầng và hơn thế. Theo dõi xung đột là một trong nhiều khả năng — không phải trọng tâm.",
+    "a5": "Không. Cortex Finance Monitor chủ yếu là một nền tảng tình báo toàn cầu bao gồm thị trường cổ phiếu, kinh tế vĩ mô, phân tích địa chính trị, năng lượng, cơ sở hạ tầng và hơn thế. Theo dõi xung đột là một trong nhiều khả năng — không phải trọng tâm.",
     "q6": "Tại sao giữ nền tảng cốt lõi miễn phí?",
     "a6": "Vì truy cập công cộng là quan trọng. Các gói trả phí tài trợ cho các quy trình làm việc sâu hơn cho người dùng nghiêm túc và tổ chức.",
     "q7": "Tôi vẫn có thể sử dụng khóa API của riêng mình?",
     "a7": "Có. Bring-your-own-keys luôn hoạt động. Pro chỉ có nghĩa là bạn không cần đăng ký với 20+ dịch vụ riêng lẻ.",
     "q8": "MCP là gì?",
-    "a8": "MCP cho phép các AI agents — Claude, GPT, LLM tùy chỉnh — sử dụng WorldMonitor như một công cụ, truy vấn tất cả 30+ dịch vụ. Bao gồm trong Pro. Enterprise thêm máy chủ MCP riêng và triển khai tùy chỉnh.",
+    "a8": "MCP cho phép các AI agents — Claude, GPT, LLM tùy chỉnh — sử dụng Cortex Finance Monitor như một công cụ, truy vấn tất cả 30+ dịch vụ. Bao gồm trong Pro. Enterprise thêm máy chủ MCP riêng và triển khai tùy chỉnh.",
     "q9": "Tôi có thể xây dựng các bảng của riêng mình không?",
     "a9": "Có. Pro bao gồm Custom Widget Builder — xây dựng bảng từ HTML, CSS và JavaScript, với chỉnh sửa hỗ trợ AI.",
-    "q10": "Tôi có thể kết nối Claude hoặc GPT với WorldMonitor không?",
-    "a10": "Có. MCP được bao gồm trong Pro — kết nối WorldMonitor với Claude, GPT hoặc bất kỳ LLM nào tương thích MCP như một công cụ trực tiếp.",
+    "q10": "Tôi có thể kết nối Claude hoặc GPT với Cortex Finance Monitor không?",
+    "a10": "Có. MCP được bao gồm trong Pro — kết nối Cortex Finance Monitor với Claude, GPT hoặc bất kỳ LLM nào tương thích MCP như một công cụ trực tiếp.",
     "q11": "Digest được cá nhân hóa như thế nào?",
     "a11": "Chọn nhịp của bạn: hàng ngày, hai lần mỗi ngày hoặc hàng tuần. Chúng tôi ghi điểm lại mọi câu chuyện được theo dõi so với quy tắc cảnh báo và watchlist của bạn, loại bỏ trùng lặp trên 400+ nguồn và gửi tối đa 30 mục được xếp hạng với AI Assessment và Signals to watch được viết cho bối cảnh của bạn. Cảnh báo theo thời gian thực cũng có sẵn cho các sự kiện quan trọng.",
     "q12": "Tốc độ làm mới là bao nhiêu?",
@@ -305,7 +305,7 @@
   },
   "finalCta": {
     "title": "Bắt đầu với Pro. Mở rộng đến Enterprise.",
-    "subtitle": "Tiếp tục sử dụng World Monitor miễn phí, hoặc nâng cấp để có Equity research, phân tích vĩ mô và bản tóm tắt AI. Nếu tổ chức của bạn cần truy cập nhóm, ứng dụng TV hoặc hỗ trợ API — hãy trao đổi với chúng tôi.",
+    "subtitle": "Tiếp tục sử dụng Cortex Finance Monitor miễn phí, hoặc nâng cấp để có Equity research, phân tích vĩ mô và bản tóm tắt AI. Nếu tổ chức của bạn cần truy cập nhóm, ứng dụng TV hoặc hỗ trợ API — hãy trao đổi với chúng tôi.",
     "getPro": "Đặt trước quyền truy cập sớm",
     "talkToSales": "Liên hệ kinh doanh"
   },
@@ -329,17 +329,17 @@
     "linkedin": "LinkedIn",
     "whatsapp": "WhatsApp",
     "telegram": "Telegram",
-    "shareText": "Tôi vừa tham gia danh sách chờ World Monitor Pro — giám sát cổ phiếu, phân tích địa chính trị và bản tóm tắt hàng ngày bằng AI trong một nền tảng. Hãy tham gia cùng tôi:",
-    "joinWaitlistShare": "Tham gia danh sách chờ World Monitor Pro:",
+    "shareText": "Tôi vừa tham gia danh sách chờ Cortex Finance Monitor Pro — giám sát cổ phiếu, phân tích địa chính trị và bản tóm tắt hàng ngày bằng AI trong một nền tảng. Hãy tham gia cùng tôi:",
+    "joinWaitlistShare": "Tham gia danh sách chờ Cortex Finance Monitor Pro:",
     "youreIn": "Bạn đã tham gia!",
     "invitedBanner": "Bạn đã được mời — hãy tham gia danh sách chờ"
   },
   "soonBadge": "Sắp ra mắt",
   "meta": {
-    "title": "World Monitor Pro — Nhà phân tích AI, Bàn làm việc Trí tuệ Cá nhân, MCP cho Claude & GPT",
-    "description": "Lớp AI địa chính trị. Hỏi nó, đăng ký nó, xây dựng trên nó. Chat WM Analyst trên 30+ dịch vụ trực tiếp, bản tóm tắt AI gửi hàng ngày, hai lần mỗi ngày hoặc hàng tuần đến Slack, Discord, Telegram, Email hoặc webhook, trình xây dựng widget tùy chỉnh (HTML/CSS/JS + AI), và trình kết nối MCP cho Claude, GPT và LLM tùy chỉnh.",
-    "ogTitle": "World Monitor Pro — Lớp AI Địa chính trị",
-    "ogDescription": "Hỏi nó, đăng ký nó, xây dựng trên nó. Chat WM Analyst, bản tóm tắt AI theo lịch của bạn (hàng ngày, hai lần mỗi ngày hoặc hàng tuần), trình xây dựng widget tùy chỉnh, và MCP cho Claude/GPT — trên 30+ dịch vụ trực tiếp dưới một khóa."
+    "title": "Cortex Finance Monitor Pro — Nhà phân tích AI, Bàn làm việc Trí tuệ Cá nhân, MCP cho Claude & GPT",
+    "description": "Lớp AI địa chính trị. Hỏi nó, đăng ký nó, xây dựng trên nó. Chat Cortex Analyst trên 30+ dịch vụ trực tiếp, bản tóm tắt AI gửi hàng ngày, hai lần mỗi ngày hoặc hàng tuần đến Slack, Discord, Telegram, Email hoặc webhook, trình xây dựng widget tùy chỉnh (HTML/CSS/JS + AI), và trình kết nối MCP cho Claude, GPT và LLM tùy chỉnh.",
+    "ogTitle": "Cortex Finance Monitor Pro — Lớp AI Địa chính trị",
+    "ogDescription": "Hỏi nó, đăng ký nó, xây dựng trên nó. Chat Cortex Analyst, bản tóm tắt AI theo lịch của bạn (hàng ngày, hai lần mỗi ngày hoặc hàng tuần), trình xây dựng widget tùy chỉnh, và MCP cho Claude/GPT — trên 30+ dịch vụ trực tiếp dưới một khóa."
   },
   "pricing": {
     "suffixForever": "mãi mãi",

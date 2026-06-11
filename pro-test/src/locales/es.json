@@ -26,12 +26,12 @@
     "asFeaturedIn": "Destacado en"
   },
   "twoPath": {
-    "proTitle": "World Monitor Pro",
+    "proTitle": "Cortex Finance Monitor Pro",
     "proDesc": "Tu analista de IA. Una mesa de inteligencia personal. Una plataforma sobre la que construir. Una clave para 30+ servicios en vivo.",
-    "proF1": "Chat WM Analyst — consulta los 30+ servicios de forma conversacional",
+    "proF1": "Chat Cortex Analyst — consulta los 30+ servicios de forma conversacional",
     "proF2": "Resumen de IA — diario, dos veces al día o semanal — a Slack, Discord, Telegram, Email o webhook",
     "proF3": "Constructor de widgets personalizados — HTML/CSS/JS con modificación asistida por IA",
-    "proF4": "Conectores MCP — conecta WorldMonitor a Claude, GPT o LLMs personalizados",
+    "proF4": "Conectores MCP — conecta Cortex Finance Monitor a Claude, GPT o LLMs personalizados",
     "proF5": "Análisis de acciones, investigación bursátil y backtesting",
     "proF6": "Búsqueda y comparación de precios de vuelos",
     "proF7": "Motor de reglas de alerta — activadores personalizados, horas de silencio, canales cifrados AES-256",
@@ -39,7 +39,7 @@
     "proF9": "AI Market Implications y Regional Intelligence (Próximamente: vigilancia orbital, capas de mapa premium, historial extendido)",
     "proCta": "Reserva tu acceso anticipado",
     "choosePlan": "Elige tu plan",
-    "entTitle": "World Monitor Enterprise",
+    "entTitle": "Cortex Finance Monitor Enterprise",
     "entDesc": "Para equipos que necesitan monitoreo compartido, acceso API, opciones de despliegue, apps de TV y soporte directo.",
     "entF1": "Todo lo de Pro, además:",
     "entF2": "Imágenes satelitales en vivo y SAR",
@@ -60,7 +60,7 @@
     "noiseTitle": "Entérate primero",
     "noiseDesc": "Anomalía AIS → subida del Brent → tu Slack en menos de un minuto. Señal, no titulares.",
     "fasterTitle": "Pregunta cualquier cosa",
-    "fasterDesc": "Chatea con los mismos 30+ servicios que ve tu panel. WM Analyst, siempre activo.",
+    "fasterDesc": "Chatea con los mismos 30+ servicios que ve tu panel. Cortex Analyst, siempre activo.",
     "controlTitle": "Construye cualquier cosa",
     "controlDesc": "Constructor de widgets personalizados (HTML/CSS/JS + IA) más MCP para tus propios flujos de IA.",
     "deeperTitle": "Despierta informado",
@@ -68,7 +68,7 @@
   },
   "pillars": {
     "askIt": "Pregúntale",
-    "askItDesc": "Chat WM Analyst. Los 30+ servicios consultables en lenguaje natural.",
+    "askItDesc": "Chat Cortex Analyst. Los 30+ servicios consultables en lenguaje natural.",
     "subscribeIt": "Suscríbete",
     "subscribeItDesc": "Resumen de IA a tu cadencia: diario, dos veces al día o semanal. Slack, Discord, Telegram, Email, webhook.",
     "buildOnIt": "Construye sobre ella",
@@ -85,7 +85,7 @@
     "windowTitle": "worldmonitor.app — Panel en vivo",
     "openFullScreen": "Abrir pantalla completa",
     "tryLiveDashboard": "Prueba el panel en vivo",
-    "iframeTitle": "World Monitor — Panel de inteligencia en vivo",
+    "iframeTitle": "Cortex Finance Monitor — Panel de inteligencia en vivo",
     "description": "Globo 3D WebGL · 50+ capas de mapa interactivas · Datos en tiempo real de mercado, macro, geopolíticos, energéticos e infraestructura"
   },
   "socialProof": {
@@ -113,7 +113,7 @@
     "teamsDesc": "Pasa del uso individual a flujos compartidos, acceso API, apps de TV y despliegues gestionados."
   },
   "dataCoverage": {
-    "title": "Qué rastrea World Monitor",
+    "title": "Qué rastrea Cortex Finance Monitor",
     "subtitle": "30+ dominios de servicio ingeridos simultáneamente. Mercados, macro, geopolítica, energía, infraestructura — todo normalizado y renderizado en un globo WebGL.",
     "markets": "Mercados financieros y renta variable",
     "marketsDesc": "Análisis global de acciones, materias primas, cripto, flujos de ETF, objetivos de analistas y datos macro FRED",
@@ -177,7 +177,7 @@
   "apiSection": {
     "apiTier": "NIVEL API",
     "title": "Inteligencia programática",
-    "subtitle": "Para desarrolladores, analistas y equipos que construyen sobre datos de World Monitor. Separado de Pro — usa ambos o uno solo.",
+    "subtitle": "Para desarrolladores, analistas y equipos que construyen sobre datos de Cortex Finance Monitor. Separado de Pro — usa ambos o uno solo.",
     "restApi": "API REST en los 30+ dominios de servicio",
     "authenticated": "Autenticado por clave, con límite de tasa por nivel",
     "structured": "JSON estructurado con cabeceras de caché y documentación OpenAPI 3.1",
@@ -196,7 +196,7 @@
     "security": "Seguridad de grado gubernamental",
     "securityDesc": "Despliegue air-gapped, Docker on-premises, tenant cloud dedicado, ruta SOC 2 Type II, SSO/MFA y trazabilidad completa.",
     "aiAgents": "Agentes IA y MCP",
-    "aiAgentsDesc": "Agentes de inteligencia autónomos con personas de inversor. Conecta World Monitor como herramienta a Claude, GPT o LLMs personalizados vía MCP.",
+    "aiAgentsDesc": "Agentes de inteligencia autónomos con personas de inversor. Conecta Cortex Finance Monitor como herramienta a Claude, GPT o LLMs personalizados vía MCP.",
     "dataLayers": "Capas de datos expandidas",
     "dataLayersDesc": "Decenas de miles de activos de infraestructura mapeados globalmente. Integración de imágenes satelitales con detección de cambios y SAR.",
     "connectors": "100+ conectores de datos",
@@ -276,7 +276,7 @@
   },
   "faq": {
     "title": "Preguntas frecuentes",
-    "q1": "¿Sigue siendo gratis World Monitor?",
+    "q1": "¿Sigue siendo gratis Cortex Finance Monitor?",
     "a1": "Sí. La plataforma principal sigue siendo gratuita. Pro añade investigación bursátil, analítica macro y resúmenes IA. Enterprise añade despliegues de equipo y apps de TV.",
     "q2": "¿Por qué pagar por Pro?",
     "a2": "Pro es para inversores, analistas y profesionales que quieren seguimiento de acciones, análisis geopolítico, analítica económica y resúmenes diarios con IA — todo bajo una clave.",
@@ -285,17 +285,17 @@
     "q4": "¿Puedo empezar con Pro y subir después?",
     "a4": "Sí. Pro funciona para individuos serios. Enterprise está cuando crecen las necesidades de equipo y despliegue.",
     "q5": "¿Esto solo sirve para monitorear conflictos?",
-    "a5": "No. World Monitor es principalmente una plataforma de inteligencia global que cubre mercados bursátiles, macroeconomía, análisis geopolítico, energía, infraestructura y más. El seguimiento de conflictos es una capacidad entre muchas — no el foco.",
+    "a5": "No. Cortex Finance Monitor es principalmente una plataforma de inteligencia global que cubre mercados bursátiles, macroeconomía, análisis geopolítico, energía, infraestructura y más. El seguimiento de conflictos es una capacidad entre muchas — no el foco.",
     "q6": "¿Por qué mantener gratuita la plataforma principal?",
     "a6": "Porque el acceso público importa. Los planes de pago financian flujos más profundos para usuarios serios y organizaciones.",
     "q7": "¿Puedo seguir usando mis propias claves API?",
     "a7": "Sí. Bring-your-own-keys siempre funciona. Pro simplemente significa que no tienes que registrarte en 20+ servicios separados.",
     "q8": "¿Qué es MCP?",
-    "a8": "MCP permite que agentes IA — Claude, GPT, LLMs personalizados — usen WorldMonitor como herramienta, consultando los 30+ servicios. Incluido en Pro. Enterprise añade servidores MCP privados y despliegues personalizados.",
+    "a8": "MCP permite que agentes IA — Claude, GPT, LLMs personalizados — usen Cortex Finance Monitor como herramienta, consultando los 30+ servicios. Incluido en Pro. Enterprise añade servidores MCP privados y despliegues personalizados.",
     "q9": "¿Puedo construir mis propios paneles?",
     "a9": "Sí. Pro incluye el Constructor de widgets personalizados — construye paneles desde HTML, CSS y JavaScript, con modificación asistida por IA.",
-    "q10": "¿Puedo conectar Claude o GPT a WorldMonitor?",
-    "a10": "Sí. MCP está incluido en Pro — conecta WorldMonitor a Claude, GPT o cualquier LLM compatible con MCP como herramienta en vivo.",
+    "q10": "¿Puedo conectar Claude o GPT a Cortex Finance Monitor?",
+    "a10": "Sí. MCP está incluido en Pro — conecta Cortex Finance Monitor a Claude, GPT o cualquier LLM compatible con MCP como herramienta en vivo.",
     "q11": "¿Cómo de personalizado es el resumen?",
     "a11": "Elige tu cadencia: diario, dos veces al día o semanal. Re-puntuamos cada historia rastreada contra tus reglas de alerta y tu watchlist, deduplicamos en más de 400 fuentes y enviamos hasta 30 ítems ordenados con un Assessment de IA y Signals to watch escritos para tu contexto. También hay alertas en tiempo real para eventos críticos.",
     "q12": "¿Cuál es la tasa de actualización?",
@@ -305,7 +305,7 @@
   },
   "finalCta": {
     "title": "Empieza con Pro. Escala a Enterprise.",
-    "subtitle": "Sigue usando World Monitor gratis o mejora a investigación bursátil, analítica macro y resúmenes IA. Si tu organización necesita acceso de equipo, apps de TV o soporte API, habla con nosotros.",
+    "subtitle": "Sigue usando Cortex Finance Monitor gratis o mejora a investigación bursátil, analítica macro y resúmenes IA. Si tu organización necesita acceso de equipo, apps de TV o soporte API, habla con nosotros.",
     "getPro": "Reserva tu acceso anticipado",
     "talkToSales": "Habla con ventas"
   },
@@ -329,17 +329,17 @@
     "linkedin": "LinkedIn",
     "whatsapp": "WhatsApp",
     "telegram": "Telegram",
-    "shareText": "Acabo de unirme a la lista de espera de World Monitor Pro — seguimiento de acciones, análisis geopolítico y resúmenes diarios con IA en una plataforma. Únete:",
-    "joinWaitlistShare": "Únete a la lista de espera de World Monitor Pro:",
+    "shareText": "Acabo de unirme a la lista de espera de Cortex Finance Monitor Pro — seguimiento de acciones, análisis geopolítico y resúmenes diarios con IA en una plataforma. Únete:",
+    "joinWaitlistShare": "Únete a la lista de espera de Cortex Finance Monitor Pro:",
     "youreIn": "¡Estás dentro!",
     "invitedBanner": "Te han invitado — únete a la lista de espera"
   },
   "soonBadge": "Próximamente",
   "meta": {
-    "title": "World Monitor Pro — Analista de IA, Centro de Inteligencia Personal, MCP para Claude y GPT",
-    "description": "La capa de IA geopolítica. Pregúntale, suscríbete, construye sobre ella. Chat WM Analyst en 30+ servicios en directo, un resumen de IA entregado diariamente, dos veces al día o semanalmente en Slack, Discord, Telegram, correo electrónico o webhook, un constructor de widgets personalizado (HTML/CSS/JS + IA) y conectores MCP para Claude, GPT y LLMs personalizados.",
-    "ogTitle": "World Monitor Pro — La Capa de IA Geopolítica",
-    "ogDescription": "Pregúntale, suscríbete, construye sobre ella. Chat WM Analyst, un resumen de IA según tu horario (diario, dos veces al día o semanal), constructor de widgets personalizado y MCP para Claude/GPT — en 30+ servicios en directo bajo una única clave."
+    "title": "Cortex Finance Monitor Pro — Analista de IA, Centro de Inteligencia Personal, MCP para Claude y GPT",
+    "description": "La capa de IA geopolítica. Pregúntale, suscríbete, construye sobre ella. Chat Cortex Analyst en 30+ servicios en directo, un resumen de IA entregado diariamente, dos veces al día o semanalmente en Slack, Discord, Telegram, correo electrónico o webhook, un constructor de widgets personalizado (HTML/CSS/JS + IA) y conectores MCP para Claude, GPT y LLMs personalizados.",
+    "ogTitle": "Cortex Finance Monitor Pro — La Capa de IA Geopolítica",
+    "ogDescription": "Pregúntale, suscríbete, construye sobre ella. Chat Cortex Analyst, un resumen de IA según tu horario (diario, dos veces al día o semanal), constructor de widgets personalizado y MCP para Claude/GPT — en 30+ servicios en directo bajo una única clave."
   },
   "pricing": {
     "suffixForever": "por siempre",

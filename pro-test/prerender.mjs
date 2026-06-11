@@ -21,7 +21,7 @@ const HIDE_SCRIPT = `<script>(function(){try{var s=document.getElementById('seo-
 
 const indexContent = `
 <div id="seo-prerender" lang="en">
-  <h1>World Monitor Pro — From ${en.hero.noiseWord} to ${en.hero.signalWord}</h1>
+  <h1>Cortex Finance Monitor Pro — From ${en.hero.noiseWord} to ${en.hero.signalWord}</h1>
   <p>${en.hero.valueProps}</p>
   <p>${en.hero.launchingDate}</p>
 

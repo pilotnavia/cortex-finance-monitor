@@ -6,6 +6,9 @@ public/blog/
 *.log
 .env
 .env.local
+# Cortex fork: local Pro/enterprise license key (WORLDMONITOR_VALID_KEYS value) — never commit
+.pro-license-key.local
+*.pro-license-key.local
 .playwright-mcp/
 *-network.txt
 .vercel

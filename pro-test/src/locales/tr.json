@@ -26,12 +26,12 @@
     "asFeaturedIn": "Yer aldığı yerler"
   },
   "twoPath": {
-    "proTitle": "World Monitor Pro",
+    "proTitle": "Cortex Finance Monitor Pro",
     "proDesc": "Yapay zekâ analistiniz. Kişisel istihbarat masası. Üzerine inşa edebileceğiniz bir platform. 30+ canlı hizmet için tek anahtar.",
-    "proF1": "WM Analyst sohbet — 30+ hizmeti sohbet ederek sorgulayın",
+    "proF1": "Cortex Analyst sohbet — 30+ hizmeti sohbet ederek sorgulayın",
     "proF2": "AI özeti — günlük, günde iki kez veya haftalık — Slack, Discord, Telegram, E-posta veya webhook'a",
     "proF3": "Custom Widget Builder — HTML/CSS/JS ile AI destekli düzenleme",
-    "proF4": "MCP konnektörleri — WorldMonitor'u Claude, GPT veya kendi LLM'lerinize bağlayın",
+    "proF4": "MCP konnektörleri — Cortex Finance Monitor'u Claude, GPT veya kendi LLM'lerinize bağlayın",
     "proF5": "Equity research, hisse analizi ve backtesting",
     "proF6": "Uçuş arama ve fiyat karşılaştırma",
     "proF7": "Uyarı kuralı motoru — özel tetikleyiciler, sessiz saatler, AES-256 şifreli kanallar",
@@ -39,7 +39,7 @@
     "proF9": "AI Market Implications ve Regional Intelligence (Yakında: yörünge gözetimi, premium harita katmanları, uzatılmış geçmiş)",
     "proCta": "Erken erişim için yer ayırtın",
     "choosePlan": "Planınızı seçin",
-    "entTitle": "World Monitor Enterprise",
+    "entTitle": "Cortex Finance Monitor Enterprise",
     "entDesc": "Paylaşılan izleme, API erişimi, deployment seçenekleri, TV uygulamaları ve doğrudan desteğe ihtiyaç duyan ekipler için.",
     "entF1": "Pro'daki her şey, ayrıca:",
     "entF2": "Canlı uydu görüntüleri ve SAR",
@@ -60,7 +60,7 @@
     "noiseTitle": "İlk siz bilin",
     "noiseDesc": "AIS anomalisi → Brent sıçraması → Slack'iniz bir dakikadan kısa sürede. Sinyal, manşet değil.",
     "fasterTitle": "Her şeyi sorun",
-    "fasterDesc": "Kontrol panelinizin gördüğü aynı 30+ hizmetle sohbet edin. WM Analyst, her zaman aktif.",
+    "fasterDesc": "Kontrol panelinizin gördüğü aynı 30+ hizmetle sohbet edin. Cortex Analyst, her zaman aktif.",
     "controlTitle": "Her şeyi inşa edin",
     "controlDesc": "Custom widget builder (HTML/CSS/JS + AI) ve kendi AI iş akışlarınız için MCP.",
     "deeperTitle": "Bilgili uyanın",
@@ -68,7 +68,7 @@
   },
   "pillars": {
     "askIt": "Ona sorun",
-    "askItDesc": "WM Analyst sohbet. 30+ hizmet, doğal dilde sorgulanabilir.",
+    "askItDesc": "Cortex Analyst sohbet. 30+ hizmet, doğal dilde sorgulanabilir.",
     "subscribeIt": "Abone olun",
     "subscribeItDesc": "AI özeti sizin temponuzda: günlük, günde iki kez veya haftalık. Slack, Discord, Telegram, E-posta, webhook.",
     "buildOnIt": "Üzerine inşa edin",
@@ -85,7 +85,7 @@
     "windowTitle": "worldmonitor.app — Canlı kontrol paneli",
     "openFullScreen": "Tam ekran aç",
     "tryLiveDashboard": "Canlı kontrol panelini deneyin",
-    "iframeTitle": "World Monitor — Canlı istihbarat kontrol paneli",
+    "iframeTitle": "Cortex Finance Monitor — Canlı istihbarat kontrol paneli",
     "description": "3D WebGL küre · 50+ etkileşimli harita katmanı · Gerçek zamanlı pazar, makro, jeopolitik, enerji ve altyapı verileri"
   },
   "socialProof": {
@@ -113,7 +113,7 @@
     "teamsDesc": "Bireysel kullanımdan paylaşılan iş akışlarına, API erişimine, TV uygulamalarına ve yönetilen deployment'lara geçin."
   },
   "dataCoverage": {
-    "title": "World Monitor'un izlediği şeyler",
+    "title": "Cortex Finance Monitor'un izlediği şeyler",
     "subtitle": "30+ hizmet alanı aynı anda işlenir. Piyasalar, makro, jeopolitik, enerji, altyapı — hepsi normalize edilir ve WebGL küre üzerinde işlenir.",
     "markets": "Finansal piyasalar ve hisseler",
     "marketsDesc": "Küresel hisse analizi, emtia, kripto, ETF akışları, analist hedefleri ve FRED makro verileri",
@@ -177,7 +177,7 @@
   "apiSection": {
     "apiTier": "API SEVİYESİ",
     "title": "Programatik istihbarat",
-    "subtitle": "World Monitor verileri üzerine inşa eden geliştiriciler, analistler ve ekipler için. Pro'dan ayrı — ikisini veya birini kullanın.",
+    "subtitle": "Cortex Finance Monitor verileri üzerine inşa eden geliştiriciler, analistler ve ekipler için. Pro'dan ayrı — ikisini veya birini kullanın.",
     "restApi": "30+ hizmet alanı için REST API",
     "authenticated": "Anahtar başına kimlik doğrulamalı, seviye başına rate-limited",
     "structured": "Cache header'ları ve OpenAPI 3.1 dökümantasyonu ile yapılandırılmış JSON",
@@ -196,7 +196,7 @@
     "security": "Hükümet düzeyinde güvenlik",
     "securityDesc": "Air-gapped deployment, on-premises Docker, özel bulut tenant'ı, SOC 2 Type II yolu, SSO/MFA ve tam denetim izi.",
     "aiAgents": "AI ajanları ve MCP",
-    "aiAgentsDesc": "Yatırımcı persona'ları olan özerk istihbarat ajanları. World Monitor'u Claude, GPT veya kendi LLM'lerinize MCP üzerinden araç olarak bağlayın.",
+    "aiAgentsDesc": "Yatırımcı persona'ları olan özerk istihbarat ajanları. Cortex Finance Monitor'u Claude, GPT veya kendi LLM'lerinize MCP üzerinden araç olarak bağlayın.",
     "dataLayers": "Genişletilmiş veri katmanları",
     "dataLayersDesc": "Dünya genelinde haritalanmış on binlerce altyapı varlığı. Değişiklik tespiti ve SAR ile uydu görüntü entegrasyonu.",
     "connectors": "100+ veri konnektörü",
@@ -276,7 +276,7 @@
   },
   "faq": {
     "title": "Sık sorulan sorular",
-    "q1": "World Monitor hâlâ ücretsiz mi?",
+    "q1": "Cortex Finance Monitor hâlâ ücretsiz mi?",
     "a1": "Evet. Temel platform ücretsiz kalır. Pro equity research, makro analitik ve AI brifleri ekler. Enterprise ekip deployment'ları ve TV uygulamaları ekler.",
     "q2": "Neden Pro için ödeme yapalım?",
     "a2": "Pro, hisse izleme, jeopolitik analiz, ekonomik analitik ve AI destekli günlük briflere — hepsini tek anahtar altında — isteyen yatırımcılar, analistler ve profesyoneller içindir.",
@@ -285,17 +285,17 @@
     "q4": "Pro ile başlayıp daha sonra yükseltebilir miyim?",
     "a4": "Evet. Pro ciddi bireysel kullanıcılar için çalışır. Ekip ve deployment ihtiyaçları büyüdüğünde Enterprise oradadır.",
     "q5": "Bu sadece çatışma izleme için mi?",
-    "a5": "Hayır. World Monitor öncelikle hisse piyasaları, makroekonomi, jeopolitik analiz, enerji, altyapı ve daha fazlasını kapsayan küresel bir istihbarat platformudur. Çatışma takibi birçok yetenekten biridir — odak noktası değil.",
+    "a5": "Hayır. Cortex Finance Monitor öncelikle hisse piyasaları, makroekonomi, jeopolitik analiz, enerji, altyapı ve daha fazlasını kapsayan küresel bir istihbarat platformudur. Çatışma takibi birçok yetenekten biridir — odak noktası değil.",
     "q6": "Neden temel platform ücretsiz?",
     "a6": "Çünkü halka açık erişim önemli. Ücretli planlar ciddi kullanıcılar ve organizasyonlar için daha derin iş akışlarını finanse eder.",
     "q7": "Hâlâ kendi API anahtarlarımı kullanabilir miyim?",
     "a7": "Evet. Bring-your-own-keys her zaman çalışır. Pro sadece 20+ ayrı hizmete kaydolmanıza gerek olmadığı anlamına gelir.",
     "q8": "MCP nedir?",
-    "a8": "MCP, AI ajanlarının — Claude, GPT, özel LLM'ler — WorldMonitor'u bir araç olarak kullanmasına ve 30+ hizmetin tümünü sorgulamasına olanak tanır. Pro'ya dahildir. Enterprise özel MCP sunucuları ve özel deployment'lar ekler.",
+    "a8": "MCP, AI ajanlarının — Claude, GPT, özel LLM'ler — Cortex Finance Monitor'u bir araç olarak kullanmasına ve 30+ hizmetin tümünü sorgulamasına olanak tanır. Pro'ya dahildir. Enterprise özel MCP sunucuları ve özel deployment'lar ekler.",
     "q9": "Kendi panellerimi oluşturabilir miyim?",
     "a9": "Evet. Pro, Custom Widget Builder içerir — HTML, CSS ve JavaScript'ten paneller oluşturun, AI destekli düzenleme ile.",
-    "q10": "Claude veya GPT'yi WorldMonitor'a bağlayabilir miyim?",
-    "a10": "Evet. MCP Pro'ya dahildir — WorldMonitor'u canlı bir araç olarak Claude, GPT veya MCP uyumlu herhangi bir LLM'ye bağlayın.",
+    "q10": "Claude veya GPT'yi Cortex Finance Monitor'a bağlayabilir miyim?",
+    "a10": "Evet. MCP Pro'ya dahildir — Cortex Finance Monitor'u canlı bir araç olarak Claude, GPT veya MCP uyumlu herhangi bir LLM'ye bağlayın.",
     "q11": "Özet ne kadar kişiselleştirilmiş?",
     "a11": "Temponuzu seçin: günlük, günde iki kez veya haftalık. İzlenen her hikâyeyi uyarı kurallarınıza ve watchlist'inize karşı yeniden puanlar, 400+ kaynak arasında tekrarsızlaştırır ve bağlamınız için yazılmış AI Assessment ve Signals to watch ile 30'a kadar sıralı öğe göndeririz. Kritik olaylar için gerçek zamanlı uyarılar da mevcuttur.",
     "q12": "Yenileme hızı nedir?",
@@ -305,7 +305,7 @@
   },
   "finalCta": {
     "title": "Pro ile başlayın. Enterprise'a ölçeklendirin.",
-    "subtitle": "World Monitor'u ücretsiz kullanmaya devam edin veya equity research, makro analitik ve AI brifleri için yükseltin. Organizasyonunuzun ekip erişimine, TV uygulamalarına veya API desteğine ihtiyacı varsa, bizimle konuşun.",
+    "subtitle": "Cortex Finance Monitor'u ücretsiz kullanmaya devam edin veya equity research, makro analitik ve AI brifleri için yükseltin. Organizasyonunuzun ekip erişimine, TV uygulamalarına veya API desteğine ihtiyacı varsa, bizimle konuşun.",
     "getPro": "Erken erişim için yer ayırtın",
     "talkToSales": "Satışla konuşun"
   },
@@ -329,17 +329,17 @@
     "linkedin": "LinkedIn",
     "whatsapp": "WhatsApp",
     "telegram": "Telegram",
-    "shareText": "Az önce World Monitor Pro bekleme listesine katıldım — tek bir platformda hisse izleme, jeopolitik analiz ve günlük AI brifleri. Bana katılın:",
-    "joinWaitlistShare": "World Monitor Pro bekleme listesine katılın:",
+    "shareText": "Az önce Cortex Finance Monitor Pro bekleme listesine katıldım — tek bir platformda hisse izleme, jeopolitik analiz ve günlük AI brifleri. Bana katılın:",
+    "joinWaitlistShare": "Cortex Finance Monitor Pro bekleme listesine katılın:",
     "youreIn": "Katıldınız!",
     "invitedBanner": "Davet edildiniz — bekleme listesine katılın"
   },
   "soonBadge": "Yakında",
   "meta": {
-    "title": "World Monitor Pro — AI Analisti, Kişisel İstihbarat Masası, Claude & GPT için MCP",
-    "description": "Jeopolitik AI katmanı. Sor, abone ol, geliştir. WM Analyst sohbeti 30+ canlı hizmet arasında, günlük, haftada iki kez veya haftalık olarak Slack, Discord, Telegram, E-posta veya webhook'a teslim edilen AI özeti, özel widget oluşturucu (HTML/CSS/JS + AI) ve Claude, GPT ve özel LLM'ler için MCP bağlantıları.",
-    "ogTitle": "World Monitor Pro — Jeopolitik AI Katmanı",
-    "ogDescription": "Sor, abone ol, geliştir. WM Analyst sohbeti, planlandığı şekilde AI özeti (günlük, haftada iki kez veya haftalık), özel widget oluşturucu ve Claude/GPT için MCP — 30+ canlı hizmet arasında tek bir anahtar altında."
+    "title": "Cortex Finance Monitor Pro — AI Analisti, Kişisel İstihbarat Masası, Claude & GPT için MCP",
+    "description": "Jeopolitik AI katmanı. Sor, abone ol, geliştir. Cortex Analyst sohbeti 30+ canlı hizmet arasında, günlük, haftada iki kez veya haftalık olarak Slack, Discord, Telegram, E-posta veya webhook'a teslim edilen AI özeti, özel widget oluşturucu (HTML/CSS/JS + AI) ve Claude, GPT ve özel LLM'ler için MCP bağlantıları.",
+    "ogTitle": "Cortex Finance Monitor Pro — Jeopolitik AI Katmanı",
+    "ogDescription": "Sor, abone ol, geliştir. Cortex Analyst sohbeti, planlandığı şekilde AI özeti (günlük, haftada iki kez veya haftalık), özel widget oluşturucu ve Claude/GPT için MCP — 30+ canlı hizmet arasında tek bir anahtar altında."
   },
   "pricing": {
     "suffixForever": "sonsuza dek",
