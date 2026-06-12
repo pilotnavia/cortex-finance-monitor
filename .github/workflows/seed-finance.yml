@@ -75,6 +75,12 @@ jobs:
         continue-on-error: true
         run: node scripts/seed-prediction-markets.mjs
 
+      # Sector heatmap (SPDR sector ETFs via Yahoo, no key). Cortex-only seed:
+      # upstream fills market:sectors:v2 from its private relay.
+      - name: Seed sectors (-> sectors:v2)
+        continue-on-error: true
+        run: node scripts/seed-sectors.mjs
+
       # Market quotes: Finnhub-primary (AV only as bulk fallback) — 6-hourly.
       - name: Seed market quotes (-> stocks-bootstrap)
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 */6 * * *'
