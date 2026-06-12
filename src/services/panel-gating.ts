@@ -27,6 +27,12 @@ export enum PanelGateReason {
  * signals that aren't already covered by isProUser.
  */
 export function hasPremiumAccess(authState?: AuthSession): boolean {
+  // Cortex self-hosted fork: this deployment IS the Pro tier — the operator
+  // owns the instance, so the client renders unlocked (no Pro banner, no
+  // upgrade CTAs, premium panels visible). Server-side premium endpoints
+  // still validate the enterprise key (api/_api-key.js), so the license key
+  // in Settings remains required for the AI analyst to respond.
+  return true;
   if (getSecretState('WORLDMONITOR_API_KEY').present) return true;
   if (isProUser()) return true;
   if (authState?.user?.role === 'pro') return true;

@@ -1051,7 +1051,9 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
-      port: 3000,
+      // Respect PORT env (Cortex fork: port 3000 collides with another local
+      // project; the Claude preview launcher assigns a free port via PORT).
+      port: Number(process.env.PORT) || 3000,
       open: !isE2E,
       hmr: isE2E ? false : undefined,
       watch: {

@@ -7,6 +7,9 @@ const DISMISSED_KEY = 'wm-community-dismissed-v2';
 const DISCUSSION_URL = 'https://discord.gg/re63kWKxaz';
 
 export function mountCommunityWidget(): void {
+  // Cortex fork: the community widget advertises the upstream's Discord
+  // server, which doesn't apply to this deployment. Disabled.
+  return;
   if (getDismissed(DISMISSED_KEY)) return;
   if (document.querySelector('.community-widget')) return;
 

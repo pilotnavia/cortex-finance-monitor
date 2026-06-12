@@ -179,6 +179,9 @@ export function isProWidgetEnabled(): boolean {
 }
 
 export function isProUser(): boolean {
+  // Cortex self-hosted fork: Pro tier unlocked by default (see
+  // panel-gating.ts hasPremiumAccess for the rationale).
+  return true;
   return (
     isWidgetFeatureEnabled() ||
     isProWidgetEnabled() ||
