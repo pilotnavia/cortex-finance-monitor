@@ -1,4 +1,9 @@
 const ALLOWED_ORIGIN_PATTERNS = [
+  // Cortex Finance Monitor deployment (production alias + denavi-team
+  // deployment URLs). Without these, browsers can't mint wm-session tokens
+  // and every data endpoint rejects the dashboard with "API key required".
+  /^https:\/\/cortex-finance-monitor\.vercel\.app$/,
+  /^https:\/\/cortex-finance-monitor-[a-z0-9-]+-denavi\.vercel\.app$/,
   /^https:\/\/(.*\.)?worldmonitor\.app$/,
   // Vercel preview deployments under the "eliewm" team scope, e.g.
   //   worldmonitor-git-<branch>-eliewm.vercel.app  (git-branch alias)
