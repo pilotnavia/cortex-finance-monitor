@@ -182,6 +182,36 @@ Upstash Redis (tier gratis en upstash.com). Los paneles de **brief/forecast**
 | Cortex Analyst (chat) | clave Pro + GROQ_API_KEY + Upstash Redis |
 | Daily/Latest Brief, Forecasts | lo anterior + Convex + cron de composición |
 
+### Pipeline de datos (feeds en vivo)
+
+`api/bootstrap.js` y el ensamblador de contexto del analista **solo LEEN** claves de
+caché de Upstash; nunca las siembran. Las llena un seeder externo (el upstream lo
+corre en Railway; ver `docs/railway-seed-consolidation-runbook.md`). Hay ~149
+scripts `scripts/seed-*.mjs`; cada uno hace fetch de su fuente y escribe a Upstash
+vía `runSeed` (3er arg = clave canónica que escribe).
+
+Para este fork montamos un **MVP finance** con GitHub Actions:
+`.github/workflows/seed-finance.yml` corre en schedule los seeds de finance contra
+el Upstash del proyecto. Sin esto, Cortex Analyst responde pero con
+`degraded: true` (sin contexto de feeds en vivo).
+
+Seeds del MVP y qué escriben:
+
+| Seed | Escribe (clave Upstash) | Claves API (free) |
+| --- | --- | --- |
+| seed-economy | economic:macro-signals:v1, FRED | FRED, EIA, Finnhub |
+| seed-market-quotes | market:stocks-bootstrap:v1 | Alpha Vantage, Finnhub |
+| seed-commodity-quotes | market:commodities-bootstrap:v1 | Alpha Vantage |
+| seed-fear-greed | market:fear-greed:v1 | (público) |
+| seed-cross-source-signals | señales cruzadas | (lee otras) |
+| seed-forecasts | forecast:predictions:v2 | LLM (Groq) |
+| seed-insights (fase 2) | news:insights:v1 | API_BASE_URL + WORLDMONITOR_RELAY_KEY + LLM |
+
+Secrets del repo (GitHub Actions): `UPSTASH_REDIS_REST_URL`,
+`UPSTASH_REDIS_REST_TOKEN`, `GROQ_API_KEY`, `FRED_API_KEY`, `EIA_API_KEY`,
+`FINNHUB_API_KEY`, `ALPHA_VANTAGE_API_KEY`. Ojo: Alpha Vantage free son ~25
+llamadas/día, por eso market/commodity corren cada 6h y el resto cada 2h.
+
 ---
 
 ## 5. Setup de desarrollo

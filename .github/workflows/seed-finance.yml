@@ -1,0 +1,86 @@
+# Cortex Finance Monitor — MVP data pipeline (finance feeds)
+#
+# Runs the finance seed scripts on a schedule and writes their output to the
+# project's Upstash Redis. Populating these keys is what makes Cortex Analyst
+# non-degraded and lights up the Forecast / Market panels (api/bootstrap.js and
+# the analyst context assembler only READ these cache keys; they never seed).
+#
+# REQUIRED GitHub repo secrets (Settings -> Secrets and variables -> Actions):
+#   UPSTASH_REDIS_REST_URL    - same value as in Vercel (https://...upstash.io, no quotes)
+#   UPSTASH_REDIS_REST_TOKEN  - same value as in Vercel
+#   GROQ_API_KEY              - same Groq key as in Vercel (used by seed-forecasts via the LLM chain)
+#   FRED_API_KEY             - free: https://fred.stlouisfed.org/docs/api/api_key.html
+#   EIA_API_KEY              - free: https://www.eia.gov/opendata/register.php
+#   FINNHUB_API_KEY          - free: https://finnhub.io/register
+#   ALPHA_VANTAGE_API_KEY    - free: https://www.alphavantage.co/support/#api-key
+#
+# RATE-LIMIT NOTE: Alpha Vantage free tier allows only ~25 calls/day. seed-market-quotes
+# and seed-commodity-quotes use it, so the market/commodity seeds run on a SLOWER cadence
+# (every 6h) than the public/generous ones (fear-greed, economy, forecasts every 2h).
+# Tune the cron lines below if you upgrade any data plan.
+
+name: seed-finance
+
+on:
+  workflow_dispatch: {}        # allow manual runs from the Actions tab
+  schedule:
+    - cron: '0 */2 * * *'      # every 2 hours: economy, fear-greed, signals, forecasts
+    - cron: '0 */6 * * *'      # every 6 hours: market + commodity (Alpha Vantage budget)
+
+concurrency:
+  group: seed-finance
+  cancel-in-progress: false
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+      UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+      EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+      FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+      ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      # Foundational seeds (run on every trigger). continue-on-error so one
+      # flaky data source never blocks the rest of the batch.
+      - name: Seed economy (FRED / EIA / Finnhub -> macro-signals)
+        continue-on-error: true
+        run: node scripts/seed-economy.mjs
+
+      - name: Seed fear & greed (public sources)
+        continue-on-error: true
+        run: node scripts/seed-fear-greed.mjs
+
+      # Market + commodity quotes: Alpha Vantage budget is tight, so only run
+      # these on the 6-hourly schedule (or on a manual dispatch).
+      - name: Seed market quotes (-> stocks-bootstrap)
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 */6 * * *'
+        continue-on-error: true
+        run: node scripts/seed-market-quotes.mjs
+
+      - name: Seed commodity quotes (-> commodities-bootstrap)
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 */6 * * *'
+        continue-on-error: true
+        run: node scripts/seed-commodity-quotes.mjs
+
+      # Derived seeds (read the above, so run last).
+      - name: Seed cross-source signals
+        continue-on-error: true
+        run: node scripts/seed-cross-source-signals.mjs
+
+      - name: Seed forecasts (LLM via Groq)
+        continue-on-error: true
+        run: node scripts/seed-forecasts.mjs
