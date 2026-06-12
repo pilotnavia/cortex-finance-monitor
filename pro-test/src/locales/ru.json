@@ -82,7 +82,7 @@
     "channels": "Slack · Discord · Telegram · Email · Webhook · Шифрование AES-256 · Тихие часы"
   },
   "livePreview": {
-    "windowTitle": "worldmonitor.app — Живая панель",
+    "windowTitle": "cortex-finance-monitor.vercel.app — Живая панель",
     "openFullScreen": "Открыть полный экран",
     "tryLiveDashboard": "Попробуйте живую панель",
     "iframeTitle": "Cortex Finance Monitor — Живая разведывательная панель",
@@ -225,7 +225,7 @@
     "submitContact": "Отправить сообщение",
     "contactSending": "Отправка...",
     "contactSent": "Сообщение отправлено. Мы свяжемся.",
-    "contactFailed": "Ошибка отправки. Напишите на enterprise@worldmonitor.app"
+    "contactFailed": "Ошибка отправки. Напишите на the repository issues page"
   },
   "pricingTable": {
     "title": "Сравнить уровни",

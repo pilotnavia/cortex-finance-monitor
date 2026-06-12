@@ -82,7 +82,7 @@
     "channels": "Slack · Discord · Telegram · Email · Webhook · Κρυπτογράφηση AES-256 · Ώρες σιωπής"
   },
   "livePreview": {
-    "windowTitle": "worldmonitor.app — Ζωντανός πίνακας",
+    "windowTitle": "cortex-finance-monitor.vercel.app — Ζωντανός πίνακας",
     "openFullScreen": "Άνοιγμα σε πλήρη οθόνη",
     "tryLiveDashboard": "Δοκιμάστε τον ζωντανό πίνακα",
     "iframeTitle": "Cortex Finance Monitor — Ζωντανός πίνακας intelligence",
@@ -225,7 +225,7 @@
     "submitContact": "Αποστολή μηνύματος",
     "contactSending": "Αποστολή...",
     "contactSent": "Το μήνυμα στάλθηκε. Θα επικοινωνήσουμε.",
-    "contactFailed": "Αποτυχία αποστολής. Γράψτε στο enterprise@worldmonitor.app"
+    "contactFailed": "Αποτυχία αποστολής. Γράψτε στο the repository issues page"
   },
   "pricingTable": {
     "title": "Σύγκριση επιπέδων",

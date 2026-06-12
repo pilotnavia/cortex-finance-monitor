@@ -82,7 +82,7 @@
     "channels": "Slack · Discord · Telegram · 이메일 · 웹훅 · AES-256 암호화 · 무음 시간"
   },
   "livePreview": {
-    "windowTitle": "worldmonitor.app — 라이브 대시보드",
+    "windowTitle": "cortex-finance-monitor.vercel.app — 라이브 대시보드",
     "openFullScreen": "전체 화면으로 열기",
     "tryLiveDashboard": "라이브 대시보드 체험",
     "iframeTitle": "Cortex Finance Monitor — 라이브 인텔리전스 대시보드",
@@ -225,7 +225,7 @@
     "submitContact": "메시지 보내기",
     "contactSending": "전송 중...",
     "contactSent": "메시지가 전송되었습니다. 연락드리겠습니다.",
-    "contactFailed": "전송 실패. enterprise@worldmonitor.app 로 이메일 주세요"
+    "contactFailed": "전송 실패. the repository issues page 로 이메일 주세요"
   },
   "pricingTable": {
     "title": "티어 비교",

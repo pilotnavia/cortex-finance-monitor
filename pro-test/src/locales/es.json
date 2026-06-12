@@ -82,7 +82,7 @@
     "channels": "Slack · Discord · Telegram · Email · Webhook · Cifrado AES-256 · Horas de silencio"
   },
   "livePreview": {
-    "windowTitle": "worldmonitor.app — Panel en vivo",
+    "windowTitle": "cortex-finance-monitor.vercel.app — Panel en vivo",
     "openFullScreen": "Abrir pantalla completa",
     "tryLiveDashboard": "Prueba el panel en vivo",
     "iframeTitle": "Cortex Finance Monitor — Panel de inteligencia en vivo",
@@ -225,7 +225,7 @@
     "submitContact": "Enviar mensaje",
     "contactSending": "Enviando...",
     "contactSent": "Mensaje enviado. Nos pondremos en contacto.",
-    "contactFailed": "Error al enviar. Escríbenos a enterprise@worldmonitor.app"
+    "contactFailed": "Error al enviar. Escríbenos a the repository issues page"
   },
   "pricingTable": {
     "title": "Comparar niveles",

@@ -82,7 +82,7 @@
     "channels": "Slack · Discord · Telegram · بريد إلكتروني · Webhook · مشفر AES-256 · ساعات صمت"
   },
   "livePreview": {
-    "windowTitle": "worldmonitor.app — لوحة مباشرة",
+    "windowTitle": "cortex-finance-monitor.vercel.app — لوحة مباشرة",
     "openFullScreen": "فتح ملء الشاشة",
     "tryLiveDashboard": "جرّب اللوحة المباشرة",
     "iframeTitle": "Cortex Finance Monitor — لوحة الاستخبارات المباشرة",
@@ -225,7 +225,7 @@
     "submitContact": "إرسال الرسالة",
     "contactSending": "جارٍ الإرسال...",
     "contactSent": "تم إرسال الرسالة. سنتواصل معك.",
-    "contactFailed": "فشل الإرسال. راسلنا على enterprise@worldmonitor.app"
+    "contactFailed": "فشل الإرسال. راسلنا على the repository issues page"
   },
   "pricingTable": {
     "title": "مقارنة المستويات",

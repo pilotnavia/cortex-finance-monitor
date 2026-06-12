@@ -82,7 +82,7 @@
     "channels": "Slack · Discord · Telegram · อีเมล · Webhook · เข้ารหัส AES-256 · ช่วงเงียบ"
   },
   "livePreview": {
-    "windowTitle": "worldmonitor.app — แดชบอร์ดสด",
+    "windowTitle": "cortex-finance-monitor.vercel.app — แดชบอร์ดสด",
     "openFullScreen": "เปิดเต็มหน้าจอ",
     "tryLiveDashboard": "ทดลองแดชบอร์ดสด",
     "iframeTitle": "Cortex Finance Monitor — แดชบอร์ดข่าวกรองสด",
@@ -225,7 +225,7 @@
     "submitContact": "ส่งข้อความ",
     "contactSending": "กำลังส่ง...",
     "contactSent": "ส่งข้อความแล้ว เราจะติดต่อกลับ",
-    "contactFailed": "ส่งไม่สำเร็จ โปรดอีเมลไปที่ enterprise@worldmonitor.app"
+    "contactFailed": "ส่งไม่สำเร็จ โปรดอีเมลไปที่ the repository issues page"
   },
   "pricingTable": {
     "title": "เปรียบเทียบระดับ",

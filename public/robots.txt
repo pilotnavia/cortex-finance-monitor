@@ -11,5 +11,5 @@ Allow: /api/og-story
 Disallow: /api/
 Disallow: /tests/
 
-Sitemap: https://www.worldmonitor.app/sitemap.xml
-Sitemap: https://www.worldmonitor.app/blog/sitemap-index.xml
+Sitemap: https://cortex-finance-monitor.vercel.app/sitemap.xml
+Sitemap: https://cortex-finance-monitor.vercel.app/blog/sitemap-index.xml

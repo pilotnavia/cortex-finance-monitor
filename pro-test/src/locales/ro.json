@@ -82,7 +82,7 @@
     "channels": "Slack · Discord · Telegram · Email · Webhook · Criptare AES-256 · Ore silențioase"
   },
   "livePreview": {
-    "windowTitle": "worldmonitor.app — Panou live",
+    "windowTitle": "cortex-finance-monitor.vercel.app — Panou live",
     "openFullScreen": "Deschide pe ecran complet",
     "tryLiveDashboard": "Încearcă panoul live",
     "iframeTitle": "Cortex Finance Monitor — Panou live de intelligence",
@@ -225,7 +225,7 @@
     "submitContact": "Trimite mesaj",
     "contactSending": "Se trimite...",
     "contactSent": "Mesaj trimis. Vom reveni.",
-    "contactFailed": "Trimitere eșuată. Scrie la enterprise@worldmonitor.app"
+    "contactFailed": "Trimitere eșuată. Scrie la the repository issues page"
   },
   "pricingTable": {
     "title": "Compară nivele",

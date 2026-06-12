@@ -82,7 +82,7 @@
     "channels": "Slack · Discord · Telegram · Email · Webhook · Mã hóa AES-256 · Giờ yên lặng"
   },
   "livePreview": {
-    "windowTitle": "worldmonitor.app — Bảng điều khiển trực tiếp",
+    "windowTitle": "cortex-finance-monitor.vercel.app — Bảng điều khiển trực tiếp",
     "openFullScreen": "Mở toàn màn hình",
     "tryLiveDashboard": "Dùng thử bảng điều khiển trực tiếp",
     "iframeTitle": "Cortex Finance Monitor — Bảng điều khiển tình báo trực tiếp",
@@ -225,7 +225,7 @@
     "submitContact": "Gửi tin nhắn",
     "contactSending": "Đang gửi...",
     "contactSent": "Đã gửi tin nhắn. Chúng tôi sẽ liên hệ.",
-    "contactFailed": "Gửi thất bại. Vui lòng gửi email đến enterprise@worldmonitor.app"
+    "contactFailed": "Gửi thất bại. Vui lòng gửi email đến the repository issues page"
   },
   "pricingTable": {
     "title": "So sánh các cấp độ",

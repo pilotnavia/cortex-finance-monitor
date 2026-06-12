@@ -82,7 +82,7 @@
     "channels": "Slack · Discord · Telegram · E-mail · Webhook · AES-256 versleuteld · Stille uren"
   },
   "livePreview": {
-    "windowTitle": "worldmonitor.app — Live dashboard",
+    "windowTitle": "cortex-finance-monitor.vercel.app — Live dashboard",
     "openFullScreen": "Open volledig scherm",
     "tryLiveDashboard": "Probeer het live dashboard",
     "iframeTitle": "Cortex Finance Monitor — Live Intelligence Dashboard",
@@ -225,7 +225,7 @@
     "submitContact": "Bericht verzenden",
     "contactSending": "Verzenden...",
     "contactSent": "Bericht verzonden. We nemen contact op.",
-    "contactFailed": "Verzenden mislukt. Mail naar enterprise@worldmonitor.app"
+    "contactFailed": "Verzenden mislukt. Mail naar the repository issues page"
   },
   "pricingTable": {
     "title": "Niveaus vergelijken",

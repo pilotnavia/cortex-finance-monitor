@@ -82,7 +82,7 @@
     "channels": "Slack · Discord · Telegram · メール · Webhook · AES-256 暗号化 · サイレント時間"
   },
   "livePreview": {
-    "windowTitle": "worldmonitor.app — ライブダッシュボード",
+    "windowTitle": "cortex-finance-monitor.vercel.app — ライブダッシュボード",
     "openFullScreen": "全画面で開く",
     "tryLiveDashboard": "ライブダッシュボードを試す",
     "iframeTitle": "Cortex Finance Monitor — ライブ・インテリジェンス・ダッシュボード",
@@ -225,7 +225,7 @@
     "submitContact": "メッセージを送信",
     "contactSending": "送信中...",
     "contactSent": "メッセージを送信しました。ご連絡します。",
-    "contactFailed": "送信に失敗しました。enterprise@worldmonitor.app までメールください"
+    "contactFailed": "送信に失敗しました。the repository issues page までメールください"
   },
   "pricingTable": {
     "title": "ティアを比較",

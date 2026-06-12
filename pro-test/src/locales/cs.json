@@ -82,7 +82,7 @@
     "channels": "Slack · Discord · Telegram · E-mail · Webhook · AES-256 šifrované · Tiché hodiny"
   },
   "livePreview": {
-    "windowTitle": "worldmonitor.app — Živý dashboard",
+    "windowTitle": "cortex-finance-monitor.vercel.app — Živý dashboard",
     "openFullScreen": "Otevřít na celé obrazovce",
     "tryLiveDashboard": "Vyzkoušejte živý dashboard",
     "iframeTitle": "Cortex Finance Monitor — Živý zpravodajský dashboard",
@@ -225,7 +225,7 @@
     "submitContact": "Odeslat zprávu",
     "contactSending": "Odesílání...",
     "contactSent": "Zpráva odeslána. Budeme v kontaktu.",
-    "contactFailed": "Odeslání selhalo. Napište na enterprise@worldmonitor.app"
+    "contactFailed": "Odeslání selhalo. Napište na the repository issues page"
   },
   "pricingTable": {
     "title": "Porovnat úrovně",

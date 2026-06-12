@@ -82,7 +82,7 @@
     "channels": "Slack · Discord · Telegram · Имейл · Уебхук · AES-256 криптирано · Тихи часове"
   },
   "livePreview": {
-    "windowTitle": "worldmonitor.app — Табло на живо",
+    "windowTitle": "cortex-finance-monitor.vercel.app — Табло на живо",
     "openFullScreen": "Отваряне на цял екран",
     "tryLiveDashboard": "Опитайте таблото на живо",
     "iframeTitle": "Cortex Finance Monitor — Разузнавателно табло на живо",
@@ -225,7 +225,7 @@
     "submitContact": "Изпращане на съобщение",
     "contactSending": "Изпращане...",
     "contactSent": "Съобщението е изпратено. Ще се свържем.",
-    "contactFailed": "Неуспешно изпращане. Пишете на enterprise@worldmonitor.app"
+    "contactFailed": "Неуспешно изпращане. Пишете на the repository issues page"
   },
   "pricingTable": {
     "title": "Сравнете нивата",

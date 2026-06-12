@@ -82,7 +82,7 @@
     "channels": "Slack · Discord · Telegram · E-posta · Webhook · AES-256 şifreli · Sessiz saatler"
   },
   "livePreview": {
-    "windowTitle": "worldmonitor.app — Canlı kontrol paneli",
+    "windowTitle": "cortex-finance-monitor.vercel.app — Canlı kontrol paneli",
     "openFullScreen": "Tam ekran aç",
     "tryLiveDashboard": "Canlı kontrol panelini deneyin",
     "iframeTitle": "Cortex Finance Monitor — Canlı istihbarat kontrol paneli",
@@ -225,7 +225,7 @@
     "submitContact": "Mesaj gönder",
     "contactSending": "Gönderiliyor...",
     "contactSent": "Mesaj gönderildi. İletişime geçeceğiz.",
-    "contactFailed": "Gönderilemedi. enterprise@worldmonitor.app adresine e-posta gönderin"
+    "contactFailed": "Gönderilemedi. the repository issues page adresine e-posta gönderin"
   },
   "pricingTable": {
     "title": "Seviyeleri karşılaştır",

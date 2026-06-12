@@ -82,7 +82,7 @@
     "channels": "Slack · Discord · Telegram · 邮件 · Webhook · AES-256 加密 · 静音时段"
   },
   "livePreview": {
-    "windowTitle": "worldmonitor.app — 实时仪表板",
+    "windowTitle": "cortex-finance-monitor.vercel.app — 实时仪表板",
     "openFullScreen": "全屏打开",
     "tryLiveDashboard": "试用实时仪表板",
     "iframeTitle": "Cortex Finance Monitor — 实时情报仪表板",
@@ -225,7 +225,7 @@
     "submitContact": "发送消息",
     "contactSending": "发送中...",
     "contactSent": "消息已发送。我们会与您联系。",
-    "contactFailed": "发送失败。请发送邮件至 enterprise@worldmonitor.app"
+    "contactFailed": "发送失败。请发送邮件至 the repository issues page"
   },
   "pricingTable": {
     "title": "比较等级",

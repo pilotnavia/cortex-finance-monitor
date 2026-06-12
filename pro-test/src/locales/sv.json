@@ -82,7 +82,7 @@
     "channels": "Slack · Discord · Telegram · E-post · Webhook · AES-256-krypterat · Tysta timmar"
   },
   "livePreview": {
-    "windowTitle": "worldmonitor.app — Live-dashboard",
+    "windowTitle": "cortex-finance-monitor.vercel.app — Live-dashboard",
     "openFullScreen": "Öppna helskärm",
     "tryLiveDashboard": "Prova live-dashboarden",
     "iframeTitle": "Cortex Finance Monitor — Live Intelligence Dashboard",
@@ -225,7 +225,7 @@
     "submitContact": "Skicka meddelande",
     "contactSending": "Skickar...",
     "contactSent": "Meddelande skickat. Vi hör av oss.",
-    "contactFailed": "Skickning misslyckades. Mejla till enterprise@worldmonitor.app"
+    "contactFailed": "Skickning misslyckades. Mejla till the repository issues page"
   },
   "pricingTable": {
     "title": "Jämför nivåer",
