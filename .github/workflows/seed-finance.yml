@@ -24,8 +24,10 @@ name: seed-finance
 on:
   workflow_dispatch: {}        # allow manual runs from the Actions tab
   schedule:
-    - cron: '0 */2 * * *'      # every 2 hours: economy, fear-greed, signals, forecasts
-    - cron: '0 */6 * * *'      # every 6 hours: market + commodity (Alpha Vantage budget)
+    - cron: '0 */2 * * *'      # every 2 hours: economy, fear-greed, predictions, signals, forecasts
+    - cron: '0 */6 * * *'      # every 6 hours: market quotes (Finnhub-primary)
+    - cron: '30 5 * * *'       # once daily, just after Alpha Vantage quota reset (~midnight ET):
+                               # commodity quotes + ETF flows (AV-heavy, free tier = 25 calls/day)
 
 concurrency:
   group: seed-finance
@@ -73,17 +75,25 @@ jobs:
         continue-on-error: true
         run: node scripts/seed-prediction-markets.mjs
 
-      # Market + commodity quotes: Alpha Vantage budget is tight, so only run
-      # these on the 6-hourly schedule (or on a manual dispatch).
+      # Market quotes: Finnhub-primary (AV only as bulk fallback) — 6-hourly.
       - name: Seed market quotes (-> stocks-bootstrap)
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 */6 * * *'
         continue-on-error: true
         run: node scripts/seed-market-quotes.mjs
 
+      # Alpha Vantage-heavy seeds: ONCE daily right after the AV free-tier
+      # quota reset (25 calls/day). Running these more often burns the whole
+      # budget and they publish empty payloads (seen 2026-06-12: commodity
+      # quotes empty after AV rate-limit). Manual dispatch also runs them.
       - name: Seed commodity quotes (-> commodities-bootstrap)
-        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 */6 * * *'
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '30 5 * * *'
         continue-on-error: true
         run: node scripts/seed-commodity-quotes.mjs
+
+      - name: Seed ETF flows (-> etf-flows)
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '30 5 * * *'
+        continue-on-error: true
+        run: node scripts/seed-etf-flows.mjs
 
       # Derived seeds (read the above, so run last).
       - name: Seed cross-source signals
