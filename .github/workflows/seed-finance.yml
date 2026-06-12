@@ -49,10 +49,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci --no-audit --no-fund
+      # The finance seed scripts import only Node built-ins (node:crypto, node:fs,
+      # node:url, node:child_process, ...) plus local ./scripts/_*.mjs helpers.
+      # They need no npm packages, so there is no install step. This also avoids
+      # the package-lock drift that breaks `npm ci` and the heavy blog-site
+      # postinstall, neither of which the seeds require.
 
       # Foundational seeds (run on every trigger). continue-on-error so one
       # flaky data source never blocks the rest of the batch.
