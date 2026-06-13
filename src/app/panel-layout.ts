@@ -566,9 +566,7 @@ export class PanelLayoutManager implements AppModule {
           <span class="mobile-menu-item-label">@cortex_next</span>
         </a>
         <div class="mobile-menu-divider"></div>
-        <div class="mobile-menu-footer-links">
-          <a href="/pro" target="_blank" rel="noopener">Pro</a>
-        </div>
+        <div class="mobile-menu-footer-links"></div>
       </nav>
       <div class="region-sheet-backdrop" id="regionSheetBackdrop"></div>
       <div class="region-bottom-sheet" id="regionBottomSheet">
@@ -629,9 +627,6 @@ export class PanelLayoutManager implements AppModule {
             <span class="site-footer-sub">based on <a href="https://github.com/koala73/worldmonitor" target="_blank" rel="noopener" class="site-footer-credit">World Monitor</a></span>
           </div>
         </div>
-        <nav>
-          <a href="/pro" target="_blank" rel="noopener">Pro</a>
-        </nav>
         <span class="site-footer-copy">&copy; ${new Date().getFullYear()} Cortex Finance Monitor</span>
       </footer>
     `, "legacy direct innerHTML migration"));
