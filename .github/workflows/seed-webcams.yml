@@ -1,0 +1,51 @@
+# Cortex Finance Monitor — webcam data pipeline (Windy Webcams API)
+#
+# Seeds live webcam camera metadata (geo + meta) into the project's Upstash Redis
+# so the Live Webcams panel and the map webcam layer have data to show. The app
+# only READS these keys (server/worldmonitor/webcam/v1/list-webcams.ts reads
+# webcam:cameras:active + geo/meta); it never seeds. Data keys carry a 24h TTL
+# (see scripts/seed-webcams.mjs GEO_TTL), so this must run at least daily.
+#
+# REQUIRED GitHub repo secrets (Settings -> Secrets and variables -> Actions):
+#   WINDY_API_KEY             - Windy Webcams API v3 key (PAID). https://api.windy.com/webcams
+#   UPSTASH_REDIS_REST_URL    - same value as in Vercel (https://...upstash.io, no quotes)
+#   UPSTASH_REDIS_REST_TOKEN  - same value as in Vercel
+#
+# Until WINDY_API_KEY is set, scripts/seed-webcams.mjs exits early ("skipping")
+# and this workflow is a harmless no-op — safe to have enabled beforehand.
+#
+# COST NOTE: the seed paginates 8 regional bounding boxes (splitting into
+# quadrants when a region hits the 10k cap), so a run can make many hundreds of
+# Windy calls. Cadence is set to twice daily to stay within TTL while limiting
+# call volume; raise/lower the cron below to match your Windy plan.
+
+name: seed-webcams
+
+on:
+  workflow_dispatch: {}        # allow manual runs from the Actions tab
+  schedule:
+    - cron: '0 */12 * * *'     # twice daily (TTL is 24h; 12h leaves a safety margin)
+
+concurrency:
+  group: seed-webcams
+  cancel-in-progress: false
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      WINDY_API_KEY: ${{ secrets.WINDY_API_KEY }}
+      UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+      UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # scripts/seed-webcams.mjs uses only global fetch + Node built-ins, so no
+      # npm install is needed (matches seed-finance.yml — avoids lockfile drift).
+      - name: Seed webcams (Windy -> Redis geo+meta)
+        run: node scripts/seed-webcams.mjs
