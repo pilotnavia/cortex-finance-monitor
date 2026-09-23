@@ -4,16 +4,18 @@
 # scripts/run-seeders.sh. The app only READS these keys; this workflow WRITES
 # them. Seeds whose API key is absent print "skip"/"not set" and are counted as
 # skipped (never fail the job), so this is safe to run before every key exists —
-# the ~80 keyless/public seeds (USGS, GDELT, IMF SDMX, Eurostat, ECB, BIS, JODI,
+# the keyless/public seeds (USGS, GDELT, IMF SDMX, Eurostat, ECB, BIS, JODI,
 # OWID, EIA-public, ...) populate immediately, and each keyed domain lights up
 # the moment its secret is added below.
 #
-# NOT run here (to avoid duplication / breakage):
-#   - the finance MVP seeds (see seed-finance.yml)
-#   - seed-webcams (see seed-webcams.yml)
-#   - seeds needing npm packages not installed here (exceljs/sax/resend):
-#     seed-fuel-prices, seed-gold-etf-flows, seed-sanctions-pressure,
-#     seed-digest-notifications
+# Sharded x4 in parallel: the full batch is too slow for one 55-min job (it was
+# cancelled mid-run). Each shard does ~1/4 of the seeds, and every seed is hard-
+# capped at 5 min (`timeout`) so one hung endpoint can't starve its shard.
+#
+# NOT run here: the finance MVP seeds (seed-finance.yml), seed-webcams
+# (seed-webcams.yml), and seeds needing npm packages not installed here
+# (exceljs/sax/resend): seed-fuel-prices, seed-gold-etf-flows,
+# seed-sanctions-pressure, seed-digest-notifications.
 #
 # ADD SECRETS in GitHub → Settings → Secrets and variables → Actions. Unset
 # secrets resolve to empty and their seed simply skips. Same values as Vercel.
@@ -23,7 +25,7 @@ name: seed-all
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '0 4 * * *'   # once daily (tune up per-domain later if needed)
+    - cron: '0 4 * * *'   # once daily (tune per-domain later if needed)
 
 concurrency:
   group: seed-all
@@ -32,8 +34,14 @@ concurrency:
 jobs:
   seed:
     runs-on: ubuntu-latest
-    timeout-minutes: 55
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
     env:
+      SHARD: ${{ matrix.shard }}
+      SHARDS: '4'
       # Foundational
       UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
       UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
@@ -80,14 +88,13 @@ jobs:
         with:
           node-version: '22'
 
-      # Loop over every seed-*.mjs (mirrors scripts/run-seeders.sh), skipping the
-      # ones owned by other workflows or needing npm packages. Never fail the job:
-      # a flaky source or a missing key must not block the rest of the batch.
-      - name: Seed all (keyless populate now; keyed skip until their secret is set)
+      - name: Seed shard ${{ matrix.shard }} of 4
         run: |
           set +e
-          ok=0; skip=0; fail=0
+          ok=0; skip=0; fail=0; i=-1
           for f in scripts/seed-*.mjs; do
+            i=$((i+1))
+            [ $((i % SHARDS)) -ne "$SHARD" ] && continue
             name="$(basename "$f")"
             case "$name" in
               seed-economy.mjs|seed-fear-greed.mjs|seed-prediction-markets.mjs|seed-sectors.mjs|seed-market-quotes.mjs|seed-commodity-quotes.mjs|seed-etf-flows.mjs|seed-cross-source-signals.mjs|seed-forecasts.mjs) continue ;;
@@ -95,9 +102,11 @@ jobs:
               seed-fuel-prices.mjs|seed-gold-etf-flows.mjs|seed-sanctions-pressure.mjs|seed-digest-notifications.mjs) continue ;;
             esac
             printf '→ %s ... ' "$name"
-            out="$(node "$f" 2>&1)"; rc=$?
+            out="$(timeout 300 node "$f" 2>&1)"; rc=$?
             last="$(printf '%s' "$out" | tail -1)"
-            if printf '%s' "$last" | grep -qi 'skip\|not set\|missing.*key\|not found'; then
+            if [ $rc -eq 124 ]; then
+              echo "TIMEOUT (>300s)"; fail=$((fail+1))
+            elif printf '%s' "$last" | grep -qi 'skip\|not set\|missing.*key\|not found'; then
               echo "SKIP ($last)"; skip=$((skip+1))
             elif [ $rc -eq 0 ]; then
               echo "OK"; ok=$((ok+1))
@@ -106,4 +115,4 @@ jobs:
             fi
           done
           echo ""
-          echo "Done: $ok ok, $skip skipped, $fail failed"
+          echo "Shard $SHARD done: $ok ok, $skip skipped, $fail failed"
