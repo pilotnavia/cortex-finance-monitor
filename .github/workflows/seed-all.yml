@@ -88,9 +88,26 @@ jobs:
         with:
           node-version: '22'
 
+      # Load production env vars from Vercel so the seeds reuse the keys already
+      # configured there. Needs one repo secret: VERCEL_TOKEN. Org/project IDs are
+      # identifiers (not secrets). Values land in .vercel.env (ephemeral runner
+      # file, never printed, never committed) and are sourced by the seed step.
+      # No-op when VERCEL_TOKEN is absent (workflow env block is used instead).
+      - name: Pull env from Vercel (if VERCEL_TOKEN set)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: team_uwjwdh8vXisxRPBpArQdN8JD
+          VERCEL_PROJECT_ID: prj_T7Pri3bu4NZPJopNlj1TT2aI4jSG
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then echo "VERCEL_TOKEN not set — using workflow env only"; exit 0; fi
+          npx --yes vercel@latest pull --yes --environment=production --token="$VERCEL_TOKEN" >/dev/null 2>&1 || true
+          npx --yes vercel@latest env pull .vercel.env --environment=production --token="$VERCEL_TOKEN" --yes >/dev/null 2>&1 || true
+          if [ -f .vercel.env ]; then echo "Vercel env loaded: $(grep -cE '^[A-Za-z_]' .vercel.env) vars"; else echo "no env file produced"; fi
+
       - name: Seed shard ${{ matrix.shard }} of 4
         run: |
           set +e
+          [ -f .vercel.env ] && { set -a; . ./.vercel.env; set +a; }
           ok=0; skip=0; fail=0; i=-1
           for f in scripts/seed-*.mjs; do
             i=$((i+1))

@@ -45,7 +45,24 @@ jobs:
         with:
           node-version: '22'
 
+      # Load production env from Vercel so WINDY_API_KEY (and Upstash) come from
+      # there — no need to duplicate them into GitHub. Needs one repo secret:
+      # VERCEL_TOKEN. Values land in .vercel.env (ephemeral, never printed/committed).
+      # No-op without VERCEL_TOKEN (falls back to the workflow env block).
+      - name: Pull env from Vercel (if VERCEL_TOKEN set)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: team_uwjwdh8vXisxRPBpArQdN8JD
+          VERCEL_PROJECT_ID: prj_T7Pri3bu4NZPJopNlj1TT2aI4jSG
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then echo "VERCEL_TOKEN not set — using workflow env only"; exit 0; fi
+          npx --yes vercel@latest pull --yes --environment=production --token="$VERCEL_TOKEN" >/dev/null 2>&1 || true
+          npx --yes vercel@latest env pull .vercel.env --environment=production --token="$VERCEL_TOKEN" --yes >/dev/null 2>&1 || true
+          if [ -f .vercel.env ]; then echo "Vercel env loaded: $(grep -cE '^[A-Za-z_]' .vercel.env) vars"; else echo "no env file produced"; fi
+
       # scripts/seed-webcams.mjs uses only global fetch + Node built-ins, so no
       # npm install is needed (matches seed-finance.yml — avoids lockfile drift).
       - name: Seed webcams (Windy -> Redis geo+meta)
-        run: node scripts/seed-webcams.mjs
+        run: |
+          [ -f .vercel.env ] && { set -a; . ./.vercel.env; set +a; }
+          node scripts/seed-webcams.mjs
