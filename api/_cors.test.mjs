@@ -28,6 +28,17 @@ test('allows desktop Tauri origins', () => {
   }
 });
 
+test('allows the production custom domain (monitor.cortexnext.app)', () => {
+  // Regression: the dashboard is served at monitor.cortexnext.app, so its
+  // POST /api/wm-session carries that Origin. If it is not allowlisted the
+  // session mint 403s and every data endpoint returns 401 "API key required".
+  const req = makeRequest('https://monitor.cortexnext.app');
+  assert.equal(isDisallowedOrigin(req), false);
+  const cors = getCorsHeaders(req);
+  assert.equal(cors['Access-Control-Allow-Origin'], 'https://monitor.cortexnext.app');
+  assert.equal(cors['Access-Control-Allow-Credentials'], 'true');
+});
+
 test('rejects unrelated external origins', () => {
   const req = makeRequest('https://evil.example.com');
   assert.equal(isDisallowedOrigin(req), true);

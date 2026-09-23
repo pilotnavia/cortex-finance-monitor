@@ -4,6 +4,10 @@ const ALLOWED_ORIGIN_PATTERNS = [
   // and every data endpoint rejects the dashboard with "API key required".
   /^https:\/\/cortex-finance-monitor\.vercel\.app$/,
   /^https:\/\/cortex-finance-monitor-[a-z0-9-]+-denavi\.vercel\.app$/,
+  // Production custom domain. The dashboard is served here, so POST
+  // /api/wm-session sends Origin: monitor.cortexnext.app — without it the
+  // session mint 403s and the whole data layer falls back to 401.
+  /^https:\/\/monitor\.cortexnext\.app$/,
   /^https:\/\/(.*\.)?worldmonitor\.app$/,
   // Vercel preview deployments under the "eliewm" team scope, e.g.
   //   worldmonitor-git-<branch>-eliewm.vercel.app  (git-branch alias)

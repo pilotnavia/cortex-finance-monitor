@@ -9,6 +9,10 @@ const PRODUCTION_PATTERNS: RegExp[] = [
   // Cortex Finance Monitor deployment (must mirror api/_cors.js).
   /^https:\/\/cortex-finance-monitor\.vercel\.app$/,
   /^https:\/\/cortex-finance-monitor-[a-z0-9-]+-denavi\.vercel\.app$/,
+  // Production custom domain (mirror api/_cors.js). Served here, so POST
+  // /api/wm-session sends Origin: monitor.cortexnext.app — without it the
+  // session mint 403s and the whole data layer falls back to 401.
+  /^https:\/\/monitor\.cortexnext\.app$/,
   /^https:\/\/(.*\.)?worldmonitor\.app$/,
   // Vercel preview deployments under the "eliewm" team scope, e.g.
   //   worldmonitor-git-<branch>-eliewm.vercel.app  (git-branch alias)
