@@ -56,9 +56,15 @@ jobs:
           VERCEL_PROJECT_ID: prj_T7Pri3bu4NZPJopNlj1TT2aI4jSG
         run: |
           if [ -z "$VERCEL_TOKEN" ]; then echo "VERCEL_TOKEN not set — using workflow env only"; exit 0; fi
-          npx --yes vercel@latest pull --yes --environment=production --token="$VERCEL_TOKEN" >/dev/null 2>&1 || true
-          npx --yes vercel@latest env pull .vercel.env --environment=production --token="$VERCEL_TOKEN" --yes >/dev/null 2>&1 || true
-          if [ -f .vercel.env ]; then echo "Vercel env loaded: $(grep -cE '^[A-Za-z_]' .vercel.env) vars"; else echo "no env file produced"; fi
+          # `vercel pull` writes prod vars to .vercel/.env.production.local. Show
+          # its output (status/errors only — never the values) so a bad token
+          # scope is visible instead of failing silently.
+          npx --yes vercel@latest pull --yes --environment=production --token="$VERCEL_TOKEN" 2>&1 | tail -8 || true
+          src=""
+          for c in .vercel/.env.production.local .vercel.env .env.production.local .env.local; do
+            [ -f "$c" ] && { src="$c"; break; }
+          done
+          if [ -n "$src" ]; then cp "$src" .vercel.env; echo "Vercel env loaded from $src: $(grep -cE '^[A-Za-z_]' .vercel.env) vars"; else echo "NO env file produced (check the token is scoped to the denavi team)"; fi
 
       # scripts/seed-webcams.mjs uses only global fetch + Node built-ins, so no
       # npm install is needed (matches seed-finance.yml — avoids lockfile drift).
