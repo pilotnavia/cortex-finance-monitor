@@ -12396,12 +12396,16 @@ a.prediction-link:hover {
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Full-viewport map on mobile (Google Maps-like experience) */
+  /* Map as a tall hero on mobile, but NOT full-screen: leave ~20% below it so
+     the sticky category nav + the top of the first panel peek through. That
+     bottom-sheet affordance signals the page scrolls to more content, instead
+     of a full-viewport map that hides every panel behind a "Hide Map" button
+     the user has to discover. Hide Map (.collapsed) and fullscreen still win. */
   .map-section {
-    height: calc(100vh - 48px) !important;
-    height: calc(100dvh - 48px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important;
+    height: 78vh !important;      /* fallback for browsers without dvh */
+    height: 78dvh !important;     /* leaves ~22% for the peek below */
     min-height: 60vh !important;
-    max-height: 100dvh !important;
+    max-height: 82dvh !important;
   }
 
   /* Collapsed map on mobile — higher specificity overrides .map-section above */
