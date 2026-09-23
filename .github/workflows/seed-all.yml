@@ -113,7 +113,18 @@ jobs:
       - name: Seed shard ${{ matrix.shard }} of 4
         run: |
           set +e
-          [ -f .vercel.env ] && { set -a; . ./.vercel.env; set +a; }
+          # Apply ONLY the data API keys from the Vercel env, assigned literally
+          # (no `source`, which would run/break on values containing $ ` " etc.).
+          # UPSTASH stays on the GitHub-secret values (known good) — never taken
+          # from Vercel here, so a Redis mismatch can't break the whole batch.
+          if [ -f .vercel.env ]; then
+            for k in GROQ_API_KEY OPENROUTER_API_KEY FRED_API_KEY EIA_API_KEY FINNHUB_API_KEY ALPHA_VANTAGE_API_KEY IMF_API_KEY COINGECKO_API_KEY GIE_API_KEY ENTSO_E_TOKEN COMTRADE_API_KEYS WTO_API_KEY ACLED_EMAIL ACLED_PASSWORD ACLED_ACCESS_TOKEN UCDP_ACCESS_TOKEN NASA_FIRMS_API_KEY RELIEFWEB_APPNAME OPENAQ_API_KEY WAQI_API_KEY AVIATIONSTACK_API ICAO_API_KEY TRAVELPAYOUTS_API_TOKEN WINGBITS_API_KEY CLOUDFLARE_API_TOKEN ABUSEIPDB_API_KEY OTX_API_KEY URLHAUS_AUTH_KEY EXA_API_KEYS FIRECRAWL_API_KEY BRAVE_API_KEYS WINDY_API_KEY WORLDMONITOR_SEED_REFRESH_KEY; do
+              line="$(grep -m1 -E "^${k}=" .vercel.env)" || continue
+              v="${line#*=}"; v="${v%\"}"; v="${v#\"}"
+              [ -n "$v" ] && export "$k=$v"
+            done
+            echo "applied Vercel data keys (UPSTASH kept from GitHub secrets)"
+          fi
           ok=0; skip=0; fail=0; i=-1
           for f in scripts/seed-*.mjs; do
             i=$((i+1))

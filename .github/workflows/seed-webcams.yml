@@ -70,5 +70,9 @@ jobs:
       # npm install is needed (matches seed-finance.yml — avoids lockfile drift).
       - name: Seed webcams (Windy -> Redis geo+meta)
         run: |
-          [ -f .vercel.env ] && { set -a; . ./.vercel.env; set +a; }
+          # Take only WINDY_API_KEY from Vercel, assigned literally (no `source`).
+          # UPSTASH stays on the GitHub-secret values.
+          if [ -f .vercel.env ]; then
+            line="$(grep -m1 -E '^WINDY_API_KEY=' .vercel.env)" && { v="${line#*=}"; v="${v%\"}"; v="${v#\"}"; [ -n "$v" ] && export "WINDY_API_KEY=$v"; }
+          fi
           node scripts/seed-webcams.mjs
