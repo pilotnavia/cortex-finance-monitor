@@ -1,0 +1,109 @@
+# Cortex Finance Monitor — full data pipeline (everything except the finance MVP)
+#
+# Runs every scripts/seed-*.mjs against the project's Upstash Redis, mirroring
+# scripts/run-seeders.sh. The app only READS these keys; this workflow WRITES
+# them. Seeds whose API key is absent print "skip"/"not set" and are counted as
+# skipped (never fail the job), so this is safe to run before every key exists —
+# the ~80 keyless/public seeds (USGS, GDELT, IMF SDMX, Eurostat, ECB, BIS, JODI,
+# OWID, EIA-public, ...) populate immediately, and each keyed domain lights up
+# the moment its secret is added below.
+#
+# NOT run here (to avoid duplication / breakage):
+#   - the finance MVP seeds (see seed-finance.yml)
+#   - seed-webcams (see seed-webcams.yml)
+#   - seeds needing npm packages not installed here (exceljs/sax/resend):
+#     seed-fuel-prices, seed-gold-etf-flows, seed-sanctions-pressure,
+#     seed-digest-notifications
+#
+# ADD SECRETS in GitHub → Settings → Secrets and variables → Actions. Unset
+# secrets resolve to empty and their seed simply skips. Same values as Vercel.
+
+name: seed-all
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '0 4 * * *'   # once daily (tune up per-domain later if needed)
+
+concurrency:
+  group: seed-all
+  cancel-in-progress: false
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      # Foundational
+      UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+      UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+      # LLM (derived/summaries)
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      # Market / economy / energy
+      FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+      EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+      FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+      ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
+      IMF_API_KEY: ${{ secrets.IMF_API_KEY }}
+      COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
+      GIE_API_KEY: ${{ secrets.GIE_API_KEY }}
+      ENTSO_E_TOKEN: ${{ secrets.ENTSO_E_TOKEN }}
+      COMTRADE_API_KEYS: ${{ secrets.COMTRADE_API_KEYS }}
+      WTO_API_KEY: ${{ secrets.WTO_API_KEY }}
+      # Conflict / protest
+      ACLED_EMAIL: ${{ secrets.ACLED_EMAIL }}
+      ACLED_PASSWORD: ${{ secrets.ACLED_PASSWORD }}
+      ACLED_ACCESS_TOKEN: ${{ secrets.ACLED_ACCESS_TOKEN }}
+      UCDP_ACCESS_TOKEN: ${{ secrets.UCDP_ACCESS_TOKEN }}
+      # Hazards / climate / health
+      NASA_FIRMS_API_KEY: ${{ secrets.NASA_FIRMS_API_KEY }}
+      RELIEFWEB_APPNAME: ${{ secrets.RELIEFWEB_APPNAME }}
+      OPENAQ_API_KEY: ${{ secrets.OPENAQ_API_KEY }}
+      WAQI_API_KEY: ${{ secrets.WAQI_API_KEY }}
+      # Aviation
+      AVIATIONSTACK_API: ${{ secrets.AVIATIONSTACK_API }}
+      ICAO_API_KEY: ${{ secrets.ICAO_API_KEY }}
+      TRAVELPAYOUTS_API_TOKEN: ${{ secrets.TRAVELPAYOUTS_API_TOKEN }}
+      # Internet outages / cyber
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      ABUSEIPDB_API_KEY: ${{ secrets.ABUSEIPDB_API_KEY }}
+      OTX_API_KEY: ${{ secrets.OTX_API_KEY }}
+      URLHAUS_AUTH_KEY: ${{ secrets.URLHAUS_AUTH_KEY }}
+      # Search / scraping
+      EXA_API_KEYS: ${{ secrets.EXA_API_KEYS }}
+      FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+      BRAVE_API_KEYS: ${{ secrets.BRAVE_API_KEYS }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # Loop over every seed-*.mjs (mirrors scripts/run-seeders.sh), skipping the
+      # ones owned by other workflows or needing npm packages. Never fail the job:
+      # a flaky source or a missing key must not block the rest of the batch.
+      - name: Seed all (keyless populate now; keyed skip until their secret is set)
+        run: |
+          set +e
+          ok=0; skip=0; fail=0
+          for f in scripts/seed-*.mjs; do
+            name="$(basename "$f")"
+            case "$name" in
+              seed-economy.mjs|seed-fear-greed.mjs|seed-prediction-markets.mjs|seed-sectors.mjs|seed-market-quotes.mjs|seed-commodity-quotes.mjs|seed-etf-flows.mjs|seed-cross-source-signals.mjs|seed-forecasts.mjs) continue ;;
+              seed-webcams.mjs) continue ;;
+              seed-fuel-prices.mjs|seed-gold-etf-flows.mjs|seed-sanctions-pressure.mjs|seed-digest-notifications.mjs) continue ;;
+            esac
+            printf '→ %s ... ' "$name"
+            out="$(node "$f" 2>&1)"; rc=$?
+            last="$(printf '%s' "$out" | tail -1)"
+            if printf '%s' "$last" | grep -qi 'skip\|not set\|missing.*key\|not found'; then
+              echo "SKIP ($last)"; skip=$((skip+1))
+            elif [ $rc -eq 0 ]; then
+              echo "OK"; ok=$((ok+1))
+            else
+              echo "FAIL ($last)"; fail=$((fail+1))
+            fi
+          done
+          echo ""
+          echo "Done: $ok ok, $skip skipped, $fail failed"
