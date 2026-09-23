@@ -238,18 +238,20 @@ export class MapContainer {
     // On mobile, deck.gl can mount before the dvh-based .map-section height has
     // settled, leaving the WebGL canvas sized to a stale/zero box — it renders
     // black until the first resize. The window 'resize' path (already used on
-    // collapse/drag) reliably repaints it, so nudge it once after layout settles.
-    // Guarded to mobile deck.gl; wrapped so it can never throw into init().
+    // collapse/drag) reliably repaints it. The settle moment for dvh varies by
+    // device/browser, and a resize is idempotent, so nudge at increasing delays
+    // to catch whenever the container reaches its final size. Guarded to mobile
+    // deck.gl; wrapped so it can never throw into init().
     if (this.isMobile && this.deckGLMap) {
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          try {
-            window.dispatchEvent(new Event('resize'));
-          } catch {
-            /* no-op */
-          }
-        }, 200);
-      });
+      const nudge = () => {
+        try {
+          window.dispatchEvent(new Event('resize'));
+        } catch {
+          /* no-op */
+        }
+      };
+      requestAnimationFrame(nudge);
+      for (const ms of [250, 700, 1500]) setTimeout(nudge, ms);
     }
   }
 
