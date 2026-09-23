@@ -101,11 +101,16 @@ jobs:
               seed-webcams.mjs) continue ;;
               seed-fuel-prices.mjs|seed-gold-etf-flows.mjs|seed-sanctions-pressure.mjs|seed-digest-notifications.mjs) continue ;;
             esac
+            # A few seeds need a flag or extra time (else they print usage / hit the cap).
+            args=""
+            case "$name" in
+              seed-consumer-prices.mjs) args="--force" ;;
+            esac
             printf '→ %s ... ' "$name"
-            out="$(timeout 300 node "$f" 2>&1)"; rc=$?
+            out="$(timeout 600 node "$f" $args 2>&1)"; rc=$?
             last="$(printf '%s' "$out" | tail -1)"
             if [ $rc -eq 124 ]; then
-              echo "TIMEOUT (>300s)"; fail=$((fail+1))
+              echo "TIMEOUT (>600s)"; fail=$((fail+1))
             elif printf '%s' "$last" | grep -qi 'skip\|not set\|missing.*key\|not found'; then
               echo "SKIP ($last)"; skip=$((skip+1))
             elif [ $rc -eq 0 ]; then
