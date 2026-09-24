@@ -3,6 +3,10 @@ import { geoSearchByBox, getHashFieldsBatch, getCachedJson, setCachedJson } from
 
 const MAX_RESULTS = 2000;
 const RESPONSE_CACHE_TTL = 3600; // 1 hour
+// GEOSEARCH BYBOX safe caps: por debajo de globo-entero (~40075x20037 km) que hace errar a Redis.
+// 40000x20000 probo devolver las 1050 camaras; dejamos margen. (Adrian 2026-09-24)
+const MAX_BOX_WIDTH_KM = 39000;
+const MAX_BOX_HEIGHT_KM = 19000;
 
 function getClusterCellSize(zoom: number): number {
   if (zoom < 3) return 8;
@@ -95,17 +99,22 @@ export async function listWebcams(_ctx: ServerContext, req: ListWebcamsRequest):
   const geoKey = `webcam:cameras:geo:${version}`;
   const metaKey = `webcam:cameras:meta:${version}`;
 
-  // Compute center and dimensions for GEOSEARCH using quantized bounds
+  // Compute center and dimensions for GEOSEARCH using quantized bounds.
+  // CLAMP: Redis GEOSEARCH BYBOX rejects a box whose half-height/half-width pushes a corner past
+  // the valid geo range (lat ±90 / lon ±180). A whole-globe viewport yields height ~20037km
+  // (half = ±90.05° > 90) and width ~40075km, so GEOSEARCH errored and returned [] -> el panel
+  // Live Webcams cargaba vacio con miles de camaras sembradas. 40000x20000 km probo devolver todo;
+  // capamos por debajo de ese limite con margen. (Adrian 2026-09-24)
   const centerLat = (qN + qS) / 2;
-  const heightKm = Math.abs(qN - qS) * 111.32;
+  const heightKm = Math.min(Math.abs(qN - qS) * 111.32, MAX_BOX_HEIGHT_KM);
 
   // Antimeridian: if W > E, split into two queries
   let ids: string[];
   if (qW > qE) {
     const centerLon1 = (qW + 180) / 2;
     const centerLon2 = (-180 + qE) / 2;
-    const width1 = (180 - qW) * 111.32 * Math.cos(centerLat * Math.PI / 180);
-    const width2 = (qE + 180) * 111.32 * Math.cos(centerLat * Math.PI / 180);
+    const width1 = Math.min((180 - qW) * 111.32 * Math.cos(centerLat * Math.PI / 180), MAX_BOX_WIDTH_KM);
+    const width2 = Math.min((qE + 180) * 111.32 * Math.cos(centerLat * Math.PI / 180), MAX_BOX_WIDTH_KM);
     const [ids1, ids2] = await Promise.all([
       geoSearchByBox(geoKey, centerLon1, centerLat, width1, heightKm, MAX_RESULTS, true),
       geoSearchByBox(geoKey, centerLon2, centerLat, width2, heightKm, MAX_RESULTS, true),
@@ -113,7 +122,7 @@ export async function listWebcams(_ctx: ServerContext, req: ListWebcamsRequest):
     ids = [...ids1, ...ids2];
   } else {
     const centerLon = (qW + qE) / 2;
-    const widthKm = equirectangularWidthKm(qS, qN, qW, qE);
+    const widthKm = Math.min(equirectangularWidthKm(qS, qN, qW, qE), MAX_BOX_WIDTH_KM);
     ids = await geoSearchByBox(geoKey, centerLon, centerLat, widthKm, heightKm, MAX_RESULTS, true);
   }
 
