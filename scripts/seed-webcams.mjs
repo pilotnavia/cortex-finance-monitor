@@ -213,6 +213,23 @@ async function main() {
   const seedMetaVal = JSON.stringify({ fetchedAt: Date.now(), recordCount: unique.length });
   await pipelineRequest([['SET', seedMetaKey, seedMetaVal, 'EX', '604800']]);
 
+  // Self-verification (Adrian 2026-09-24): confirmar que lo escrito es legible con estas mismas
+  // credenciales, y que las claves coinciden con las que lee el runtime (server/.../list-webcams.ts:
+  // GET webcam:cameras:active -> ZCARD/HLEN por version). Aisla "no persistio" vs "el reader mira otro Redis".
+  try {
+    const vb = await pipelineRequest([
+      ['GET', activeKey],
+      ['ZCARD', geoKey],
+      ['HLEN', metaKey],
+      ['GEOSEARCH', geoKey, 'FROMLONLAT', '0', '20', 'BYBOX', '40000', '40000', 'km', 'COUNT', '3', 'ASC'],
+    ]);
+    console.log('[verify] active =', vb?.[0]?.result);
+    console.log('[verify] geo ZCARD =', vb?.[1]?.result, ' meta HLEN =', vb?.[2]?.result);
+    console.log('[verify] GEOSEARCH sample ids =', JSON.stringify(vb?.[3]?.result));
+  } catch (e) {
+    console.warn('[verify] readback failed:', e.message);
+  }
+
   console.log(`seed-webcams: done (${unique.length} cameras seeded)`);
 }
 
