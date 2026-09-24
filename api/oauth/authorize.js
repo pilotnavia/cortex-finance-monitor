@@ -1,6 +1,8 @@
 // @ts-expect-error — JS module, no declaration file
 import { getClientIp } from '../_rate-limit.js';
 // @ts-expect-error — JS module, no declaration file
+import { isDisallowedOrigin } from '../_cors.js';
+// @ts-expect-error — JS module, no declaration file
 import { timingSafeIncludes, sha256Hex } from '../_crypto.js';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
@@ -240,10 +242,14 @@ export default async function handler(req) {
   }
 
   if (method === 'POST') {
-    // Origin validation: allow our domain, absent origin (server/CLI), and 'null'
-    // (WebView with opaque/sandboxed origin). CSRF nonce provides the actual protection.
+    // Origin validation: allow any allowlisted origin (the CORS allowlist, which
+    // includes the fork's own serving domains like monitor.cortexnext.app — the
+    // consent page POSTs to /oauth/authorize on the same host, so a hardcoded
+    // api.worldmonitor.app 403'd the flow everywhere but worldmonitor), absent
+    // origin (server/CLI), and 'null' (WebView opaque origin). CSRF nonce is the
+    // actual protection.
     const origin = req.headers.get('origin');
-    if (origin && origin !== 'https://api.worldmonitor.app' && origin !== 'null') {
+    if (origin && origin !== 'null' && isDisallowedOrigin(req)) {
       return new Response('Forbidden', { status: 403 });
     }
 

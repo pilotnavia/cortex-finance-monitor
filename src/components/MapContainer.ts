@@ -243,9 +243,15 @@ export class MapContainer {
     // to catch whenever the container reaches its final size. Guarded to mobile
     // deck.gl; wrapped so it can never throw into init().
     if (this.isMobile && this.deckGLMap) {
+      // Call resize() DIRECTLY — a synthetic window 'resize' event only triggers
+      // a deck layer re-render (event-handlers.ts), NOT a canvas re-measure, so
+      // it can't recover a zero-sized WebGL backing store. resize() forwards to
+      // deckGLMap.resize() which re-measures the canvas. Fire at increasing
+      // delays because the dvh-based .map-section height settles at different
+      // times per device; resize() is idempotent.
       const nudge = () => {
         try {
-          window.dispatchEvent(new Event('resize'));
+          this.resize();
         } catch {
           /* no-op */
         }

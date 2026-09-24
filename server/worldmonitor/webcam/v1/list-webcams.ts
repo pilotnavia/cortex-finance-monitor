@@ -84,8 +84,12 @@ export async function listWebcams(_ctx: ServerContext, req: ListWebcamsRequest):
   const qE = Math.ceil(req.boundE ?? 180);
   const qN = Math.ceil(req.boundN ?? 90);
 
-  // Read active version
-  const versionResult = await getCachedJson('webcam:cameras:active');
+  // Read active version. The seed (scripts/seed-webcams.mjs) writes this pointer
+  // UNPREFIXED via a raw `SET`, so read it raw=true — otherwise on a preview
+  // deploy getCachedJson prefixes the key (`preview:<sha>:webcam:cameras:active`),
+  // finds nothing, returns null and the panel is empty for EVERY viewport before
+  // GEOSEARCH ever runs (which is why the box clamp appeared to do nothing).
+  const versionResult = await getCachedJson('webcam:cameras:active', true);
   const version = versionResult != null ? String(versionResult) : null;
   if (!version) {
     return { webcams: [], clusters: [], totalInView: 0 };
@@ -127,9 +131,11 @@ export async function listWebcams(_ctx: ServerContext, req: ListWebcamsRequest):
   }
 
   if (ids.length === 0) {
-    const empty: ListWebcamsResponse = { webcams: [], clusters: [], totalInView: 0 };
-    await setCachedJson(cacheKey, empty, RESPONSE_CACHE_TTL);
-    return empty;
+    // Do NOT cache empties: geoSearchByBox returns [] on any transient Redis
+    // error/timeout (see redis.ts), and the version is stable ~24h, so caching
+    // an empty here would pin this viewport blank for RESPONSE_CACHE_TTL (1h)
+    // even after Redis recovers. Genuinely-empty viewports are cheap to re-query.
+    return { webcams: [], clusters: [], totalInView: 0 };
   }
 
   // Fetch metadata
