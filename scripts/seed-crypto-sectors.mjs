@@ -7,7 +7,7 @@ const sectorsConfig = loadSharedConfig('crypto-sectors.json');
 loadEnvFile(import.meta.url);
 
 const CANONICAL_KEY = 'market:crypto-sectors:v1';
-const CACHE_TTL = 3600;
+const CACHE_TTL = 108000; // 30h: sobrevive el cron diario de seed-all en este fork (Adrian 2026-09-24)
 
 const SECTORS = sectorsConfig.sectors;
 

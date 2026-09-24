@@ -16,7 +16,7 @@ import { loadEnvFile, runSeed, readSeedSnapshot } from './_seed-utils.mjs';
 loadEnvFile(import.meta.url);
 
 export const CANONICAL_KEY = 'market:hyperliquid:flow:v1';
-export const CACHE_TTL_SECONDS = 2700; // 9× cron cadence (5 min); honest grace window
+export const CACHE_TTL_SECONDS = 108000; // 30h: sobrevive el cron diario de seed-all en este fork (Adrian 2026-09-24) // 9× cron cadence (5 min); honest grace window
 export const SPARK_MAX = 60;             // 5h @ 5min
 export const HYPERLIQUID_URL = 'https://api.hyperliquid.xyz/info';
 export const REQUEST_TIMEOUT_MS = 15_000;

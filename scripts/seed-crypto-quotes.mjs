@@ -7,7 +7,7 @@ const cryptoConfig = loadSharedConfig('crypto.json');
 loadEnvFile(import.meta.url);
 
 const CANONICAL_KEY = 'market:crypto:v1';
-const CACHE_TTL = 7200; // 2h — 1h buffer over 5min cron cadence (was 60min = 55min buffer)
+const CACHE_TTL = 108000; // 30h: sobrevive el cron diario de seed-all en este fork (Adrian 2026-09-24) // 2h — 1h buffer over 5min cron cadence (was 60min = 55min buffer)
 
 const CRYPTO_IDS = cryptoConfig.ids;
 const CRYPTO_META = cryptoConfig.meta;
