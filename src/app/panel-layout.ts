@@ -148,6 +148,21 @@ import { setTrustedHtml, trustedHtml } from '@/utils/dom-utils';
  * The static test in tests/panel-config-guardrails.test.mjs enforces
  * `apiKeyPanels ⊆ WEB_PREMIUM_PANELS` so this drift can't recur silently.
  */
+// Layout por defecto del variant FINANCE (Adrian 2026-09-23): los paneles de datos de mercado van
+// DEBAJO del mapa (grilla ancha) para llenar el hueco vacío, en orden de RELEVANCIA — índices y ORO
+// primero (el orden real lo fija el orden de claves de FINANCE_PANELS en config/panels.ts; esto solo
+// decide QUÉ paneles van abajo). Live News / Webcams / AI Insights quedan en la columna lateral.
+const FINANCE_DEFAULT_BOTTOM_SET = [
+  'markets', 'commodities', 'gold-intelligence', 'energy-complex', 'bonds', 'forex',
+  'markets-news', 'stock-analysis', 'stock-backtest', 'daily-market-brief',
+  'commodities-news', 'heatmap', 'macro-tiles', 'fear-greed', 'market-breadth', 'yield-curve',
+];
+
+// Bump para forzar el nuevo layout por defecto UNA vez a TODOS los usuarios (limpia el orden y el
+// bottom-set guardados en localStorage). Subir este string cada vez que se quiera re-propagar un
+// cambio de layout por defecto a los usuarios existentes.
+const LAYOUT_DEFAULT_VERSION = '2026-09-23-fin-reorg';
+
 const WEB_PREMIUM_PANELS = new Set([
   'stock-analysis',
   'stock-backtest',
@@ -474,7 +489,25 @@ export class PanelLayoutManager implements AppModule {
     }
   }
 
+  /**
+   * Fuerza el layout por defecto nuevo UNA vez por usuario: si la versión guardada no coincide con
+   * LAYOUT_DEFAULT_VERSION, limpia el orden y el bottom-set guardados para que se recalculen desde
+   * los defaults (FINANCE_PANELS reordenado + FINANCE_DEFAULT_BOTTOM_SET). Idempotente: tras el
+   * primer reset la versión queda al día y las personalizaciones posteriores del usuario persisten.
+   */
+  private applyLayoutVersionReset(): void {
+    try {
+      const key = this.ctx.PANEL_ORDER_KEY + '-v';
+      if (localStorage.getItem(key) === LAYOUT_DEFAULT_VERSION) return;
+      localStorage.removeItem(this.ctx.PANEL_ORDER_KEY);
+      localStorage.removeItem(this.ctx.PANEL_ORDER_KEY + '-bottom-set');
+      localStorage.removeItem(this.ctx.PANEL_ORDER_KEY + '-bottom');
+      localStorage.setItem(key, LAYOUT_DEFAULT_VERSION);
+    } catch { /* localStorage no disponible: seguir con defaults */ }
+  }
+
   async renderLayout(): Promise<void> {
+    this.applyLayoutVersionReset();
     setTrustedHtml(this.ctx.container, trustedHtml(`
       ${this.ctx.isDesktopApp ? '<div class="tauri-titlebar" data-tauri-drag-region></div>' : ''}
       <div class="header">
@@ -1946,7 +1979,9 @@ export class PanelLayoutManager implements AppModule {
         }
       }
     } catch { /* ignore */ }
-    return new Set();
+    // Sin nada guardado: en finance, arranca con el bottom-set por defecto (paneles de mercado
+    // debajo del mapa). En otros variants, vacío como antes.
+    return new Set(SITE_VARIANT === 'finance' ? FINANCE_DEFAULT_BOTTOM_SET : []);
   }
 
   private getEffectiveUltraWide(): boolean {

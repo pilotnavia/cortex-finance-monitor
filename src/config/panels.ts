@@ -428,15 +428,19 @@ const FINANCE_PANELS: Record<string, PanelConfig> = {
   'live-webcams': { name: 'Live Webcams', enabled: true, priority: 2 },
   'windy-webcams': { name: 'Windy Live Webcam', enabled: false, priority: 2 },
   insights: { name: 'AI Market Insights', enabled: true, priority: 1 },
+  // Orden por relevancia (Adrian 2026-09-23): índices y ORO primero, luego energía / renta fija /
+  // FX, y recién después los premium y las noticias. Este orden alimenta el orden por defecto de
+  // los paneles (VARIANT_DEFAULTS = Object.keys) y el orden dentro de la grilla debajo del mapa.
   markets: { name: 'Live Markets', enabled: true, priority: 1 },
+  commodities: { name: 'Metals & Materials', enabled: true, priority: 1 },
+  'gold-intelligence': { name: 'Gold Intelligence', enabled: true, priority: 60 },
+  'energy-complex': { name: 'Energy Complex', enabled: true, priority: 1 },
+  bonds: { name: 'Fixed Income', enabled: true, priority: 1 },
+  forex: { name: 'Forex & Currencies', enabled: true, priority: 1 },
+  'markets-news': { name: 'Markets News', enabled: true, priority: 2 },
   'stock-analysis': { name: 'Premium Stock Analysis', enabled: true, priority: 1, premium: 'locked' },
   'stock-backtest': { name: 'Premium Backtesting', enabled: true, priority: 1, premium: 'locked' },
   'daily-market-brief': { name: 'Daily Market Brief', enabled: true, priority: 1, premium: 'locked' },
-  'markets-news': { name: 'Markets News', enabled: true, priority: 2 },
-  forex: { name: 'Forex & Currencies', enabled: true, priority: 1 },
-  bonds: { name: 'Fixed Income', enabled: true, priority: 1 },
-  commodities: { name: 'Metals & Materials', enabled: true, priority: 1 },
-  'energy-complex': { name: 'Energy Complex', enabled: true, priority: 1 },
   // Required for finance variant's pipeline-click path. FINANCE_MAP_LAYERS
   // has `pipelines: true`, and PR #3366 unified all variants on
   // createEnergyPipelinesLayer which dispatches energy:open-pipeline-detail
@@ -473,7 +477,6 @@ const FINANCE_PANELS: Record<string, PanelConfig> = {
   'cot-positioning': { name: 'COT Positioning', enabled: true, priority: 2 },
   'liquidity-shifts': { name: 'Liquidity Shifts', enabled: true, priority: 1 },
   'positioning-247': { name: '24/7 Positioning', enabled: true, priority: 1 },
-  'gold-intelligence': { name: 'Gold Intelligence', enabled: true, priority: 60 },
   derivatives: { name: 'Derivatives & Options', enabled: true, priority: 2 },
   fintech: { name: 'Fintech & Trading Tech', enabled: true, priority: 2 },
   'fin-regulation': { name: 'Financial Regulation', enabled: true, priority: 2 },
