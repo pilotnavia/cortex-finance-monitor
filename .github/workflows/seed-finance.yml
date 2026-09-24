@@ -81,6 +81,13 @@ jobs:
         continue-on-error: true
         run: node scripts/seed-sectors.mjs
 
+      # AI Insights (LLM brief desde las noticias via Groq — barato). Corre en cada trigger (cada 2h)
+      # para que el panel AI Insights se mantenga fresco; TTL 6h cubre un tick perdido. Antes solo lo
+      # corria seed-all (1x/dia) y con TTL 3h quedaba vacio 21h/dia. (Adrian 2026-09-24)
+      - name: Seed insights (-> news:insights)
+        continue-on-error: true
+        run: node scripts/seed-insights.mjs
+
       # Market quotes: Finnhub-primary (AV only as bulk fallback) — 6-hourly.
       - name: Seed market quotes (-> stocks-bootstrap)
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 */6 * * *'

@@ -686,6 +686,23 @@ export class App {
         localStorage.setItem(UNIFIED_MIGRATION_KEY, 'done');
       }
 
+      // One-time migration (2026-09-24): descartar paneles de IA SIN backend en este deploy.
+      // market-implications y regional-intelligence: sus endpoints devuelven 404 (no generados aqui)
+      // -> quedaban "unavailable" en rojo. Se deshabilitan una vez para usuarios existentes; en los
+      // defaults del variant ya van deshabilitados (no estan en FINANCE_PANELS). (Adrian)
+      const AI_DEAD_PANELS_PRUNE_KEY = 'worldmonitor-fin-ai-dead-prune-v1';
+      if (!localStorage.getItem(AI_DEAD_PANELS_PRUNE_KEY)) {
+        let pruned = false;
+        for (const key of ['market-implications', 'regional-intelligence']) {
+          if (panelSettings[key] && panelSettings[key]!.enabled !== false) {
+            panelSettings[key] = { ...panelSettings[key]!, enabled: false };
+            pruned = true;
+          }
+        }
+        if (pruned) saveToStorage(STORAGE_KEYS.panels, panelSettings);
+        localStorage.setItem(AI_DEAD_PANELS_PRUNE_KEY, 'done');
+      }
+
       // One-time migration: fix happy variant sessions that got cross-variant panels enabled
       // (regression from #1911 unified panel registry which failed to disable non-variant panels on variant switch)
       const HAPPY_PANEL_FIX_KEY = 'worldmonitor-happy-panel-fix-v1';

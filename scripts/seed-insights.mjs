@@ -60,10 +60,11 @@ function normalizeThreat(threat) {
   return { ...threat, level };
 }
 
-const CACHE_TTL = 10800; // 3h — 6x the 30 min cron interval. Shorter = key expires on any missed
-                         // cron tick and /api/bootstrap loses insights entirely. Bad brief content
-                         // is gated at brief-selection time (see pickBriefCluster + briefSystemPrompt
-                         // in _insights-brief.mjs), not by aging out fast.
+const CACHE_TTL = 21600; // 6h — 3x la cadencia real en este repo: ahora corre en seed-finance cada 2h
+                         // ('0 */2 * * *') ademas del seed-all diario. Antes 10800 (3h) asumia un cron
+                         // de 30min que NO existe aca (solo seed-all diario) -> la key expiraba y el
+                         // panel quedaba "unavailable" 21h/dia. Contenido malo se filtra en brief-
+                         // selection (pickBriefCluster + briefSystemPrompt en _insights-brief.mjs). (Adrian 2026-09-24)
 const MAX_HEADLINE_LEN = 500;
 const GROQ_MODEL = 'llama-3.1-8b-instant';
 
