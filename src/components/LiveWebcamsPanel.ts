@@ -28,7 +28,7 @@ const WEBCAM_FEEDS: WebcamFeed[] = [
   { id: 'jerusalem', city: 'Jerusalem', country: 'Israel', region: 'middle-east', channelHandle: '@TheWesternWall', fallbackVideoId: 'e34xb-Fbl0U' },
   { id: 'middle-east', city: 'Middle East', country: 'Multi', region: 'middle-east', channelHandle: '@MiddleEastCams', fallbackVideoId: 'oxT5R6I0N6E' },
   { id: 'tel-aviv', city: 'Tel Aviv', country: 'Israel', region: 'middle-east', channelHandle: '@IsraelLiveCam', fallbackVideoId: 'gmtlJ_m2r5A' },
-  { id: 'mecca', city: 'Mecca', country: 'Saudi Arabia', region: 'middle-east', channelHandle: '@MakkahLive', fallbackVideoId: 'kJwEsQTegxk' },
+  { id: 'mecca', city: 'Mecca', country: 'Saudi Arabia', region: 'middle-east', channelHandle: '@MakkahLive', fallbackVideoId: 'NPQOjs3pU2U' },
   { id: 'beirut-mtv', city: 'Beirut', country: 'Lebanon', region: 'middle-east', channelHandle: '@MTVLebanonNews', fallbackVideoId: 'djF-Lkgfp6k' },
   // Europe
   { id: 'kyiv', city: 'Kyiv', country: 'Ukraine', region: 'europe', channelHandle: '@DWNews', fallbackVideoId: '-Q7FuPINDjA' },
@@ -45,11 +45,11 @@ const WEBCAM_FEEDS: WebcamFeed[] = [
   { id: 'taipei', city: 'Taipei', country: 'Taiwan', region: 'asia', channelHandle: '@JackyWuTaipei', fallbackVideoId: 'z_fY1pj1VBw' },
   { id: 'shanghai', city: 'Shanghai', country: 'China', region: 'asia', channelHandle: '@SkylineWebcams', fallbackVideoId: '76EwqI5XZIc' },
   { id: 'tokyo', city: 'Tokyo', country: 'Japan', region: 'asia', channelHandle: '@TokyoLiveCam4K', fallbackVideoId: '_k-5U7IeK8g' },
-  { id: 'seoul', city: 'Seoul', country: 'South Korea', region: 'asia', channelHandle: '@UNvillage_live', fallbackVideoId: '-JhoMGoAfFc' },
+  { id: 'seoul', city: 'Seoul', country: 'South Korea', region: 'asia', channelHandle: '@GiGAeyesLiveTV', fallbackVideoId: 'C3hW1VrwmNc' },
   { id: 'sydney', city: 'Sydney', country: 'Australia', region: 'asia', channelHandle: '@WebcamSydney', fallbackVideoId: '7pcL-0Wo77U' },
   // Space
-  { id: 'iss-earth', city: 'ISS Earth View', country: 'Space', region: 'space', channelHandle: '@NASA', fallbackVideoId: 'vytmBNhc9ig' },
-  { id: 'nasa-live', city: 'NASA TV', country: 'Space', region: 'space', channelHandle: '@NASA', fallbackVideoId: 'zPH5KtjJFaQ' },
+  { id: 'iss-earth', city: 'ISS Earth View', country: 'Space', region: 'space', channelHandle: '@NASA', fallbackVideoId: 'awQzjn72bI0' },
+  { id: 'nasa-live', city: 'NASA TV', country: 'Space', region: 'space', channelHandle: '@afarTV', fallbackVideoId: 'tj4knR4r1UU' },
   { id: 'space-x', city: 'SpaceX', country: 'Space', region: 'space', channelHandle: '@SpaceX', fallbackVideoId: 'fO9e9jnhYK8' },
   { id: 'space-walk', city: 'Space', country: 'Space', region: 'space', channelHandle: '@NASA', fallbackVideoId: 'fO9e9jnhYK8' },
 ];
@@ -74,7 +74,8 @@ interface WebcamPrefs {
 function loadWebcamPrefs(forceSingleView: boolean): WebcamPrefs {
   const stored = loadFromStorage<Partial<WebcamPrefs>>(STORAGE_KEYS.webcamPrefs, {});
   const region = stored.regionFilter as RegionFilter;
-  const regionFilter = ALL_REGIONS.includes(region) ? region : 'all';
+  // Default por defecto: AMERICAS (Adrian 2026-09-24). Si el usuario ya eligio una region, se respeta.
+  const regionFilter = ALL_REGIONS.includes(region) ? region : 'americas';
   const viewMode = forceSingleView ? 'single'
     : (stored.viewMode === 'grid' || stored.viewMode === 'single' ? stored.viewMode : 'grid');
   const regionFeeds = regionFilter === 'all' ? WEBCAM_FEEDS
@@ -97,8 +98,8 @@ interface WebcamIframeTracker {
 
 export class LiveWebcamsPanel extends Panel {
   private viewMode: ViewMode = 'grid';
-  private regionFilter: RegionFilter = 'all';
-  private activeFeed: WebcamFeed = WEBCAM_FEEDS[0]!;
+  private regionFilter: RegionFilter = 'americas';
+  private activeFeed: WebcamFeed = WEBCAM_FEEDS.find(f => f.region === 'americas') ?? WEBCAM_FEEDS[0]!;
   private toolbar: HTMLElement | null = null;
   private iframes: HTMLIFrameElement[] = [];
   private iframeTrackers = new Map<HTMLIFrameElement, WebcamIframeTracker>();
