@@ -6,6 +6,7 @@
 import { getCorsHeaders, isDisallowedOrigin } from './_cors.js';
 import { checkRateLimit } from './_rate-limit.js';
 import { issueSessionToken } from './_session.js';
+import { timingSafeEqual } from './_timing-safe.js';
 
 export const config = { runtime: 'edge' };
 
@@ -65,21 +66,32 @@ function envList(name) {
     .filter(Boolean);
 }
 
-function matchesEnvSecret(key, name) {
+// Constant-time compare against an env secret. Skip the comparison entirely
+// when either side is empty (missing key or unconfigured secret): an empty
+// secret must never validate, and there is no secret to leak timing about.
+async function matchesEnvSecret(key, name) {
   const secret = process.env[name] || '';
-  return Boolean(key && secret && key === secret);
+  if (!key || !secret) return false;
+  return timingSafeEqual(key, secret);
 }
 
-function isValidEnterpriseKey(key) {
-  return Boolean(key && envList('WORLDMONITOR_VALID_KEYS').includes(key));
+// Constant-time membership: compare against every configured key without an
+// early break, so neither the matching entry nor its prefix leaks via timing.
+async function isValidEnterpriseKey(key) {
+  if (!key) return false;
+  let ok = false;
+  for (const candidate of envList('WORLDMONITOR_VALID_KEYS')) {
+    if (await timingSafeEqual(key, candidate)) ok = true;
+  }
+  return ok;
 }
 
-function isValidWidgetKey(key) {
-  return matchesEnvSecret(key, 'WIDGET_AGENT_KEY') || isValidEnterpriseKey(key);
+async function isValidWidgetKey(key) {
+  return (await matchesEnvSecret(key, 'WIDGET_AGENT_KEY')) || isValidEnterpriseKey(key);
 }
 
-function isValidProKey(key) {
-  return matchesEnvSecret(key, 'PRO_WIDGET_KEY') || isValidEnterpriseKey(key);
+async function isValidProKey(key) {
+  return (await matchesEnvSecret(key, 'PRO_WIDGET_KEY')) || isValidEnterpriseKey(key);
 }
 
 async function readBody(req) {
@@ -127,10 +139,9 @@ export default async function handler(req) {
   const widgetKey = normalizeLegacyKey(body.widgetKey);
   const proKey = normalizeLegacyKey(body.proKey);
 
-  if (
-    (submittedLegacyKey(body.widgetKey) && !isValidWidgetKey(widgetKey)) ||
-    (submittedLegacyKey(body.proKey) && !isValidProKey(proKey))
-  ) {
+  const widgetInvalid = submittedLegacyKey(body.widgetKey) && !(await isValidWidgetKey(widgetKey));
+  const proInvalid = submittedLegacyKey(body.proKey) && !(await isValidProKey(proKey));
+  if (widgetInvalid || proInvalid) {
     return jsonResponse({ error: 'Invalid session key' }, 401, cors);
   }
 

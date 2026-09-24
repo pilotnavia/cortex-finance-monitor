@@ -70,6 +70,53 @@ describe('deploy/cache configuration guardrails', () => {
     );
   });
 
+  it('sensitive OAuth/consent routes forbid framing (frame-ancestors none)', () => {
+    // These pages authorize MCP/OAuth grants or complete Slack/Discord installs.
+    // The catch-all app CSP allows cortexnext/worldmonitor frame-ancestors (for
+    // the dashboard embed), and X-Frame-Options is ignored once a CSP declares
+    // frame-ancestors — so each consent route needs its OWN CSP that denies
+    // framing, or the consent UI is clickjackable. Vercel is last-wins per
+    // header key, so these route rules (defined after the catch-all) override it.
+    const cspForSource = (src) => {
+      for (const rule of vercelConfig.headers.filter((e) => e.source === src)) {
+        const h = rule.headers?.find((i) => i.key.toLowerCase() === 'content-security-policy');
+        if (h) return h.value;
+      }
+      return null;
+    };
+    for (const src of [
+      '/oauth/(.*)',
+      '/mcp-grant',
+      '/mcp-grant.html',
+      '/api/slack/oauth/callback',
+      '/api/discord/oauth/callback',
+    ]) {
+      const csp = cspForSource(src);
+      assert.ok(csp, `${src} must set a Content-Security-Policy`);
+      assert.deepEqual(
+        getCspDirectiveTokens(csp, 'frame-ancestors'),
+        ["'none'"],
+        `${src} CSP must set frame-ancestors 'none'`
+      );
+    }
+
+    // Drift guard: the OAuth/MCP consent pages render the same third-party
+    // resources as the app (Clerk sign-in on the Pro-MCP page, inline-script
+    // hashes on the authorize page), so their CSP must stay byte-identical to
+    // the catch-all CSP EXCEPT for frame-ancestors. If the app CSP changes and
+    // these copies are not updated, the consent UI silently breaks (blocked
+    // Clerk script) or drifts open — this fails the build first.
+    const baseCsp = cspForSource('/((?!docs).*)');
+    const expectedConsentCsp = baseCsp.replace(/frame-ancestors[^;]*;/, "frame-ancestors 'none';");
+    for (const src of ['/oauth/(.*)', '/mcp-grant', '/mcp-grant.html']) {
+      assert.equal(
+        cspForSource(src),
+        expectedConsentCsp,
+        `${src} CSP must equal the app CSP with frame-ancestors 'none' (update it when the app CSP changes)`
+      );
+    }
+  });
+
   it('keeps immutable caching for hashed static assets', () => {
     assert.equal(
       getCacheHeaderValue('/assets/(.*)'),

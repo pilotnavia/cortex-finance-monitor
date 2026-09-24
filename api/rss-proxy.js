@@ -106,30 +106,38 @@ export default async function handler(req, ctx) {
     const isGoogleNews = isGoogleNewsFeedUrl(feedUrl);
     const timeout = isGoogleNews ? 20000 : 12000;
 
+    // Follow redirects manually so EVERY hop is re-validated against the
+    // allowlist. A default 'follow' fetch on an allowed redirect target would
+    // silently chase further Location hops (e.g. allowed-host → 302 →
+    // http://169.254.169.254/…), re-opening the SSRF hole that the initial
+    // allowlist check closes. Cap the chain to bound work and loops.
+    const MAX_REDIRECTS = 4;
     const fetchDirect = async () => {
-      const response = await fetchWithTimeout(feedUrl, {
+      let currentUrl = feedUrl;
+      let response = await fetchWithTimeout(currentUrl, {
         headers: DIRECT_FETCH_HEADERS,
         redirect: 'manual',
       }, timeout);
 
-      if (response.status >= 300 && response.status < 400) {
+      for (let hop = 0; hop < MAX_REDIRECTS; hop++) {
+        if (response.status < 300 || response.status >= 400) return response;
         const location = response.headers.get('location');
-        if (location) {
-          const redirectUrl = new URL(location, feedUrl);
-          // Apply the same www-normalization as the initial domain check so that
-          // canonical redirects (e.g. bbc.co.uk → www.bbc.co.uk) are not
-          // incorrectly rejected when only one form is in the allowlist.
-          const rHost = redirectUrl.hostname;
-          if (!isAllowedDomain(rHost)) {
-            throw new Error('Redirect to disallowed domain');
-          }
-          return fetchWithTimeout(redirectUrl.href, {
-            headers: DIRECT_FETCH_HEADERS,
-          }, timeout);
+        if (!location) return response;
+        const redirectUrl = new URL(location, currentUrl);
+        // Apply the same www-normalization as the initial domain check so that
+        // canonical redirects (e.g. bbc.co.uk → www.bbc.co.uk) are not
+        // incorrectly rejected when only one form is in the allowlist.
+        if (!isAllowedDomain(redirectUrl.hostname)) {
+          throw new Error('Redirect to disallowed domain');
         }
+        currentUrl = redirectUrl.href;
+        response = await fetchWithTimeout(currentUrl, {
+          headers: DIRECT_FETCH_HEADERS,
+          redirect: 'manual',
+        }, timeout);
       }
 
-      return response;
+      throw new Error('Too many redirects');
     };
 
     let response;
