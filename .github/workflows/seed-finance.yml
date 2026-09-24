@@ -81,12 +81,11 @@ jobs:
         continue-on-error: true
         run: node scripts/seed-sectors.mjs
 
-      # AI Insights (LLM brief desde las noticias via Groq — barato). Corre en cada trigger (cada 2h)
-      # para que el panel AI Insights se mantenga fresco; TTL 6h cubre un tick perdido. Antes solo lo
-      # corria seed-all (1x/dia) y con TTL 3h quedaba vacio 21h/dia. (Adrian 2026-09-24)
-      - name: Seed insights (-> news:insights)
-        continue-on-error: true
-        run: node scripts/seed-insights.mjs
+      # NOTA (Adrian 2026-09-24): seed-insights NO corre aqui. Requiere el digest de noticias
+      # (news:digest:v1:full:en) que produce el relay de noticias via RPC con WORLDMONITOR_RELAY_KEY.
+      # Este fork de finanzas no siembra noticias, asi que el seed fallaba cada tick ("No news digest
+      # found in Redis") y el panel AI Insights quedaba en rojo -> se deshabilito en el variant.
+      # Para revivirlo: setear WORLDMONITOR_RELAY_KEY, re-agregar este step y re-habilitar el panel.
 
       # Market quotes: Finnhub-primary (AV only as bulk fallback) — 6-hourly.
       - name: Seed market quotes (-> stocks-bootstrap)

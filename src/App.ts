@@ -687,13 +687,15 @@ export class App {
       }
 
       // One-time migration (2026-09-24): descartar paneles de IA SIN backend en este deploy.
-      // market-implications y regional-intelligence: sus endpoints devuelven 404 (no generados aqui)
-      // -> quedaban "unavailable" en rojo. Se deshabilitan una vez para usuarios existentes; en los
-      // defaults del variant ya van deshabilitados (no estan en FINANCE_PANELS). (Adrian)
-      const AI_DEAD_PANELS_PRUNE_KEY = 'worldmonitor-fin-ai-dead-prune-v1';
+      // - market-implications y regional-intelligence: sus endpoints devuelven 404 (no generados aqui).
+      // - insights (AI Market Insights): necesita el digest de noticias (news:digest:v1:full:en) del relay
+      //   de noticias, que este fork no siembra (falta WORLDMONITOR_RELAY_KEY) -> news:insights:v1 vacio.
+      // Los tres quedaban "unavailable" en rojo. Se deshabilitan una vez para usuarios existentes; en los
+      // defaults del variant ya van deshabilitados. v2: agrega insights tras confirmar que no revive aqui. (Adrian)
+      const AI_DEAD_PANELS_PRUNE_KEY = 'worldmonitor-fin-ai-dead-prune-v2';
       if (!localStorage.getItem(AI_DEAD_PANELS_PRUNE_KEY)) {
         let pruned = false;
-        for (const key of ['market-implications', 'regional-intelligence']) {
+        for (const key of ['market-implications', 'regional-intelligence', 'insights']) {
           if (panelSettings[key] && panelSettings[key]!.enabled !== false) {
             panelSettings[key] = { ...panelSettings[key]!, enabled: false };
             pruned = true;

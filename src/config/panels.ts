@@ -427,7 +427,11 @@ const FINANCE_PANELS: Record<string, PanelConfig> = {
   'live-news': { name: 'Market Headlines', enabled: true, priority: 1 },
   'live-webcams': { name: 'Live Webcams', enabled: true, priority: 2 },
   'windy-webcams': { name: 'Windy Live Webcam', enabled: false, priority: 2 },
-  insights: { name: 'AI Market Insights', enabled: true, priority: 1 },
+  // AI Market Insights: requiere el digest de noticias (news:digest:v1:full:en) que produce el relay
+  // de noticias (Railway, con WORLDMONITOR_RELAY_KEY). Este fork no siembra noticias, asi que el key
+  // news:insights:v1 nunca se llena y el panel queda "unavailable" en rojo. Se deja OFF por defecto.
+  // Para revivirlo: setear WORLDMONITOR_RELAY_KEY y re-habilitar aqui + el step en seed-finance.yml. (Adrian 2026-09-24)
+  insights: { name: 'AI Market Insights', enabled: false, priority: 1 },
   // Orden por relevancia (Adrian 2026-09-23): índices y ORO primero, luego energía / renta fija /
   // FX, y recién después los premium y las noticias. Este orden alimenta el orden por defecto de
   // los paneles (VARIANT_DEFAULTS = Object.keys) y el orden dentro de la grilla debajo del mapa.

@@ -60,7 +60,7 @@ function normalizeThreat(threat) {
   return { ...threat, level };
 }
 
-const CACHE_TTL = 21600; // 6h — 3x la cadencia real en este repo: ahora corre en seed-finance cada 2h
+const CACHE_TTL = 10800; // 3h (default upstream; corre via seed-all cuando hay relay de noticias)
                          // ('0 */2 * * *') ademas del seed-all diario. Antes 10800 (3h) asumia un cron
                          // de 30min que NO existe aca (solo seed-all diario) -> la key expiraba y el
                          // panel quedaba "unavailable" 21h/dia. Contenido malo se filtra en brief-
