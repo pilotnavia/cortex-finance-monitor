@@ -70,9 +70,18 @@ jobs:
       # npm install is needed (matches seed-finance.yml — avoids lockfile drift).
       - name: Seed webcams (Windy -> Redis geo+meta)
         run: |
-          # Take only WINDY_API_KEY from Vercel, assigned literally (no `source`).
-          # UPSTASH stays on the GitHub-secret values.
+          # Take WINDY_API_KEY *and UPSTASH* from Vercel when available, so the seed writes
+          # to the SAME Redis the runtime reads (Adrian 2026-09-24: el seed escribia en el
+          # Upstash del secret de GitHub y el app leia el de Vercel -> panel vacio con 1050
+          # camaras "sembradas"). Fallback a los secrets de GitHub si no hay .vercel.env.
+          take() { line="$(grep -m1 -E "^$1=" .vercel.env)" && { v="${line#*=}"; v="${v%\"}"; v="${v#\"}"; [ -n "$v" ] && [ "$v" != "[SENSITIVE]" ] && export "$1=$v"; }; }
           if [ -f .vercel.env ]; then
-            line="$(grep -m1 -E '^WINDY_API_KEY=' .vercel.env)" && { v="${line#*=}"; v="${v%\"}"; v="${v#\"}"; [ -n "$v" ] && export "WINDY_API_KEY=$v"; }
+            take WINDY_API_KEY
+            take UPSTASH_REDIS_REST_URL
+            take UPSTASH_REDIS_REST_TOKEN
           fi
+          # Non-secret fingerprint: confirm which Upstash the seed will write to vs the GitHub secret.
+          gh_fp=$(printf '%s' "${{ secrets.UPSTASH_REDIS_REST_URL }}" | sha256sum | cut -c1-12)
+          use_fp=$(printf '%s' "$UPSTASH_REDIS_REST_URL" | sha256sum | cut -c1-12)
+          echo "[upstash] github-secret sha=$gh_fp  seed-will-use sha=$use_fp  match=$([ "$gh_fp" = "$use_fp" ] && echo yes || echo NO)"
           node scripts/seed-webcams.mjs
