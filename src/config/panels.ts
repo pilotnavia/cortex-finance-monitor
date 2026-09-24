@@ -442,8 +442,10 @@ const FINANCE_PANELS: Record<string, PanelConfig> = {
   bonds: { name: 'Fixed Income', enabled: true, priority: 1 },
   forex: { name: 'Forex & Currencies', enabled: true, priority: 1 },
   'markets-news': { name: 'Markets News', enabled: true, priority: 2 },
-  'stock-analysis': { name: 'Premium Stock Analysis', enabled: true, priority: 1, premium: 'locked' },
-  'stock-backtest': { name: 'Premium Backtesting', enabled: true, priority: 1, premium: 'locked' },
+  // Premium Stock Analysis / Backtesting: /api/market/v1/*stock* devuelven 401 (requieren cuenta/
+  // suscripcion WorldMonitor, no disponible en este fork) -> OFF. (Adrian 2026-09-24)
+  'stock-analysis': { name: 'Premium Stock Analysis', enabled: false, priority: 1, premium: 'locked' },
+  'stock-backtest': { name: 'Premium Backtesting', enabled: false, priority: 1, premium: 'locked' },
   'daily-market-brief': { name: 'Daily Market Brief', enabled: true, priority: 1, premium: 'locked' },
   // Required for finance variant's pipeline-click path. FINANCE_MAP_LAYERS
   // has `pipelines: true`, and PR #3366 unified all variants on
@@ -464,7 +466,8 @@ const FINANCE_PANELS: Record<string, PanelConfig> = {
   centralbanks: { name: 'Central Bank Watch', enabled: true, priority: 1 },
   economic: { name: 'Macro Stress', enabled: true, priority: 1 },
   'trade-policy': { name: 'Trade Policy', enabled: true, priority: 1, premium: 'locked' as const },
-  'sanctions-pressure': { name: 'Sanctions Pressure', enabled: true, priority: 1 },
+  // Sanctions Pressure: /api/sanctions/v1/list-sanctions-pressure devuelve 401 (gated) -> OFF. (Adrian 2026-09-24)
+  'sanctions-pressure': { name: 'Sanctions Pressure', enabled: false, priority: 1 },
   'supply-chain': { name: 'Supply Chain', enabled: true, priority: 1 },
   'economic-news': { name: 'Economic News', enabled: true, priority: 2 },
   ipo: { name: 'IPOs, Earnings & M&A', enabled: true, priority: 1 },
@@ -473,7 +476,9 @@ const FINANCE_PANELS: Record<string, PanelConfig> = {
   'macro-tiles': { name: 'Macro Indicators', enabled: true, priority: 1 },
   'fear-greed': { name: 'Fear & Greed', enabled: true, priority: 1 },
   'aaii-sentiment': { name: 'AAII Sentiment', enabled: true, priority: 2 },
-  'market-breadth': { name: 'Market Breadth', enabled: true, priority: 1 },
+  // Market Breadth: get-market-breadth-history devuelve unavailable:true (nada escribe el historial
+  // en este fork) -> panel colgado en Loading -> OFF. (Adrian 2026-09-24)
+  'market-breadth': { name: 'Market Breadth', enabled: false, priority: 1 },
   'fsi': { name: 'Financial Stress', enabled: true, priority: 1 },
   'yield-curve': { name: 'Yield Curve', enabled: true, priority: 1 },
   'earnings-calendar': { name: 'Earnings Calendar', enabled: true, priority: 1 },

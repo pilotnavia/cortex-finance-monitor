@@ -695,10 +695,14 @@ export class App {
       // - wsb-ticker-scanner: lo alimenta el relay de Railway (ais-relay.cjs), que no corre aca.
       // Todos quedaban "unavailable"/"loading". Se deshabilitan una vez para usuarios existentes; en los
       // defaults del variant ya van deshabilitados. (Adrian)
-      const AI_DEAD_PANELS_PRUNE_KEY = 'worldmonitor-fin-ai-dead-prune-v3';
+      // v4 (Adrian 2026-09-24): mas paneles sin fuente en este fork:
+      // - stock-analysis / stock-backtest: /api/market/v1/*stock* -> 401 (premium/cuenta WorldMonitor).
+      // - sanctions-pressure: /api/sanctions/v1/list-sanctions-pressure -> 401 (gated).
+      // - market-breadth: get-market-breadth-history -> unavailable:true (sin writer de historial aca).
+      const AI_DEAD_PANELS_PRUNE_KEY = 'worldmonitor-fin-ai-dead-prune-v4';
       if (!localStorage.getItem(AI_DEAD_PANELS_PRUNE_KEY)) {
         let pruned = false;
-        for (const key of ['market-implications', 'regional-intelligence', 'insights', 'consumer-prices', 'wsb-ticker-scanner']) {
+        for (const key of ['market-implications', 'regional-intelligence', 'insights', 'consumer-prices', 'wsb-ticker-scanner', 'stock-analysis', 'stock-backtest', 'sanctions-pressure', 'market-breadth']) {
           if (panelSettings[key] && panelSettings[key]!.enabled !== false) {
             panelSettings[key] = { ...panelSettings[key]!, enabled: false };
             pruned = true;
