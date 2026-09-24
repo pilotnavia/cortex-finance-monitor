@@ -9,7 +9,10 @@ const stocksConfig = loadSharedConfig('stocks.json');
 loadEnvFile(import.meta.url);
 
 const CANONICAL_KEY = 'market:stocks-bootstrap:v1';
-const CACHE_TTL = 1800;
+// TTL debe SUPERAR la cadencia del cron (seed-finance market quotes = cada 6h, '0 */6 * * *').
+// Estaba en 1800s (30min) → la data expiraba y el panel quedaba vacío 5.5h de cada 6 (markets
+// "unavailable"). 18h = 3× el intervalo (mismo criterio que sectors/fear-greed). (Adrian 2026-09-24)
+const CACHE_TTL = 64800;
 const YAHOO_DELAY_MS = 200;
 
 const MARKET_SYMBOLS = stocksConfig.symbols.map(s => s.symbol);

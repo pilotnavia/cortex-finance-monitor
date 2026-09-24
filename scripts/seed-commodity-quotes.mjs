@@ -10,7 +10,11 @@ loadEnvFile(import.meta.url);
 
 const CANONICAL_KEY = 'market:commodities-bootstrap:v1';
 const GOLD_EXTENDED_KEY = 'market:gold-extended:v1';
-const CACHE_TTL = 1800;
+// TTL debe SUPERAR la cadencia del cron (seed-finance commodity quotes = 1×/día, '30 5 * * *',
+// limitado por la cuota diaria de Alpha Vantage). Estaba en 1800s (30min) → metales/oro quedaban
+// vacíos ~23.5h/día ("Commodities/Gold data unavailable"). 48h sobrevive un día perdido de seed
+// y conserva la última data buena si AV rate-limitea. Cubre commodities Y gold-extended. (Adrian 2026-09-24)
+const CACHE_TTL = 172800;
 const YAHOO_DELAY_MS = 200;
 
 const GOLD_HISTORY_SYMBOLS = ['GC=F', 'SI=F'];
