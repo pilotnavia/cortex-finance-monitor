@@ -491,9 +491,11 @@ const FINANCE_PANELS: Record<string, PanelConfig> = {
   'gcc-investments': { name: 'GCC Investments', enabled: true, priority: 2 },
   gccNews: { name: 'GCC Business News', enabled: true, priority: 2 },
   'gulf-economies': { name: 'Gulf Economies', enabled: true, priority: 1 },
-  'consumer-prices': { name: 'Consumer Prices', enabled: true, priority: 1 },
+  // Consumer Prices: sin fuente en este fork (depende de publish.ts, no activo) -> OFF. (Adrian 2026-09-24)
+  'consumer-prices': { name: 'Consumer Prices', enabled: false, priority: 1 },
   polymarket: { name: 'Predictions', enabled: true, priority: 2 },
-  'wsb-ticker-scanner': { name: 'WSB Ticker Scanner', enabled: true, priority: 75, premium: 'locked' },
+  // WSB Ticker Scanner: lo alimenta el relay de Railway (ais-relay.cjs), que no corre acá -> OFF. (Adrian 2026-09-24)
+  'wsb-ticker-scanner': { name: 'WSB Ticker Scanner', enabled: false, priority: 75, premium: 'locked' },
   'airline-intel': { name: 'Airline Intelligence', enabled: true, priority: 2 },
   'world-clock': { name: 'World Clock', enabled: true, priority: 2 },
   monitors: { name: 'My Monitors', enabled: true, priority: 2 },
