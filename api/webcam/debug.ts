@@ -61,6 +61,19 @@ export default async function handler(): Promise<Response> {
       out.metaProbe_err = e instanceof Error ? e.message : String(e);
     }
 
+    // Reader computes BYBOX from the bbox; a full-globe box may exceed Redis GEOSEARCH limits.
+    // Test the EXACT reader-global params and capture the raw error if any.
+    try {
+      const ids = await geoSearchByBox(geoKey, 0, 0, 40075, 20037, 2000, true);
+      out.readerGlobalParams = { count: ids.length };
+    } catch (e) { out.readerGlobalParams_err = e instanceof Error ? e.message : String(e); }
+    try {
+      const res = await runRedisPipeline([
+        ['GEOSEARCH', geoKey, 'FROMLONLAT', '0', '0', 'BYBOX', '40075', '20037', 'km', 'ASC', 'COUNT', '5'],
+      ], true);
+      out.rawGeosearchGlobalBig = res?.[0]?.result ?? res?.[0] ?? null;
+    } catch (e) { out.rawGeosearchGlobalBig_err = e instanceof Error ? e.message : String(e); }
+
     // Response-cache poison check for a US bbox (reader grammar for cacheKey).
     const zoom = 4, qW = -125, qS = 24, qE = -66, qN = 50;
     const cacheKey = `webcam:resp:${v}:${zoom}:${qW}:${qS}:${qE}:${qN}`;
