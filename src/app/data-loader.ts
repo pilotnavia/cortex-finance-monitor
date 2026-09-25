@@ -2652,6 +2652,7 @@ export class DataLoaderManager implements AppModule {
 
   private lastWebcamBbox: { w: number; s: number; e: number; n: number; zoom: number } | null = null;
   private lastWebcamFetchAt = 0;
+  private webcamAbort: AbortController | null = null;
 
   async loadWebcams(): Promise<void> {
     if (!this.ctx.map) return;
@@ -2681,13 +2682,24 @@ export class DataLoaderManager implements AppModule {
       this.lastWebcamFetchAt = now;
       this.lastWebcamBbox = { w, s, e, n, zoom };
 
+      // Cancel any in-flight webcam fetch so a slow older response can't land
+      // after (and overwrite) the markers for the current viewport.
+      this.webcamAbort?.abort();
+      const controller = new AbortController();
+      this.webcamAbort = controller;
+
       const { fetchWebcams } = await import('@/services/webcams');
-      const result = await fetchWebcams(zoom, { w, s, e, n });
+      const result = await fetchWebcams(zoom, { w, s, e, n }, controller.signal);
+
+      // A newer fetch may have superseded this one while it was in flight.
+      if (controller.signal.aborted) return;
 
       const allMarkers = [...result.webcams, ...result.clusters];
       map.setWebcams(allMarkers);
       map.setLayerReady('webcams', allMarkers.length > 0);
     } catch (err) {
+      // Superseded fetches abort on purpose — keep the current markers intact.
+      if (err instanceof DOMException && err.name === 'AbortError') return;
       console.warn('[data-loader] webcams failed:', err);
       this.ctx.map?.setLayerReady('webcams', false);
     }

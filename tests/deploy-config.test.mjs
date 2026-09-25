@@ -196,9 +196,11 @@ describe('welcome landing page routing', () => {
 
   it('sitemap lists the /welcome page', () => {
     const sitemap = readFileSync(resolve(__dirname, '../public/sitemap.xml'), 'utf-8');
+    // Domain-agnostic: this fork serves its own canonical host, so assert the
+    // /welcome page is listed without pinning the upstream worldmonitor.app host.
     assert.ok(
-      sitemap.includes('<loc>https://www.worldmonitor.app/welcome</loc>'),
-      'public/sitemap.xml must list https://www.worldmonitor.app/welcome'
+      /<loc>https:\/\/[^<]+\/welcome<\/loc>/.test(sitemap),
+      'public/sitemap.xml must list a /welcome page'
     );
   });
 });
@@ -441,7 +443,17 @@ describe('security header guardrails', () => {
     const indexHtml = readFileSync(resolve(__dirname, '../index.html'), 'utf-8');
     const csp = getHeaderValue('Content-Security-Policy');
     const scriptTokens = getCspDirectiveTokens(csp, 'script-src');
+    // Only EXECUTABLE inline scripts are subject to script-src. Data blocks
+    // (application/ld+json for schema.org, importmap, speculationrules,
+    // application/json) are never executed, so the CSP never gates them and
+    // they need no hash — exclude them or they produce phantom "missing hash"
+    // failures whenever the SEO/JSON-LD content changes.
+    const NON_EXECUTABLE_SCRIPT = /\btype\s*=\s*["']?(?:application\/(?:ld\+json|json)|importmap|speculationrules)["']?/i;
     const inlineHashTokens = [...indexHtml.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)]
+      .filter((match) => {
+        const openTag = match[0].slice(0, match[0].indexOf('>') + 1);
+        return !NON_EXECUTABLE_SCRIPT.test(openTag);
+      })
       .map((match) => match[1])
       .filter((body) => body.trim().length > 0)
       .map((body) => `'sha256-${createHash('sha256').update(body).digest('base64')}'`);

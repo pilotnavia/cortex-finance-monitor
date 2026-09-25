@@ -21,16 +21,23 @@ const imageCacheMap = new Map<string, { data: GetWebcamImageResponse; expires: n
 export async function fetchWebcams(
   zoom: number,
   bounds: { w: number; s: number; e: number; n: number },
+  signal?: AbortSignal,
 ): Promise<ListWebcamsResponse> {
   try {
-    return await client.listWebcams({
-      zoom,
-      boundW: bounds.w,
-      boundS: bounds.s,
-      boundE: bounds.e,
-      boundN: bounds.n,
-    });
+    return await client.listWebcams(
+      {
+        zoom,
+        boundW: bounds.w,
+        boundS: bounds.s,
+        boundE: bounds.e,
+        boundN: bounds.n,
+      },
+      signal ? { signal } : undefined,
+    );
   } catch (err) {
+    // A superseded viewport fetch is aborted on purpose — rethrow so the caller
+    // skips the update instead of clobbering the newer markers with an empty set.
+    if (signal?.aborted || (err instanceof DOMException && err.name === 'AbortError')) throw err;
     console.warn('[webcams] fetch failed:', err);
     return emptyResponse;
   }
