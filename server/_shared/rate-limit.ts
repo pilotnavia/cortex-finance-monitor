@@ -69,10 +69,37 @@ export const RATE_LIMIT_DEGRADED_HEADERS = {
   'Retry-After': '5',
 } as const;
 
+// Sync constant-time string compare. node:crypto.timingSafeEqual needs equal-length
+// Buffers and Web Crypto's variant is async; getClientIp is a sync hot path, so use
+// a length-guarded XOR fold (leaks only the length, not the content, of a
+// high-entropy secret).
+function constantTimeEqual(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  let r = 0;
+  for (let i = 0; i < a.length; i++) r |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return r === 0;
+}
+
+// Whether cf-connecting-ip can be trusted for this request. With no ingress
+// secret configured we trust it exactly as before (dormant — zero behaviour
+// change). Once WM_CF_INGRESS_SECRET is set, a Cloudflare Transform Rule must
+// inject a matching x-wm-cf-ingress header on every proxied request; a request
+// arriving WITHOUT it reached the origin without transiting Cloudflare (e.g. the
+// raw *.vercel.app alias) and must not set its rate-limit identity via a forged
+// cf-connecting-ip. Activation order matters: add the CF Transform Rule FIRST,
+// then set WM_CF_INGRESS_SECRET — the reverse throttles all CF users onto the
+// shared x-real-ip bucket until the header starts flowing.
+export function cfIngressTrusted(request: Request): boolean {
+  const secret = process.env.WM_CF_INGRESS_SECRET;
+  if (!secret) return true;
+  const provided = (request.headers.get('x-wm-cf-ingress') ?? '').trim();
+  return provided.length > 0 && constantTimeEqual(provided, secret);
+}
+
 export function getClientIp(request: Request): string {
   // With Cloudflare proxy → Vercel, x-real-ip is the CF edge IP (shared across
   // users). cf-connecting-ip is the actual client IP set by Cloudflare —
-  // prefer it.
+  // prefer it (only when it provably came through CF; see cfIngressTrusted).
   //
   // x-forwarded-for is client-settable and MUST NOT be trusted for
   // rate limiting (#3531) — without that fallback removed, a caller bypassing
@@ -85,7 +112,8 @@ export function getClientIp(request: Request): string {
   // cf-connecting-ip would otherwise short-circuit past x-real-ip.
   const cf = (request.headers.get('cf-connecting-ip') ?? '').trim();
   const xr = (request.headers.get('x-real-ip') ?? '').trim();
-  return cf || xr || UNKNOWN_CLIENT_IP;
+  if (cf && cfIngressTrusted(request)) return cf;
+  return xr || UNKNOWN_CLIENT_IP;
 }
 
 function tooManyRequestsResponse(limit: number, reset: number, corsHeaders: Record<string, string>): Response {

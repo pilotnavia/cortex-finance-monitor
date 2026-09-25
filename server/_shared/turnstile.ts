@@ -1,4 +1,4 @@
-import { UNKNOWN_CLIENT_IP } from './rate-limit';
+import { UNKNOWN_CLIENT_IP, cfIngressTrusted } from './rate-limit';
 
 const TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
@@ -11,7 +11,10 @@ export function getClientIp(request: Request): string {
   // the next fallback. Mirrors getClientIp in server/_shared/rate-limit.ts.
   const cf = (request.headers.get('cf-connecting-ip') ?? '').trim();
   const xr = (request.headers.get('x-real-ip') ?? '').trim();
-  return cf || xr || UNKNOWN_CLIENT_IP;
+  // Only trust cf-connecting-ip when the request provably came through Cloudflare
+  // (see cfIngressTrusted). Dormant until WM_CF_INGRESS_SECRET is configured.
+  if (cf && cfIngressTrusted(request)) return cf;
+  return xr || UNKNOWN_CLIENT_IP;
 }
 
 export type TurnstileMissingSecretPolicy = 'allow' | 'allow-in-development' | 'deny';

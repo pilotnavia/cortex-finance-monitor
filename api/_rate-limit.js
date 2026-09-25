@@ -39,10 +39,36 @@ export const RATE_LIMIT_DEGRADED_HEADERS = Object.freeze({
   'Retry-After': '5',
 });
 
+// Sync constant-time string compare (edge: Web Crypto's timingSafeEqual is async
+// and getClientIp is a sync hot path). Length-guarded XOR fold leaks only the
+// length, not the content, of a high-entropy secret. Mirrors constantTimeEqual in
+// server/_shared/rate-limit.ts.
+function constantTimeEqual(a, b) {
+  if (a.length !== b.length) return false;
+  let r = 0;
+  for (let i = 0; i < a.length; i++) r |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return r === 0;
+}
+
+// Whether cf-connecting-ip can be trusted. With no ingress secret configured we
+// trust it as before (dormant — zero behaviour change). Once WM_CF_INGRESS_SECRET
+// is set, a Cloudflare Transform Rule must inject a matching x-wm-cf-ingress
+// header; a request without it reached the origin without transiting Cloudflare
+// (e.g. the raw *.vercel.app alias) and must not set its rate-limit identity via
+// a forged cf-connecting-ip. Add the CF Transform Rule FIRST, then set the env
+// var. Mirrors cfIngressTrusted in server/_shared/rate-limit.ts.
+export function cfIngressTrusted(request) {
+  const secret = process.env.WM_CF_INGRESS_SECRET;
+  if (!secret) return true;
+  const provided = (request.headers.get('x-wm-cf-ingress') ?? '').trim();
+  return provided.length > 0 && constantTimeEqual(provided, secret);
+}
+
 export function getClientIp(request) {
   // With Cloudflare proxy → Vercel, x-real-ip is the CF edge IP (shared
   // across users). cf-connecting-ip is the actual client IP set by
-  // Cloudflare — prefer it.
+  // Cloudflare — prefer it (only when it provably came through CF; see
+  // cfIngressTrusted).
   //
   // x-forwarded-for is client-settable and MUST NOT be trusted for rate
   // limiting (#3531) — without that fallback removed, a caller bypassing
@@ -56,7 +82,8 @@ export function getClientIp(request) {
   // (Mirrors getClientIp in server/_shared/rate-limit.ts.)
   const cf = (request.headers.get('cf-connecting-ip') ?? '').trim();
   const xr = (request.headers.get('x-real-ip') ?? '').trim();
-  return cf || xr || UNKNOWN_CLIENT_IP;
+  if (cf && cfIngressTrusted(request)) return cf;
+  return xr || UNKNOWN_CLIENT_IP;
 }
 
 // Decide the Sentry level for a degraded-rate-limit capture. Upstash runtime

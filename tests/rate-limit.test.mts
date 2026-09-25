@@ -13,6 +13,7 @@ import { afterEach, beforeEach, describe, it } from 'node:test';
 import {
   RATE_LIMIT_DEGRADED_HEADERS,
   UNKNOWN_CLIENT_IP,
+  cfIngressTrusted,
   checkEndpointRateLimit,
   checkRateLimit,
   checkScopedRateLimit,
@@ -71,6 +72,54 @@ describe('rate-limit getClientIp (#3531 — drop spoofable x-forwarded-for)', ()
   it('treats whitespace-only header values as absent', () => {
     const req = makeRequest({ 'cf-connecting-ip': '   ', 'x-real-ip': '192.0.2.5' });
     assert.equal(getClientIp(req), '192.0.2.5');
+  });
+});
+
+describe('rate-limit cf-connecting-ip ingress gate (#4 — direct-origin bypass)', () => {
+  const SECRET = 'test-ingress-secret-abc123';
+  afterEach(() => { restoreEnv(); });
+
+  it('is dormant when WM_CF_INGRESS_SECRET is unset (cf-connecting-ip trusted)', () => {
+    delete process.env.WM_CF_INGRESS_SECRET;
+    const req = makeRequest({ 'cf-connecting-ip': '203.0.113.7', 'x-real-ip': '192.0.2.5' });
+    assert.equal(cfIngressTrusted(req), true);
+    assert.equal(getClientIp(req), '203.0.113.7');
+  });
+
+  it('trusts cf-connecting-ip when the ingress header matches the secret', () => {
+    process.env.WM_CF_INGRESS_SECRET = SECRET;
+    const req = makeRequest({
+      'cf-connecting-ip': '203.0.113.7',
+      'x-real-ip': '192.0.2.5',
+      'x-wm-cf-ingress': SECRET,
+    });
+    assert.equal(cfIngressTrusted(req), true);
+    assert.equal(getClientIp(req), '203.0.113.7');
+  });
+
+  it('ignores a forged cf-connecting-ip when the ingress header is missing (direct origin)', () => {
+    process.env.WM_CF_INGRESS_SECRET = SECRET;
+    const req = makeRequest({ 'cf-connecting-ip': '203.0.113.7', 'x-real-ip': '192.0.2.5' });
+    assert.equal(cfIngressTrusted(req), false);
+    // Falls back to the Vercel-set x-real-ip (the real peer for a direct hit).
+    assert.equal(getClientIp(req), '192.0.2.5');
+  });
+
+  it('ignores cf-connecting-ip when the ingress header is wrong', () => {
+    process.env.WM_CF_INGRESS_SECRET = SECRET;
+    const req = makeRequest({
+      'cf-connecting-ip': '203.0.113.7',
+      'x-real-ip': '192.0.2.5',
+      'x-wm-cf-ingress': 'wrong-secret',
+    });
+    assert.equal(cfIngressTrusted(req), false);
+    assert.equal(getClientIp(req), '192.0.2.5');
+  });
+
+  it('falls back to UNKNOWN when the ingress header is missing and no x-real-ip', () => {
+    process.env.WM_CF_INGRESS_SECRET = SECRET;
+    const req = makeRequest({ 'cf-connecting-ip': '203.0.113.7' });
+    assert.equal(getClientIp(req), UNKNOWN_CLIENT_IP);
   });
 });
 
